@@ -1,48 +1,51 @@
-import { useEffect } from 'react';
-import Head from 'next/head';
-import { Box, Button, Container, Grid, MenuItem, TextField, Typography } from '@mui/material';
-import { AuthGuard } from '../../components/authentication/auth-guard';
-import { DashboardLayout } from '../../components/dashboard/dashboard-layout';
-import { AnalyticsGeneralOverview } from '../../components/dashboard/analytics/analytics-general-overview';
-import { AnalyticsMostVisited } from '../../components/dashboard/analytics/analytics-most-visited';
-import { AnalyticsSocialSources } from '../../components/dashboard/analytics/analytics-social-sources';
-import { AnalyticsVisitsByCountry } from '../../components/dashboard/analytics/analytics-visits-by-country';
-import { AnalyticsTrafficSources } from '../../components/dashboard/analytics/analytics-traffic-sources';
-import { Reports as ReportsIcon } from '../../icons/reports';
-import { gtm } from '../../lib/gtm';
+import { useEffect } from "react";
+import Head from "next/head";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  MenuItem,
+  TextField,
+  Typography,
+  Stack,
+  Card,
+  CardContent,
+} from "@mui/material";
+import { AuthGuard } from "../../components/authentication/auth-guard";
+import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
+import { AnalyticsGeneralOverview } from "../../components/dashboard/analytics/analytics-general-overview";
+import { AnalyticsMostVisited } from "../../components/dashboard/analytics/analytics-most-visited";
+import { AnalyticsSocialSources } from "../../components/dashboard/analytics/analytics-social-sources";
+import { AnalyticsVisitsByCountry } from "../../components/dashboard/analytics/analytics-visits-by-country";
+import { AnalyticsTrafficSources } from "../../components/dashboard/analytics/analytics-traffic-sources";
+import { Reports as ReportsIcon } from "../../icons/reports";
+import { gtm } from "../../lib/gtm";
 
 const index = () => {
   useEffect(() => {
-    gtm.push({ event: 'page_view' });
+    gtm.push({ event: "page_view" });
   }, []);
 
   return (
     <>
       <Head>
-        <title>
-          Dashboard
-        </title>
+        <title>Dashboard</title>
       </Head>
       <Box
         component="main"
         sx={{
           flexGrow: 1,
-          py: 8
+          py: 8,
         }}
       >
         <Container maxWidth="xl">
           <Box sx={{ mb: 4 }}>
-            <Grid
-              container
-              justifyContent="space-between"
-              spacing={3}
-            >
+            <Grid container justifyContent="space-between" spacing={3}>
               <Grid item>
-                <Typography variant="h4">
-                  Dashboard
-                </Typography>
+                <Typography variant="h4">Dashboard</Typography>
               </Grid>
-              <Grid
+              {/* <Grid
                 item
                 sx={{
                   alignItems: 'center',
@@ -68,45 +71,94 @@ const index = () => {
                   <MenuItem value="month">Last month</MenuItem>
                   <MenuItem value="year">Last year</MenuItem>
                 </TextField>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Box>
-          <AnalyticsGeneralOverview />
-          <Box sx={{ mt: 4 }}>
-            <Grid
-              container
-              spacing={4}
-            >
-              <Grid
-                item
-                md={8}
-                xs={12}
-              >
-                <AnalyticsTrafficSources sx={{ height: '100%' }} />
+          <Grid container spacing={2}>
+            <Grid item xs={3}>
+              <Stack spacing={2} sx={{ height: "100%" }}>
+                <Card sx={{ height: "100%" }}>
+                  <CardContent>
+                    {" "}
+                    <Typography sx={{ textAlign: "center" }}>
+                      Total Third Party Apps
+                    </Typography>
+                  </CardContent>
+                </Card>
+
+                <Card sx={{ height: "100%" }}>
+                  <CardContent>
+                    {" "}
+                    <Typography sx={{ textAlign: "center" }}>
+                      Total Issues
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Stack>
+            </Grid>
+            <Grid item xs={4}>
+              <Card sx={{ height: "100%" }}>
+                <CardContent>
+                  <Typography sx={{ textAlign: "center" }}>
+                    Overall Score
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item xs={5}>
+              <Card sx={{ height: "100%" }}>
+                <CardContent>
+                  {" "}
+                  <Typography sx={{ textAlign: "center" }}>
+                    Third Party Issue Severity
+                  </Typography>
+                  <Grid container spacing={2}>
+                    <Grid item xs={6}></Grid>
+                    <Grid item xs={6}></Grid>
+                  </Grid>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+          <Grid container spacing={2} sx={{ mt: 5 }}>
+            <Grid item xs={8}>
+              <Card sx={{ height: "100%" }}>
+                <CardContent>
+                  <Typography sx={{ textAlign: "left" }}>
+                    Total Issues
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item xs={4}>
+              <Card sx={{ height: "100%" }}>
+                <CardContent>
+                  {" "}
+                  <Typography sx={{ textAlign: "left" }}>
+                    Third Party at Risk
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+
+          {/* <AnalyticsGeneralOverview /> */}
+          {/* <Box sx={{ mt: 4 }}>
+            <Grid container spacing={4}>
+              <Grid item md={8} xs={12}>
+                <AnalyticsTrafficSources sx={{ height: "100%" }} />
               </Grid>
-              <Grid
-                item
-                md={4}
-                xs={12}
-              >
+              <Grid item md={4} xs={12}>
                 <AnalyticsVisitsByCountry />
               </Grid>
-              <Grid
-                item
-                md={8}
-                xs={12}
-              >
+              <Grid item md={8} xs={12}>
                 <AnalyticsMostVisited />
               </Grid>
-              <Grid
-                item
-                md={4}
-                xs={12}
-              >
+              <Grid item md={4} xs={12}>
                 <AnalyticsSocialSources />
               </Grid>
             </Grid>
-          </Box>
+          </Box> */}
         </Container>
       </Box>
     </>
@@ -115,9 +167,7 @@ const index = () => {
 
 index.getLayout = (page) => (
   <AuthGuard>
-    <DashboardLayout>
-      {page}
-    </DashboardLayout>
+    <DashboardLayout>{page}</DashboardLayout>
   </AuthGuard>
 );
 
