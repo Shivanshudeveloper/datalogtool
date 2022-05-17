@@ -44,16 +44,16 @@ const Assets = () => {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               {" "}
-              <TextField fullWidth></TextField>
+              <TextField fullWidth label="Name"></TextField>
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               {" "}
               <TextField fullWidth></TextField>
             </Grid>
             <Grid item xs={12}>
               {" "}
               <TextField fullWidth></TextField>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Container>
       </Box>
