@@ -38,6 +38,7 @@ import { Logo } from "../logo";
 import { Scrollbar } from "../scrollbar";
 import { DashboardSidebarSection } from "./dashboard-sidebar-section";
 import { OrganizationPopover } from "./organization-popover";
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 
 const getSections = (t) => [
   {
@@ -62,6 +63,11 @@ const getSections = (t) => [
         title: t("Issues"),
         path: "/dashboard/issues",
         icon: <UserCircleIcon fontSize="small" />,
+      },
+      {
+        title: t("Vendors"),
+        path: "/dashboard/vendors",
+        icon: <ShoppingBasketIcon fontSize="small" />,
       },
       // {
       //   title: t("Analytics"),

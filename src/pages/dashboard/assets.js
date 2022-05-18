@@ -14,6 +14,9 @@ import {
 import { AuthGuard } from "../../components/authentication/auth-guard";
 import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
 
+import Attacksurfacetable from "../../components/Attacksurfacetable";
+
+
 import { gtm } from "../../lib/gtm";
 
 const Assets = () => {
@@ -24,7 +27,7 @@ const Assets = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Attack Surface | Material Kit Pro</title>
+        <title>Dashboard: Attack Surface</title>
       </Head>
       <Box
         component="main"
@@ -44,7 +47,7 @@ const Assets = () => {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               {" "}
-              <TextField fullWidth label="Name"></TextField>
+              <TextField sx={{ mb: 2 }} fullWidth label="Name"></TextField>
             </Grid>
             {/* <Grid item xs={12}>
               {" "}
@@ -55,6 +58,7 @@ const Assets = () => {
               <TextField fullWidth></TextField>
             </Grid> */}
           </Grid>
+          <Attacksurfacetable />
         </Container>
       </Box>
     </>

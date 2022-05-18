@@ -25,12 +25,9 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { styled } from "@mui/material/styles";
 import { AuthGuard } from "../../components/authentication/auth-guard";
 import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
-import { AnalyticsGeneralOverview } from "../../components/dashboard/analytics/analytics-general-overview";
-import { AnalyticsMostVisited } from "../../components/dashboard/analytics/analytics-most-visited";
-import { AnalyticsSocialSources } from "../../components/dashboard/analytics/analytics-social-sources";
-import { AnalyticsVisitsByCountry } from "../../components/dashboard/analytics/analytics-visits-by-country";
-import { AnalyticsTrafficSources } from "../../components/dashboard/analytics/analytics-traffic-sources";
-import { Reports as ReportsIcon } from "../../icons/reports";
+import AreaChartGraph from "../../components/charts/AreaChartGraph";
+import PiechartGraph from "../../components/charts/PiechartGraph";
+
 import { gtm } from "../../lib/gtm";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -248,8 +245,12 @@ const index = () => {
                     Third Party Issue Severity
                   </Typography>
                   <Grid container spacing={2}>
-                    <Grid item xs={6}></Grid>
-                    <Grid item xs={6}></Grid>
+                    <Grid item xs={6}>
+                      {/* <PiechartGraph /> */}
+                    </Grid>
+                    <Grid item xs={6}>
+
+                    </Grid>
                   </Grid>
                 </CardContent>
               </Card>
@@ -297,6 +298,7 @@ const index = () => {
                       </FormControl>
                     </Box>
                   </Box>
+                  <AreaChartGraph />
                 </CardContent>
               </Card>
             </Grid>

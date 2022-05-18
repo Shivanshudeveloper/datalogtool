@@ -10,9 +10,11 @@ import {
   TextField,
   Typography,
   Card,
+  Divider,
 } from "@mui/material";
 import { AuthGuard } from "../../components/authentication/auth-guard";
 import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
+import IssuePageTable from "../../components/IssuePageTable";
 
 import { gtm } from "../../lib/gtm";
 
@@ -24,7 +26,7 @@ const Issues = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Attack Surface | Material Kit Pro</title>
+        <title>Dashboard: Attack Surface</title>
       </Head>
       <Box
         component="main"
@@ -63,9 +65,7 @@ const Issues = () => {
           </Grid>
           <Grid container sx={{ mt: 5 }}>
             <Grid item xs={12}>
-              <Card>
-                <CardContent></CardContent>
-              </Card>
+                <IssuePageTable />
             </Grid>
           </Grid>
           <Grid container sx={{ mt: 5 }} spacing={2}>
@@ -76,7 +76,37 @@ const Issues = () => {
 
             <Grid item xs={12}>
               <Card>
-                <CardContent></CardContent>
+                <CardContent>
+                  Name
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <Divider />
+                  Info
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <Divider />
+                  Remediation
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <Divider />
+                  Refrences
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <Divider />
+                  Domain
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                </CardContent>
               </Card>
             </Grid>
           </Grid>
