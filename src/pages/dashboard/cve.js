@@ -11,18 +11,68 @@ import {
   Typography,
   Card,
   Divider,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Chip,
 } from "@mui/material";
 import { AuthGuard } from "../../components/authentication/auth-guard";
 import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
 import IssuePageTable from "../../components/IssuePageTable";
 
 import { gtm } from "../../lib/gtm";
-
-const Issues = () => {
+function createData(name, calories, fat, carbs, protein, price) {
+  return {
+    name,
+    calories,
+    fat,
+    carbs,
+    protein,
+    price,
+    history: [
+      {
+        date: "blog.test.com",
+        customerId: "Subdomain",
+      },
+      {
+        date: "test.test.com",
+        customerId: "Subdomain",
+      },
+      {
+        date: "test2.test.com",
+        customerId: "Subdomain",
+      },
+      {
+        date: "test3.test.com",
+        customerId: "Subdomain",
+      },
+    ],
+  };
+}
+const Cve = () => {
   useEffect(() => {
     gtm.push({ event: "page_view" });
   }, []);
-
+  const row = [
+    {
+      date: "blog.test.com",
+      customerId: "Subdomain",
+    },
+    {
+      date: "test.test.com",
+      customerId: "Subdomain",
+    },
+    {
+      date: "test2.test.com",
+      customerId: "Subdomain",
+    },
+    {
+      date: "test3.test.com",
+      customerId: "Subdomain",
+    },
+  ];
   return (
     <>
       <Head>
@@ -64,9 +114,27 @@ const Issues = () => {
             </Grid>
           </Grid>
           <Grid container sx={{ mt: 5 }}>
-            <Grid item xs={12}>
-              <IssuePageTable />
-            </Grid>
+            {" "}
+            <Table size="small" aria-label="purchases">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Serverity</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {row.map((historyRow) => (
+                  <TableRow key={historyRow.date}>
+                    <TableCell component="th" scope="row">
+                      CVE 2022-2010
+                    </TableCell>
+                    <TableCell>
+                      <Chip label="Critical" color="error" />
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </Grid>
           {/* <Grid container sx={{ mt: 5 }} spacing={2}>
             <Grid item xs={12}>
@@ -116,10 +184,10 @@ const Issues = () => {
   );
 };
 
-Issues.getLayout = (page) => (
+Cve.getLayout = (page) => (
   <AuthGuard>
     <DashboardLayout>{page}</DashboardLayout>
   </AuthGuard>
 );
 
-export default Issues;
+export default Cve;

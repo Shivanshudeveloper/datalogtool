@@ -1,5 +1,5 @@
-import * as React from 'react';
-import Paper from '@mui/material/Paper';
+import * as React from "react";
+import Paper from "@mui/material/Paper";
 import {
   Chart,
   ArgumentAxis,
@@ -7,19 +7,20 @@ import {
   AreaSeries,
   Title,
   Legend,
-} from '@devexpress/dx-react-chart-material-ui';
-import { ArgumentScale, Animation } from '@devexpress/dx-react-chart';
-import { styled } from '@mui/material/styles';
-import { scalePoint } from 'd3-scale';
+} from "@devexpress/dx-react-chart-material-ui";
+import { ArgumentScale, Animation } from "@devexpress/dx-react-chart";
+import { styled } from "@mui/material/styles";
+import { scalePoint } from "d3-scale";
+import { Box } from "@mui/material";
 
 const data = [
-  { year: '2010', android: 67225, ios: 46598 },
-  { year: '2011', android: 179873, ios: 90560 },
-  { year: '2012', android: 310088, ios: 118848 },
-  { year: '2015', android: 539318, ios: 189924 },
+  { year: "2010", android: 67225, ios: 46598 },
+  { year: "2011", android: 179873, ios: 90560 },
+  { year: "2012", android: 310088, ios: 118848 },
+  { year: "2015", android: 539318, ios: 189924 },
 ];
 
-const PREFIX = 'Demo';
+const PREFIX = "Demo";
 
 const classes = {
   chart: `${PREFIX}-chart`,
@@ -27,21 +28,22 @@ const classes = {
 
 const StyledChartRoot = styled(Chart.Root)(() => ({
   [`&.${classes.chart}`]: {
-    paddingRight: '20px',
+    paddingRight: "20px",
   },
 }));
 
-const ChartRoot = props => (
+const ChartRoot = (props) => (
   <StyledChartRoot {...props} className={classes.chart} />
 );
-const LegendRoot = props => (
-  <Legend.Root {...props} sx={{ display: 'flex', margin: 'auto', flexDirection: 'row' }} />
+const LegendRoot = (props) => (
+  <Legend.Root
+    {...props}
+    sx={{ display: "flex", margin: "auto", flexDirection: "row" }}
+  />
 );
-const LegendLabel = props => (
-  <Legend.Label {...props} sx={{ pt: 1 }} />
-);
-const LegendItem = props => (
-  <Legend.Item {...props} sx={{ flexDirection: 'column' }} />
+const LegendLabel = (props) => <Legend.Label {...props} sx={{ pt: 1 }} />;
+const LegendItem = (props) => (
+  <Legend.Item {...props} sx={{ flexDirection: "column" }} />
 );
 
 export default class AreaChartGraph extends React.PureComponent {
@@ -57,32 +59,24 @@ export default class AreaChartGraph extends React.PureComponent {
     const { data: chartData } = this.state;
     return (
       <>
-        <Chart
-          data={chartData}
-          rootComponent={ChartRoot}
-        >
-          <ArgumentScale factory={scalePoint} />
-          <ArgumentAxis />
-          <ValueAxis />
+        <Box sx={{ width: "100%" }}>
+          {" "}
+          <Chart data={chartData} rootComponent={ChartRoot}>
+            <ArgumentScale factory={scalePoint} />
+            <ArgumentAxis />
+            <ValueAxis />
 
-          <AreaSeries
-            name="Data"
-            valueField="android"
-            argumentField="year"
-          />
-          <AreaSeries
-            name="Data"
-            valueField="ios"
-            argumentField="year"
-          />
-          <Animation />
-          <Legend
-            position="bottom"
-            rootComponent={LegendRoot}
-            itemComponent={LegendItem}
-            labelComponent={LegendLabel}
-          />
-        </Chart>
+            <AreaSeries name="Data" valueField="android" argumentField="year" />
+            <AreaSeries name="Data" valueField="ios" argumentField="year" />
+            <Animation />
+            <Legend
+              position="bottom"
+              rootComponent={LegendRoot}
+              itemComponent={LegendItem}
+              labelComponent={LegendLabel}
+            />
+          </Chart>
+        </Box>
       </>
     );
   }

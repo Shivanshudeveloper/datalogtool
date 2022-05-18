@@ -20,6 +20,8 @@ import {
   TableRow,
   Paper,
   TableHead,
+  CardHeader,
+  Divider,
 } from "@mui/material";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { styled } from "@mui/material/styles";
@@ -27,8 +29,11 @@ import { AuthGuard } from "../../components/authentication/auth-guard";
 import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
 import AreaChartGraph from "../../components/charts/AreaChartGraph";
 import PiechartGraph from "../../components/charts/PiechartGraph";
-
+import numeral from "numeral";
 import { gtm } from "../../lib/gtm";
+import { useTheme } from "@mui/material/styles";
+import { Chart } from "../../components/chart";
+import PercentPieChart from "../../components/charts/PercentPieChart";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -103,7 +108,31 @@ const ScoreBox = ({ score }) => {
   );
 };
 
-const index = () => {
+const data = {
+  series: [
+    {
+      color: "#FFB547",
+      data: 14859,
+      label: "Strategy",
+    },
+    {
+      color: "#7BC67E",
+      data: 35690,
+      label: "Outsourcing",
+    },
+    {
+      color: "#7783DB",
+      data: 45120,
+      label: "Marketing",
+    },
+    {
+      color: "#9DA4DD",
+      data: 25486,
+      label: "Other",
+    },
+  ],
+};
+const index = (props) => {
   useEffect(() => {
     gtm.push({ event: "page_view" });
   }, []);
@@ -117,7 +146,36 @@ const index = () => {
   const handleChangeLastTotalIssues = (event) => {
     setLastTotalIssues(event.target.value);
   };
+  const theme = useTheme();
 
+  const chartOptions2 = {
+    chart: {
+      background: "transparent",
+      stacked: false,
+      toolbar: {
+        show: false,
+      },
+    },
+    colors: data.series.map((item) => item.color),
+    dataLabels: {
+      enabled: false,
+    },
+    fill: {
+      opacity: 1,
+    },
+    labels: data.series.map((item) => item.label),
+    legend: {
+      show: false,
+    },
+    stroke: {
+      width: 0,
+    },
+    theme: {
+      mode: theme.palette.mode,
+    },
+  };
+
+  const chartSeries = data.series.map((item) => item.data);
   return (
     <>
       <Head>
@@ -168,7 +226,14 @@ const index = () => {
           <Grid container spacing={2}>
             <Grid item xs={3}>
               <Stack spacing={2} sx={{ height: "100%" }}>
-                <Card sx={{ height: "100%" }}>
+                <Card
+                  sx={{
+                    height: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
                   <CardContent>
                     {" "}
                     <Typography sx={{ textAlign: "center" }}>
@@ -180,7 +245,14 @@ const index = () => {
                   </CardContent>
                 </Card>
 
-                <Card sx={{ height: "100%" }}>
+                <Card
+                  sx={{
+                    height: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
                   <CardContent>
                     {" "}
                     <Typography sx={{ textAlign: "center" }}>
@@ -234,23 +306,127 @@ const index = () => {
                       </FormControl>
                     </Box>
                   </Box>
+                  <Box>
+                    {" "}
+                    <Grid container spacing={3} sx={{ p: 3 }}>
+                      {/* {items.map((item) => (
+                        <Grid item key={item.label} xs={12}>
+                          <Card
+                            sx={{
+                              alignItems: "center",
+                              display: "flex",
+                              flexDirection: "column",
+                              p: 2,
+                            }}
+                            variant="outlined"
+                          >
+                           
+                            <Chart
+                              height={200}
+                              options={{
+                                ...chartOptions,
+                                colors: [item.color],
+                              }}
+                              series={[item.value]}
+                              type="radialBar"
+                            />
+                            <Typography variant="h6">{item.value}</Typography>
+                            <Typography color="textSecondary" variant="body2">
+                              {item.subtitle}
+                            </Typography>
+                          </Card>
+                        </Grid>
+                      ))} */}
+                      <PercentPieChart
+                        color="#4CAF50"
+                        label="Very good"
+                        subtitle="Excellent"
+                        value="85"
+                        showInfo="true"
+                      />
+                    </Grid>
+                  </Box>
                 </CardContent>
               </Card>
             </Grid>
             <Grid item xs={5}>
               <Card sx={{ height: "100%" }}>
-                <CardContent>
+                <CardContent sx={{ height: "100%" }}>
                   {" "}
-                  <Typography sx={{ textAlign: "left" }} variant="h6">
+                  <Typography sx={{ textAlign: "center" }} variant="h6">
                     Third Party Issue Severity
                   </Typography>
-                  <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                  <Grid
+                    container
+                    spacing={2}
+                    sx={{
+                      height: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Grid item xs={12}>
                       {/* <PiechartGraph /> */}
+                      <Card {...props}>
+                        {/* <CardHeader title="Cost Breakdown" />
+                        <Divider /> */}
+                        <CardContent>
+                          <Chart
+                            height={250}
+                            options={chartOptions2}
+                            series={chartSeries}
+                            type="pie"
+                          />
+                        </CardContent>
+                        {/* <Table>
+                          <TableHead>
+                            <TableRow>
+                              <TableCell>Top Channels</TableCell>
+                              <TableCell align="right">Value</TableCell>
+                            </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            {data.series.map((item) => (
+                              <TableRow key={item.label}>
+                                <TableCell>
+                                  <Box
+                                    key={item.label}
+                                    sx={{
+                                      alignItems: "center",
+                                      display: "flex",
+                                    }}
+                                  >
+                                    <Box
+                                      sx={{
+                                        border: 3,
+                                        borderColor: item.color,
+                                        borderRadius: "50%",
+                                        height: 16,
+                                        mr: 1,
+                                        width: 16,
+                                      }}
+                                    />
+                                    <Typography variant="subtitle2">
+                                      {item.label}
+                                    </Typography>
+                                  </Box>
+                                </TableCell>
+                                <TableCell align="right">
+                                  <Typography
+                                    color="textSecondary"
+                                    variant="body2"
+                                  >
+                                    {numeral(item.data).format("$0,0.00")}
+                                  </Typography>
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table> */}
+                      </Card>
                     </Grid>
-                    <Grid item xs={6}>
-
-                    </Grid>
+                    {/* <Grid item xs={6}></Grid> */}
                   </Grid>
                 </CardContent>
               </Card>
@@ -259,7 +435,7 @@ const index = () => {
           <Grid container spacing={2} sx={{ mt: 5 }}>
             <Grid item xs={8}>
               <Card sx={{ height: "100%" }}>
-                <CardContent>
+                <CardContent sx={{ height: "100%" }}>
                   <Box
                     sx={{
                       display: "flex",
@@ -298,7 +474,17 @@ const index = () => {
                       </FormControl>
                     </Box>
                   </Box>
-                  <AreaChartGraph />
+                  <Box
+                    sx={{
+                      height: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      width: "100%",
+                    }}
+                  >
+                    <AreaChartGraph />
+                  </Box>
                 </CardContent>
               </Card>
             </Grid>

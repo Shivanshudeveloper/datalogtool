@@ -12,10 +12,13 @@ import {
   Select,
   Typography,
   Card,
+  Divider,
 } from "@mui/material";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 
-import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import LinearProgress, {
+  linearProgressClasses,
+} from "@mui/material/LinearProgress";
 
 import { AuthGuard } from "../../components/authentication/auth-guard";
 import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
@@ -23,29 +26,31 @@ import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
 import AreaChartGraph from "../../components/charts/AreaChartGraph";
 
 import { gtm } from "../../lib/gtm";
+import PercentPieChart from "../../components/charts/PercentPieChart";
 
 const BorderLinearProgressCritical = styled(LinearProgress)(({ theme }) => ({
   height: 10,
   borderRadius: 5,
   [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+    backgroundColor:
+      theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
-    backgroundColor: theme.palette.mode === 'light' ? 'red' : 'red',
+    backgroundColor: theme.palette.mode === "light" ? "red" : "red",
   },
 }));
-
 
 const BorderLinearProgressHigh = styled(LinearProgress)(({ theme }) => ({
   height: 10,
   borderRadius: 5,
   [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+    backgroundColor:
+      theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
-    backgroundColor: theme.palette.mode === 'light' ? 'orange' : 'orange',
+    backgroundColor: theme.palette.mode === "light" ? "orange" : "orange",
   },
 }));
 
@@ -53,11 +58,12 @@ const BorderLinearProgressMedium = styled(LinearProgress)(({ theme }) => ({
   height: 10,
   borderRadius: 5,
   [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+    backgroundColor:
+      theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
-    backgroundColor: theme.palette.mode === 'light' ? 'yellow' : 'yellow',
+    backgroundColor: theme.palette.mode === "light" ? "yellow" : "yellow",
   },
 }));
 
@@ -65,11 +71,12 @@ const BorderLinearProgressLow = styled(LinearProgress)(({ theme }) => ({
   height: 10,
   borderRadius: 5,
   [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+    backgroundColor:
+      theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
-    backgroundColor: theme.palette.mode === 'light' ? 'green' : 'green',
+    backgroundColor: theme.palette.mode === "light" ? "green" : "green",
   },
 }));
 
@@ -114,10 +121,12 @@ const AttackSurface = () => {
                     justifyContent: "center",
                   }}
                 >
-                  <Typography variant='h5' sx={{ textAlign: "center" }}>
+                  <Typography variant="h5" sx={{ textAlign: "center" }}>
                     Sub-domains
                   </Typography>
-                  <Typography variant='h5' sx={{ textAlign: "center" }}>1k</Typography>
+                  <Typography variant="h5" sx={{ textAlign: "center" }}>
+                    1k
+                  </Typography>
                 </CardContent>
               </Card>
             </Grid>
@@ -131,8 +140,12 @@ const AttackSurface = () => {
                     justifyContent: "center",
                   }}
                 >
-                  <Typography variant='h5'  sx={{ textAlign: "center" }}>IPv4</Typography>
-                  <Typography variant='h5'  sx={{ textAlign: "center" }}>2k</Typography>
+                  <Typography variant="h5" sx={{ textAlign: "center" }}>
+                    IPv4
+                  </Typography>
+                  <Typography variant="h5" sx={{ textAlign: "center" }}>
+                    2k
+                  </Typography>
                 </CardContent>
               </Card>
             </Grid>
@@ -146,10 +159,12 @@ const AttackSurface = () => {
                     justifyContent: "center",
                   }}
                 >
-                  <Typography variant='h5'  sx={{ textAlign: "center" }}>
+                  <Typography variant="h5" sx={{ textAlign: "center" }}>
                     Total Issues
                   </Typography>
-                  <Typography variant='h5'  sx={{ textAlign: "center" }}>40</Typography>
+                  <Typography variant="h5" sx={{ textAlign: "center" }}>
+                    40
+                  </Typography>
                 </CardContent>
               </Card>
             </Grid>
@@ -163,8 +178,12 @@ const AttackSurface = () => {
                     justifyContent: "center",
                   }}
                 >
-                  <Typography variant='h5'  sx={{ textAlign: "center" }}>Breaches</Typography>
-                  <Typography variant='h5'  sx={{ textAlign: "center" }}>20</Typography>
+                  <Typography variant="h5" sx={{ textAlign: "center" }}>
+                    Breaches
+                  </Typography>
+                  <Typography variant="h5" sx={{ textAlign: "center" }}>
+                    20
+                  </Typography>
                 </CardContent>
               </Card>
             </Grid>
@@ -178,30 +197,28 @@ const AttackSurface = () => {
                   </Typography>
                   <br />
                   <br />
-                  <Typography sx={{ textAlign: "left" }}>
-                    Critical
-                  </Typography>
-                  <BorderLinearProgressCritical variant="determinate" value={50} />
+                  <Typography sx={{ textAlign: "left" }}>Critical</Typography>
+                  <BorderLinearProgressCritical
+                    variant="determinate"
+                    value={50}
+                  />
 
                   <br />
                   <br />
-                  <Typography sx={{ textAlign: "left" }}>
-                    High
-                  </Typography>
+                  <Typography sx={{ textAlign: "left" }}>High</Typography>
                   <BorderLinearProgressHigh variant="determinate" value={75} />
 
                   <br />
                   <br />
-                  <Typography sx={{ textAlign: "left" }}>
-                    Medium
-                  </Typography>
-                  <BorderLinearProgressMedium variant="determinate" value={20} />
+                  <Typography sx={{ textAlign: "left" }}>Medium</Typography>
+                  <BorderLinearProgressMedium
+                    variant="determinate"
+                    value={20}
+                  />
 
                   <br />
                   <br />
-                  <Typography sx={{ textAlign: "left" }}>
-                    Low
-                  </Typography>
+                  <Typography sx={{ textAlign: "left" }}>Low</Typography>
                   <BorderLinearProgressLow variant="determinate" value={80} />
                 </CardContent>
               </Card>
@@ -210,12 +227,12 @@ const AttackSurface = () => {
               <Card sx={{ height: "100%" }}>
                 <CardContent>
                   {" "}
-                  <Typography sx={{ textAlign: "left", float: 'left' }}>
+                  <Typography sx={{ textAlign: "left", float: "left" }}>
                     Total Issues
                   </Typography>
                   <FormControl
                     variant="standard"
-                    sx={{ minWidth: 90, float: 'right' }}
+                    sx={{ minWidth: 90, float: "right" }}
                     size="small"
                   >
                     <Select
@@ -237,9 +254,7 @@ const AttackSurface = () => {
                     </Select>
                   </FormControl>
                   <br />
-
                   <AreaChartGraph />
-
                 </CardContent>
               </Card>
             </Grid>
@@ -256,42 +271,154 @@ const AttackSurface = () => {
           <Grid container spacing={2} sx={{ mt: 5 }}>
             <Grid item xs={3}>
               <Card sx={{ height: "100%" }}>
-                <CardContent></CardContent>
+                <CardContent>
+                  <PercentPieChart
+                    color="#4CAF50"
+                    label="Very good"
+                    subtitle="Excellent"
+                    value="85"
+                  />
+                  <Divider />
+                  <Typography
+                    textAlign="center"
+                    sx={{ mt: 2, fontWeight: 600, fontSize: "1.1rem" }}
+                  >
+                    DNS
+                  </Typography>
+                </CardContent>
               </Card>
             </Grid>
             <Grid item xs={3}>
               <Card sx={{ height: "100%" }}>
-                <CardContent></CardContent>
+                <CardContent>
+                  <PercentPieChart
+                    color="#F30F1F"
+                    label="Very good"
+                    subtitle="Excellent"
+                    value="85"
+                  />
+                  <Divider />
+                  <Typography
+                    textAlign="center"
+                    sx={{ mt: 2, fontWeight: 600, fontSize: "1.1rem" }}
+                  >
+                    Encryption
+                  </Typography>
+                </CardContent>
               </Card>
             </Grid>
             <Grid item xs={3}>
               <Card sx={{ height: "100%" }}>
-                <CardContent></CardContent>
+                <CardContent>
+                  <PercentPieChart
+                    color="#E6FF00"
+                    label="Very good"
+                    subtitle="Excellent"
+                    value="85"
+                  />
+                  <Divider />
+                  <Typography
+                    textAlign="center"
+                    sx={{ mt: 2, fontWeight: 600, fontSize: "1.1rem" }}
+                  >
+                    Network
+                  </Typography>
+                </CardContent>
               </Card>
             </Grid>
             <Grid item xs={3}>
               <Card sx={{ height: "100%" }}>
-                <CardContent></CardContent>
-              </Card>
-            </Grid>{" "}
-            <Grid item xs={3}>
-              <Card sx={{ height: "100%" }}>
-                <CardContent></CardContent>
+                <CardContent>
+                  <PercentPieChart
+                    color="#ffa500"
+                    label="Very good"
+                    subtitle="Excellent"
+                    value="85"
+                  />
+                  <Divider />
+                  <Typography
+                    textAlign="center"
+                    sx={{ mt: 2, fontWeight: 600, fontSize: "1.1rem" }}
+                  >
+                    Misconfigurations
+                  </Typography>
+                </CardContent>
               </Card>
             </Grid>
             <Grid item xs={3}>
               <Card sx={{ height: "100%" }}>
-                <CardContent></CardContent>
+                <CardContent>
+                  <PercentPieChart
+                    color="#4CAF50"
+                    label="Very good"
+                    subtitle="Excellent"
+                    value="85"
+                  />
+                  <Divider />
+                  <Typography
+                    textAlign="center"
+                    sx={{ mt: 2, fontWeight: 600, fontSize: "1.1rem" }}
+                  >
+                    Issues
+                  </Typography>
+                </CardContent>
               </Card>
             </Grid>
             <Grid item xs={3}>
               <Card sx={{ height: "100%" }}>
-                <CardContent></CardContent>
+                <CardContent>
+                  <PercentPieChart
+                    color="#4CAF50"
+                    label="Very good"
+                    subtitle="Excellent"
+                    value="85"
+                  />
+                  <Divider />
+                  <Typography
+                    textAlign="center"
+                    sx={{ mt: 2, fontWeight: 600, fontSize: "1.1rem" }}
+                  >
+                    Issues
+                  </Typography>
+                </CardContent>
               </Card>
             </Grid>
             <Grid item xs={3}>
               <Card sx={{ height: "100%" }}>
-                <CardContent></CardContent>
+                <CardContent>
+                  <PercentPieChart
+                    color="#4CAF50"
+                    label="Very good"
+                    subtitle="Excellent"
+                    value="85"
+                  />
+                  <Divider />
+                  <Typography
+                    textAlign="center"
+                    sx={{ mt: 2, fontWeight: 600, fontSize: "1.1rem" }}
+                  >
+                    Issues
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item xs={3}>
+              <Card sx={{ height: "100%" }}>
+                <CardContent>
+                  <PercentPieChart
+                    color="#4CAF50"
+                    label="Very good"
+                    subtitle="Excellent"
+                    value="85"
+                  />
+                  <Divider />
+                  <Typography
+                    textAlign="center"
+                    sx={{ mt: 2, fontWeight: 600, fontSize: "1.1rem" }}
+                  >
+                    Issues
+                  </Typography>
+                </CardContent>
               </Card>
             </Grid>
           </Grid>
