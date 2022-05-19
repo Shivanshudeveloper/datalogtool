@@ -52,10 +52,10 @@ function Row(props) {
     <React.Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
         <TableCell align="left" component="th" scope="row">
-          Zone Transfer
+            CVE 2022-2010
         </TableCell>
         <TableCell align="left" component="th" scope="row">
-          DNS
+            Apache
         </TableCell>
         <TableCell align="left" component="th" scope="row">
           <Chip label="Critical" color="error" />
@@ -103,72 +103,18 @@ function Row(props) {
                 <Grid item xs={12}>
                   <Card>
                     <CardContent>
-                      Name
+                      Summary
                       <br />
                       <br />
                       <br />
                       <br />
                       <Divider />
-                      Info
+                      Domains & IP
                       <br />
                       <br />
                       <br />
                       <br />
-                      <Divider />
-                      Remediation
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <Divider />
-                      Refrences
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <Divider />
-                      Domain
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                    </CardContent>
-                  </Card>
-                  <Typography>Breach</Typography>
-                  <Card>
-                    <CardContent>
-                      Info
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <Divider />
-                      Remediation
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <Divider />
-                      Email
-                    </CardContent>
-                  </Card>
-                  <Typography>Email Leak</Typography>
-                  <Card>
-                    <CardContent>
-                      Info
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <Divider />
-                      Remediation
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <Divider />
-                      Email
-                    </CardContent>
+                      </CardContent>
                   </Card>
                 </Grid>
               </Grid>
@@ -200,14 +146,14 @@ Row.propTypes = {
 
 const rows = [createData("www.test.com")];
 
-export default function IssuePageTable() {
+export default function Cvetable() {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
-            <TableCell>Category</TableCell>
+            <TableCell>Technology</TableCell>
             <TableCell>Serverity</TableCell>
             <TableCell>View</TableCell>
           </TableRow>

@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Chip } from '@mui/material';
+import { Chip, Button } from '@mui/material';
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -26,9 +26,10 @@ export default function VendorsTable() {
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
-            <TableCell align="right">Target</TableCell>
-            <TableCell align="right">Score</TableCell>
-            <TableCell align="right">Status</TableCell>
+            <TableCell align="center">Target</TableCell>
+            <TableCell align="center">Score</TableCell>
+            <TableCell align="center">Status</TableCell>
+            <TableCell align="center">View</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -40,10 +41,18 @@ export default function VendorsTable() {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">
+              <TableCell align="center">{row.calories}</TableCell>
+              <TableCell align="center">{row.fat}</TableCell>
+              <TableCell align="center">
                   <Chip color='success' label='Monitor' />
+              </TableCell>
+              <TableCell align="center">
+                    <Button
+                      href='/dashboard/websiteprofile'
+                      color='primary'
+                    >
+                      View
+                    </Button>
               </TableCell>
             </TableRow>
           ))}
