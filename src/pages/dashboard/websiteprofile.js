@@ -20,6 +20,7 @@ import Attacksurfacetable from "../../components/Attacksurfacetable";
 import Cvetable from "../../components/Cvetable";
 import { gtm } from "../../lib/gtm";
 import PropTypes from "prop-types";
+import IssuePageTable from "../../components/IssuePageTable";
 
 const Analytics = () => {
   useEffect(() => {
@@ -84,12 +85,12 @@ const Analytics = () => {
                 aria-label="basic tabs example"
               >
                 <Tab label="Home" {...a11yProps(0)} />
-                <Tab label="Assets" {...a11yProps(1)} />
+                <Tab label="Issues" {...a11yProps(1)} />
                 <Tab label="CVE" {...a11yProps(2)} />
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-              <Container maxWidth="xl">
+              <Container sx={{ mt: 2 }} maxWidth="xl">
                 <Grid container>
                   <Grid item xs={3}>
                     <Typography sx={{ textAlign: "center" }}>CISCO</Typography>
@@ -161,29 +162,35 @@ const Analytics = () => {
                   <Box sx={{ mb: 4 }}>
                     <Grid container justifyContent="space-between" spacing={3}>
                       <Grid item>
-                        <Typography variant="h5">Attack Surface</Typography>
+                        <Typography variant="h4">Attack Surface</Typography>
                       </Grid>
                     </Grid>
                   </Box>{" "}
-                  <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                      {" "}
-                      <TextField
-                        sx={{ mb: 2 }}
-                        fullWidth
-                        label="Name"
-                      ></TextField>
+                  <Grid container>
+                    <Grid item xs={12} sx={{ mb: 4 }}>
+                      <Typography sx={{ textAlign: "center" }}>
+                        Issue Profile
+                      </Typography>
                     </Grid>
-                    {/* <Grid item xs={12}>
-              {" "}
-              <TextField fullWidth></TextField>
-            </Grid>
-            <Grid item xs={12}>
-              {" "}
-              <TextField fullWidth></TextField>
-            </Grid> */}
+
+                    <Grid item xs={4}>
+                      <Typography sx={{ textAlign: "center" }}>Host</Typography>
+                      <Typography sx={{ textAlign: "center" }}>www.zoho.com</Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography sx={{ textAlign: "center" }}>Hosting</Typography>
+                      <Typography sx={{ textAlign: "center" }}>Go Daddy</Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography sx={{ textAlign: "center" }}>IP Address</Typography>
+                      <Typography sx={{ textAlign: "center" }}>192.168.1.1</Typography>
+                    </Grid>
                   </Grid>
-                  <Attacksurfacetable />
+                  <Grid container sx={{ mt: 5 }}>
+                    <Grid item xs={12}>
+                      <IssuePageTable />
+                    </Grid>
+                  </Grid>
                 </Container>
               </Box>
             </TabPanel>
@@ -199,7 +206,7 @@ const Analytics = () => {
                   <Box sx={{ mb: 4 }}>
                     <Grid container justifyContent="space-between" spacing={3}>
                       <Grid item>
-                        <Typography variant="h5">CVE Profile</Typography>
+                        <Typography variant="h4">CVE Profile</Typography>
                       </Grid>
                     </Grid>
                   </Box>{" "}
