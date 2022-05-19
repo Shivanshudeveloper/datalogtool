@@ -59,16 +59,16 @@ const getSections = (t) => [
         path: "/dashboard/assets",
         icon: <ChartPieIcon fontSize="small" />,
       },
-      {
-        title: t("Issues"),
-        path: "/dashboard/issues",
-        icon: <UserCircleIcon fontSize="small" />,
-      },
-      {
-        title: t("CVE"),
-        path: "/dashboard/cve",
-        icon: <TruckIcon fontSize="small" />,
-      },
+      // {
+      //   title: t("Issues"),
+      //   path: "/dashboard/issues",
+      //   icon: <UserCircleIcon fontSize="small" />,
+      // },
+      // {
+      //   title: t("CVE"),
+      //   path: "/dashboard/cve",
+      //   icon: <TruckIcon fontSize="small" />,
+      // },
       {
         title: t("Vendors"),
         path: "/dashboard/vendors",

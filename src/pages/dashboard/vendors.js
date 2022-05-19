@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import {
   Box,
@@ -7,6 +7,9 @@ import {
   Grid,
   MenuItem,
   Typography,
+  Tabs,
+  Tab,
+  TextField,
 } from "@mui/material";
 import { AuthGuard } from "../../components/authentication/auth-guard";
 import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
@@ -21,7 +24,7 @@ const vendors = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Analytics | Material Kit Pro</title>
+        <title>Dashboard: Vendors | Material Kit Pro</title>
       </Head>
       <Box
         component="main"
@@ -31,29 +34,24 @@ const vendors = () => {
         }}
       >
         <Container maxWidth="xl">
-            <Typography sx={{ mb: 2 }} variant="h4">Vendors</Typography>
-
-
-            <Button
-                color="primary"
-                variant='contained'
-                sx={{ float: 'right', ml: 2 }}
-            >
-                Add New
-            </Button>
-            <Button
-                color="primary"
-                variant='outlined'
-                sx={{ float: 'right' }}
-            >
-                Filters
-            </Button>
-            <br />
-            <br />
-            <br />
-            
-            <VendorsTable />
-          
+          {" "}
+          <Typography sx={{ mb: 2 }} variant="h4">
+            Vendors
+          </Typography>{" "}
+          <Button
+            color="primary"
+            variant="contained"
+            sx={{ float: "right", ml: 2 }}
+          >
+            Add New
+          </Button>
+          <Button color="primary" variant="outlined" sx={{ float: "right" }}>
+            Filters
+          </Button>
+          <br />
+          <br />
+          <br />
+          <VendorsTable />
         </Container>
       </Box>
     </>
