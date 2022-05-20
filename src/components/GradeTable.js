@@ -16,8 +16,11 @@ function createData(name, calories, fat, carbs, protein) {
 const rows = [
   createData('DNS', '0', 6.0),
   createData('Encryption', '40', 9.0 ),
-  createData('Patching', '78', 16.0 ),
+  createData('Misconfiguration', '78', 16.0 ),
+  createData('Patching', '2', 3.7),
   createData('Human', '2', 3.7),
+  createData('Breaches', '2', 3.7),
+  createData('Brand', '2', 3.7),
 ];
 
 export default function GradeTable() {

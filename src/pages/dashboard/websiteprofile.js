@@ -344,48 +344,6 @@ const Analytics = () => {
                       <Cvetable />
                     </Grid>
                   </Grid>
-                  {/* <Grid container sx={{ mt: 5 }} spacing={2}>
-            <Grid item xs={12}>
-              {" "}
-              <Typography>Details</Typography>
-            </Grid>
-
-            <Grid item xs={12}>
-              <Card>
-                <CardContent>
-                  Name
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <Divider />
-                  Info
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <Divider />
-                  Remediation
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <Divider />
-                  Refrences
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <Divider />
-                  Domain
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                </CardContent>
-              </Card>
-            </Grid>
-          </Grid> */}
                 </Container>
               </Box>
             </TabPanel>
