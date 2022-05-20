@@ -309,34 +309,6 @@ const index = (props) => {
                   <Box>
                     {" "}
                     <Grid container spacing={3} sx={{ p: 3 }}>
-                      {/* {items.map((item) => (
-                        <Grid item key={item.label} xs={12}>
-                          <Card
-                            sx={{
-                              alignItems: "center",
-                              display: "flex",
-                              flexDirection: "column",
-                              p: 2,
-                            }}
-                            variant="outlined"
-                          >
-                           
-                            <Chart
-                              height={200}
-                              options={{
-                                ...chartOptions,
-                                colors: [item.color],
-                              }}
-                              series={[item.value]}
-                              type="radialBar"
-                            />
-                            <Typography variant="h6">{item.value}</Typography>
-                            <Typography color="textSecondary" variant="body2">
-                              {item.subtitle}
-                            </Typography>
-                          </Card>
-                        </Grid>
-                      ))} */}
                       <PercentPieChart
                         color="#4CAF50"
                         label="Very good"
@@ -379,51 +351,6 @@ const index = (props) => {
                             type="pie"
                           />
                         </CardContent>
-                        {/* <Table>
-                          <TableHead>
-                            <TableRow>
-                              <TableCell>Top Channels</TableCell>
-                              <TableCell align="right">Value</TableCell>
-                            </TableRow>
-                          </TableHead>
-                          <TableBody>
-                            {data.series.map((item) => (
-                              <TableRow key={item.label}>
-                                <TableCell>
-                                  <Box
-                                    key={item.label}
-                                    sx={{
-                                      alignItems: "center",
-                                      display: "flex",
-                                    }}
-                                  >
-                                    <Box
-                                      sx={{
-                                        border: 3,
-                                        borderColor: item.color,
-                                        borderRadius: "50%",
-                                        height: 16,
-                                        mr: 1,
-                                        width: 16,
-                                      }}
-                                    />
-                                    <Typography variant="subtitle2">
-                                      {item.label}
-                                    </Typography>
-                                  </Box>
-                                </TableCell>
-                                <TableCell align="right">
-                                  <Typography
-                                    color="textSecondary"
-                                    variant="body2"
-                                  >
-                                    {numeral(item.data).format("$0,0.00")}
-                                  </Typography>
-                                </TableCell>
-                              </TableRow>
-                            ))}
-                          </TableBody>
-                        </Table> */}
                       </Card>
                     </Grid>
                     {/* <Grid item xs={6}></Grid> */}

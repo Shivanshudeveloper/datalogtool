@@ -47,6 +47,8 @@ function createData(name, calories, fat, carbs, protein, price) {
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
+  const [open3, setOpen3] = React.useState(false);
 
   return (
     <React.Fragment>
@@ -74,32 +76,11 @@ function Row(props) {
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              {/* <Table size="small" aria-label="purchases">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Serverity</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.date}>
-                      <TableCell component="th" scope="row">
-                        CVE 2022-2010
-                      </TableCell>
-                      <TableCell>
-                        <Chip label="Critical" color="error" />
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table> */}
               <Grid container sx={{ mt: 5 }} spacing={2}>
                 <Grid item xs={12}>
                   {" "}
                   <Typography>Details</Typography>
                 </Grid>
-
                 <Grid item xs={12}>
                   <Card>
                     <CardContent>
@@ -134,6 +115,40 @@ function Row(props) {
                       <br />
                     </CardContent>
                   </Card>
+                  
+                </Grid>
+              </Grid>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </TableRow>
+
+      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+        <TableCell align="left" component="th" scope="row">
+          Something
+        </TableCell>
+        <TableCell align="left" component="th" scope="row">
+          Breach Something
+        </TableCell>
+        <TableCell align="left" component="th" scope="row">
+          <Chip label="Critical" color="error" />
+        </TableCell>
+        <TableCell>
+          <IconButton
+            aria-label="expand row"
+            size="small"
+            onClick={() => setOpen2(!open2)}
+          >
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          <Collapse in={open2} timeout="auto" unmountOnExit>
+            <Box sx={{ margin: 1 }}>
+              <Grid container sx={{ mt: 5 }} spacing={2}>
+                <Grid item xs={12}>
                   <Typography>Breach</Typography>
                   <Card>
                     <CardContent>
@@ -152,6 +167,40 @@ function Row(props) {
                       Email
                     </CardContent>
                   </Card>
+                </Grid>
+              </Grid>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </TableRow>
+
+
+      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+        <TableCell align="left" component="th" scope="row">
+          Something
+        </TableCell>
+        <TableCell align="left" component="th" scope="row">
+          Email Leak
+        </TableCell>
+        <TableCell align="left" component="th" scope="row">
+          <Chip label="Critical" color="error" />
+        </TableCell>
+        <TableCell>
+          <IconButton
+            aria-label="expand row"
+            size="small"
+            onClick={() => setOpen3(!open3)}
+          >
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          <Collapse in={open3} timeout="auto" unmountOnExit>
+            <Box sx={{ margin: 1 }}>
+              <Grid container sx={{ mt: 5 }} spacing={2}>
+                <Grid item xs={12}>
                   <Typography>Email Leak</Typography>
                   <Card>
                     <CardContent>

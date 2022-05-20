@@ -21,6 +21,36 @@ import Cvetable from "../../components/Cvetable";
 import { gtm } from "../../lib/gtm";
 import PropTypes from "prop-types";
 import IssuePageTable from "../../components/IssuePageTable";
+import { Chart } from "../../components/chart";
+import { useTheme } from "@mui/material/styles";
+import PercentPieChart from "../../components/charts/PercentPieChart";
+
+
+
+const data = {
+  series: [
+    {
+      color: "#FFB547",
+      data: 14859,
+      label: "Strategy",
+    },
+    {
+      color: "#7BC67E",
+      data: 35690,
+      label: "Outsourcing",
+    },
+    {
+      color: "#7783DB",
+      data: 45120,
+      label: "Marketing",
+    },
+    {
+      color: "#9DA4DD",
+      data: 25486,
+      label: "Other",
+    },
+  ],
+};
 
 const Analytics = () => {
   useEffect(() => {
@@ -63,6 +93,38 @@ const Analytics = () => {
       "aria-controls": `simple-tabpanel-${index}`,
     };
   }
+
+  const theme = useTheme();
+
+  const chartOptions2 = {
+    chart: {
+      background: "transparent",
+      stacked: false,
+      toolbar: {
+        show: false,
+      },
+    },
+    colors: data.series.map((item) => item.color),
+    dataLabels: {
+      enabled: false,
+    },
+    fill: {
+      opacity: 1,
+    },
+    labels: data.series.map((item) => item.label),
+    legend: {
+      show: false,
+    },
+    stroke: {
+      width: 0,
+    },
+    theme: {
+      mode: theme.palette.mode,
+    },
+  };
+
+  const chartSeries = data.series.map((item) => item.data);
+
   return (
     <>
       <Head>
@@ -124,6 +186,33 @@ const Analytics = () => {
                         <Typography sx={{ textAlign: "center" }}>
                           Third Party Serverity
                         </Typography>
+                          <Grid
+                            container
+                            spacing={2}
+                            sx={{
+                              height: "100%",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <Grid item xs={12}>
+                              {/* <PiechartGraph /> */}
+                              <Card >
+                                {/* <CardHeader title="Cost Breakdown" />
+                                <Divider /> */}
+                                <CardContent>
+                                  <Chart
+                                    height={250}
+                                    options={chartOptions2}
+                                    series={chartSeries}
+                                    type="pie"
+                                  />
+                                </CardContent>
+                              </Card>
+                            </Grid>
+                            {/* <Grid item xs={6}></Grid> */}
+                          </Grid>
                       </CardContent>
                     </Card>
                   </Grid>
@@ -131,8 +220,13 @@ const Analytics = () => {
                     <Card sx={{ height: "100%" }}>
                       <CardContent>
                         <Typography sx={{ textAlign: "center" }}>
-                          Third Party Serverity
+                          Risk Score
                         </Typography>
+                        <PercentPieChart
+                          color="#FF0000"
+                          value="20"
+                          showInfo="false"
+                        />
                       </CardContent>
                     </Card>
                   </Grid>
@@ -142,6 +236,11 @@ const Analytics = () => {
                         <Typography sx={{ textAlign: "center" }}>
                           Total Issues
                         </Typography>
+                        <center>
+                          <Typography variant="h1" sx={{ textAlign: "center", mt: 12 }}>
+                            46
+                          </Typography>
+                        </center>
                       </CardContent>
                     </Card>
                   </Grid>
