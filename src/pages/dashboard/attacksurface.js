@@ -15,6 +15,9 @@ import {
   Divider,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { Chart } from "../../components/chart";
+import { useTheme } from "@mui/material/styles";
+
 
 import LinearProgress, {
   linearProgressClasses,
@@ -24,6 +27,7 @@ import { AuthGuard } from "../../components/authentication/auth-guard";
 import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
 
 import AreaChartGraph from "../../components/charts/AreaChartGraph";
+import Tooltip from '@mui/material/Tooltip';
 
 import { gtm } from "../../lib/gtm";
 import PercentPieChart from "../../components/charts/PercentPieChart";
@@ -80,6 +84,25 @@ const BorderLinearProgressLow = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
+
+const data3 = {
+  series: [{ data: [10, 5, 11, 20, 13, 28, 18, 4, 13, 12, 13, 5] }],
+  categories: [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ]
+};
+
 const AttackSurface = () => {
   useEffect(() => {
     gtm.push({ event: "page_view" });
@@ -89,6 +112,76 @@ const AttackSurface = () => {
   const handleChangeLastOverallScore = (event) => {
     setLastOverallScore(event.target.value);
   };
+
+  const theme = useTheme();
+
+
+  const chartOptions3 = {
+    chart: {
+      background: 'transparent',
+      stacked: false,
+      toolbar: {
+        show: false
+      }
+    },
+    colors: ['#00ab57'],
+    dataLabels: {
+      enabled: false
+    },
+    fill: {
+      gradient: {
+        opacityFrom: 0.4,
+        opacityTo: 0.1,
+        shadeIntensity: 1,
+        stops: [0, 100],
+        type: 'vertical'
+      },
+      type: 'gradient'
+    },
+    grid: {
+      borderColor: theme.palette.divider,
+      strokeDashArray: 2
+    },
+    markers: {
+      size: 6,
+      strokeColors: theme.palette.background.default,
+      strokeWidth: 3
+    },
+    stroke: {
+      curve: 'smooth'
+    },
+    theme: {
+      mode: theme.palette.mode
+    },
+    xaxis: {
+      axisBorder: {
+        color: theme.palette.divider,
+        show: true
+      },
+      axisTicks: {
+        color: theme.palette.divider,
+        show: true
+      },
+      categories: data3.categories,
+      labels: {
+        offsetY: 5,
+        style: {
+          colors: theme.palette.text.secondary
+        }
+      }
+    },
+    yaxis: {
+      labels: {
+                formatter: (value) => (value > 0 ? `${value}K` : value),
+        offsetX: -10,
+        style: {
+          colors: theme.palette.text.secondary
+        }
+      }
+    }
+  };
+
+  const chartSeries3 = data3.series;
 
   return (
     <>
@@ -197,29 +290,50 @@ const AttackSurface = () => {
                   </Typography>
                   <br />
                   <br />
-                  <Typography sx={{ textAlign: "left" }}>Critical</Typography>
-                  <BorderLinearProgressCritical
-                    variant="determinate"
-                    value={50}
-                  />
+                    <Tooltip title="Critical">
+                      <Typography sx={{ textAlign: "left", cursor: 'pointer' }}>Critical</Typography>
+                    </Tooltip>
+
+                    <Tooltip title="Critical">
+                      <BorderLinearProgressCritical
+                        sx={{ cursor: 'pointer' }}
+                        variant="determinate"
+                        value={50}
+                      />
+                    </Tooltip>
 
                   <br />
                   <br />
-                  <Typography sx={{ textAlign: "left" }}>High</Typography>
-                  <BorderLinearProgressHigh variant="determinate" value={75} />
+                    <Tooltip title="High">
+                      <Typography sx={{ textAlign: "left", cursor: 'pointer' }}>High</Typography>
+                    </Tooltip>
+
+                    <Tooltip title="High">
+                      <BorderLinearProgressHigh sx={{ cursor: 'pointer' }} variant="determinate" value={75} />
+                    </Tooltip>
 
                   <br />
                   <br />
-                  <Typography sx={{ textAlign: "left" }}>Medium</Typography>
-                  <BorderLinearProgressMedium
-                    variant="determinate"
-                    value={20}
-                  />
+                    <Tooltip title="Medium">
+                      <Typography sx={{ textAlign: "left", cursor: 'pointer' }}>Medium</Typography>
+                    </Tooltip>
+
+                    <Tooltip title="Medium">
+                      <BorderLinearProgressMedium
+                        variant="determinate"
+                        value={20}
+                        sx={{ cursor: 'pointer' }}
+                      />
+                    </Tooltip>
 
                   <br />
                   <br />
-                  <Typography sx={{ textAlign: "left" }}>Low</Typography>
-                  <BorderLinearProgressLow variant="determinate" value={80} />
+                    <Tooltip title="Low">
+                      <Typography sx={{ textAlign: "left", cursor: 'pointer' }}>Low</Typography>
+                    </Tooltip>
+                    <Tooltip title="Low">
+                      <BorderLinearProgressLow sx={{ cursor: 'pointer' }} variant="determinate" value={80} />
+                    </Tooltip>
                 </CardContent>
               </Card>
             </Grid>
@@ -254,7 +368,13 @@ const AttackSurface = () => {
                     </Select>
                   </FormControl>
                   <br />
-                  <AreaChartGraph />
+                  {/* <AreaChartGraph /> */}
+                  <Chart
+                    width={750}
+                    options={chartOptions3}
+                    series={chartSeries3}
+                    type="area"
+                  />
                 </CardContent>
               </Card>
             </Grid>

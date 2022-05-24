@@ -44,6 +44,13 @@ const Assets = () => {
               </Grid>
             </Grid>
           </Box>{" "}
+          <Button
+            color="primary"
+            variant="contained"
+            sx={{ float: "right", ml: 2 }}
+          >
+            Add New
+          </Button>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               {" "}

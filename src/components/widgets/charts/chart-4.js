@@ -119,7 +119,7 @@ export const Chart4 = () => {
               }}
             >
               <Chart
-                width={350}
+                width={550}
                 options={chartOptions}
                 series={chartSeries}
                 type="area"
