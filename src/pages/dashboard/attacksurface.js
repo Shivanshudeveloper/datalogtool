@@ -290,11 +290,11 @@ const AttackSurface = () => {
                   </Typography>
                   <br />
                   <br />
-                    <Tooltip title="Critical">
+                    <Tooltip title="76%">
                       <Typography sx={{ textAlign: "left", cursor: 'pointer' }}>Critical</Typography>
                     </Tooltip>
 
-                    <Tooltip title="Critical">
+                    <Tooltip title="76%">
                       <BorderLinearProgressCritical
                         sx={{ cursor: 'pointer' }}
                         variant="determinate"
@@ -304,21 +304,21 @@ const AttackSurface = () => {
 
                   <br />
                   <br />
-                    <Tooltip title="High">
+                    <Tooltip title="76%">
                       <Typography sx={{ textAlign: "left", cursor: 'pointer' }}>High</Typography>
                     </Tooltip>
 
-                    <Tooltip title="High">
+                    <Tooltip title="76%">
                       <BorderLinearProgressHigh sx={{ cursor: 'pointer' }} variant="determinate" value={75} />
                     </Tooltip>
 
                   <br />
                   <br />
-                    <Tooltip title="Medium">
+                    <Tooltip title="76%">
                       <Typography sx={{ textAlign: "left", cursor: 'pointer' }}>Medium</Typography>
                     </Tooltip>
 
-                    <Tooltip title="Medium">
+                    <Tooltip title="76%">
                       <BorderLinearProgressMedium
                         variant="determinate"
                         value={20}
@@ -328,10 +328,10 @@ const AttackSurface = () => {
 
                   <br />
                   <br />
-                    <Tooltip title="Low">
+                    <Tooltip title="76%">
                       <Typography sx={{ textAlign: "left", cursor: 'pointer' }}>Low</Typography>
                     </Tooltip>
-                    <Tooltip title="Low">
+                    <Tooltip title="76%">
                       <BorderLinearProgressLow sx={{ cursor: 'pointer' }} variant="determinate" value={80} />
                     </Tooltip>
                 </CardContent>
