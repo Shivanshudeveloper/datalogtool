@@ -14,18 +14,25 @@ import {
 import { useAuth } from '../../hooks/use-auth';
 import { useMounted } from '../../hooks/use-mounted';
 
+import { auth } from "../../Firebase/index";
+
+
 export const FirebaseRegister = (props) => {
   const isMounted = useMounted();
   const router = useRouter();
-  const { createUserWithEmailAndPassword, signInWithGoogle } = useAuth();
   const formik = useFormik({
     initialValues: {
+      fullname: '',
       email: '',
       password: '',
       policy: true,
       submit: null
     },
     validationSchema: Yup.object({
+      fullname: Yup
+        .string()
+        .max(255)
+        .required('Full Name is required'),
       email: Yup
         .string()
         .email('Must be a valid email')
@@ -42,12 +49,22 @@ export const FirebaseRegister = (props) => {
     }),
     onSubmit: async (values, helpers) => {
       try {
-        await createUserWithEmailAndPassword(values.email, values.password);
-
-        if (isMounted()) {
-          const returnUrl = router.query.returnUrl || '/dashboard';
-          router.push(returnUrl);
-        }
+        var result = await auth.createUserWithEmailAndPassword(values.email, values.password);
+        var user = result.user;
+        user
+          .updateProfile({
+            photoURL:
+              "https://kittyinpink.co.uk/wp-content/uploads/2016/12/facebook-default-photo-male_1-1.jpg",
+            displayName: values.fullname,
+          })
+          .then(() => {
+            if (isMounted()) {
+              const returnUrl = router.query.returnUrl || '/dashboard';
+              router.push(returnUrl);
+            }
+          })
+          .catch((err) => console.log(err));
+        
       } catch (err) {
         console.error(err);
 
@@ -60,63 +77,24 @@ export const FirebaseRegister = (props) => {
     }
   });
 
-  const handleGoogleClick = async () => {
-    try {
-      await signInWithGoogle();
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   return (
     <div {...props}>
-      <Button
-        fullWidth
-        onClick={handleGoogleClick}
-        size="large"
-        sx={{
-          backgroundColor: 'common.white',
-          color: 'common.black',
-          '&:hover': {
-            backgroundColor: 'common.white',
-            color: 'common.black'
-          }
-        }}
-        variant="contained"
-      >
-        <Box
-          alt="Google"
-          component="img"
-          src="/static/icons/google.svg"
-          sx={{ mr: 1 }}
-        />
-        Google
-      </Button>
-      <Box
-        sx={{
-          alignItems: 'center',
-          display: 'flex',
-          mt: 2
-        }}
-      >
-        <Box sx={{ flexGrow: 1 }}>
-          <Divider orientation="horizontal" />
-        </Box>
-        <Typography
-          color="textSecondary"
-          sx={{ m: 2 }}
-          variant="body1"
-        >
-          OR
-        </Typography>
-        <Box sx={{ flexGrow: 1 }}>
-          <Divider orientation="horizontal" />
-        </Box>
-      </Box>
       <form
         noValidate
         onSubmit={formik.handleSubmit}
       >
+        <TextField
+          error={Boolean(formik.touched.fullname && formik.errors.fullname)}
+          fullWidth
+          helperText={formik.touched.fullname && formik.errors.fullname}
+          label="Full Name"
+          margin="normal"
+          name="fullname"
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
+          type="text"
+          value={formik.values.fullname}
+        />
         <TextField
           error={Boolean(formik.touched.email && formik.errors.email)}
           fullWidth

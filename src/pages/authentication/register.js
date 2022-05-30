@@ -96,10 +96,11 @@ const Register = () => {
                 mt: 3
               }}
             >
-              {platform === 'Amplify' && <AmplifyRegister />}
+              {/* {platform === 'Amplify' && <AmplifyRegister />}
               {platform === 'Auth0' && <Auth0Register />}
               {platform === 'Firebase' && <FirebaseRegister />}
-              {platform === 'JWT' && <JWTRegister />}
+              {platform === 'JWT' && <JWTRegister />} */}
+              <FirebaseRegister />
             </Box>
             <Divider sx={{ my: 3 }} />
             <NextLink

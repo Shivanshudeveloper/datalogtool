@@ -12,6 +12,7 @@ import { JWTLogin } from '../../components/authentication/jwt-login';
 import { Logo } from '../../components/logo';
 import { useAuth } from '../../hooks/use-auth';
 import { gtm } from '../../lib/gtm';
+import axios from 'axios'
 
 const platformIcons = {
   Amplify: '/static/icons/amplify.svg',
@@ -26,8 +27,42 @@ const Login = () => {
   const { disableGuard } = router.query;
 
   useEffect(() => {
+    getUserInfo();
     gtm.push({ event: 'page_view' });
   }, []);
+
+  const getUserInfo = async () => {
+    
+    const res = await axios.get('https://geolocation-db.com/json/')
+
+
+
+    var ipsavedata = window.localStorage.getItem("ipaddress");
+
+    if (!ipsavedata) {
+      window.localStorage.setItem("ipaddress", res.data.IPv4);
+
+      const resultUser = await axios.get(`https://ipinfo.io/${res.data.IPv4}?token=ced5ed49b1fe42`);
+      var timedate = new Date(Date.now());
+
+      var data = {
+        Country: resultUser.data.country,
+        State: resultUser.data.region,
+        City: resultUser.data.city,
+        IP: resultUser.data.ip,
+        Location: resultUser.data.loc,
+        Organization: resultUser.data.org,
+        Postal: resultUser.data.postal,
+        Timezone: resultUser.data.timezone,
+        Time: timedate
+      }
+      axios.post('https://sheet.best/api/sheets/d761b06d-aa48-4bce-a247-82b1b456dade', data).then((res) => {
+        console.log(res);
+      })
+    } else {
+      console.log(ipsavedata);
+    }
+  }
 
   return (
     <>
@@ -96,10 +131,11 @@ const Login = () => {
                 mt: 3
               }}
             >
-              {platform === 'Amplify' && <AmplifyLogin />}
+              {/* {platform === 'Amplify' && <AmplifyLogin />}
               {platform === 'Auth0' && <Auth0Login />}
               {platform === 'Firebase' && <FirebaseLogin />}
-              {platform === 'JWT' && <JWTLogin />}
+              {platform === 'JWT' && <JWTLogin />} */}
+              <FirebaseLogin />
             </Box>
             <Divider sx={{ my: 3 }} />
             <NextLink
@@ -143,5 +179,6 @@ Login.getLayout = (page) => (
     {page}
   </GuestGuard>
 );
+
 
 export default Login;

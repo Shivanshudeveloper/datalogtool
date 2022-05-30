@@ -38,6 +38,11 @@ export const AuthProvider = (props) => {
 
   useEffect(() => firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+
+      sessionStorage.setItem("userId", user.uid);
+      sessionStorage.setItem("userEmail", user.email);
+      console.log("USER", user);
+
       // Here you should extract the complete user profile to make it available in your entire app.
       // The auth state only provides basic information.
       dispatch({
@@ -48,7 +53,7 @@ export const AuthProvider = (props) => {
             id: user.uid,
             avatar: user.photoURL,
             email: user.email,
-            name: 'Anika Visser',
+            name: user.displayName,
             plan: 'Premium'
           }
         }
@@ -64,8 +69,20 @@ export const AuthProvider = (props) => {
     }
   }), [dispatch]);
 
-  const signInWithEmailAndPassword = (email,
-    password) => firebase.auth().signInWithEmailAndPassword(email, password);
+  const signInWithEmailAndPassword = (email, password) => {
+    console.log(email, password)
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+
+        sessionStorage.setItem("userId", user.uid);
+        sessionStorage.setItem("userEmail", user.email);
+      }).catch(err => {
+        console.log(err)
+      });
+  }
 
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -73,9 +90,20 @@ export const AuthProvider = (props) => {
     return firebase.auth().signInWithPopup(provider);
   };
 
-  const createUserWithEmailAndPassword = async (email,
-    password) => firebase.auth().createUserWithEmailAndPassword(email, password);
+  const createUserWithEmailAndPassword = async (email, password) => {
+    console.log(email, password)
 
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+
+        sessionStorage.setItem("userId", user.uid);
+        sessionStorage.setItem("userEmail", user.email);
+      }).catch(err => {
+        console.log(err)
+      });
+  }
   const logout = async () => {
     await firebase.auth().signOut();
   };

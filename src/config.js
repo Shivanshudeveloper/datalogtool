@@ -12,13 +12,13 @@ export const auth0Config = {
 };
 
 export const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+  apiKey: "AIzaSyCLtrssCDvGvzYSIwzwjpFrXOOJFn4ZLys",
+  authDomain: "messianfox-fcd33.firebaseapp.com",
+  projectId: "messianfox-fcd33",
+  storageBucket: "messianfox-fcd33.appspot.com",
+  messagingSenderId: "622566633414",
+  appId: "1:622566633414:web:6d6ac15f5530a62c02ccc7",
+  measurementId: "G-TKSSTTVKNB"
 };
 
 export const gtmConfig = {
