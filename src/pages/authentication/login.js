@@ -138,7 +138,7 @@ const Login = () => {
               <FirebaseLogin />
             </Box>
             <Divider sx={{ my: 3 }} />
-            <NextLink
+            {/* <NextLink
               href={disableGuard
                 ? `/authentication/register?disableGuard=${disableGuard}`
                 : '/authentication/register'}
@@ -150,7 +150,7 @@ const Login = () => {
               >
                 Create new account
               </Link>
-            </NextLink>
+            </NextLink> */}
             {platform === 'Amplify' && (
               <NextLink
                 href={disableGuard
