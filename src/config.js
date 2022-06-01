@@ -12,13 +12,12 @@ export const auth0Config = {
 };
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyCLtrssCDvGvzYSIwzwjpFrXOOJFn4ZLys",
-  authDomain: "messianfox-fcd33.firebaseapp.com",
-  projectId: "messianfox-fcd33",
-  storageBucket: "messianfox-fcd33.appspot.com",
-  messagingSenderId: "622566633414",
-  appId: "1:622566633414:web:6d6ac15f5530a62c02ccc7",
-  measurementId: "G-TKSSTTVKNB"
+  apiKey: "AIzaSyAa5s4j4Rt1U1uzn545QspIP5N8MRKRWZk",
+  authDomain: "fomada-tprm.firebaseapp.com",
+  projectId: "fomada-tprm",
+  storageBucket: "fomada-tprm.appspot.com",
+  messagingSenderId: "129903170234",
+  appId: "1:129903170234:web:a4b942d8e93cf9f3aba883"
 };
 
 export const gtmConfig = {
