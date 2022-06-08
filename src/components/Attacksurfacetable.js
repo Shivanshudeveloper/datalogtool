@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useEffect } from 'react';
+import Test from '../test.json'
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
@@ -43,16 +45,18 @@ function createData(name, calories, fat, carbs, protein, price) {
   };
 }
 
+console.log(Test.domain)
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
+
 
   return (
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         
         <TableCell align='left' component="th" scope="row">
-          {row.name}
+          {Test.domain}
         </TableCell>
         <TableCell>
           <IconButton
@@ -71,17 +75,20 @@ function Row(props) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Type</TableCell>
+                    <TableCell>Category</TableCell>
+                    <TableCell>Host</TableCell>
+                    <TableCell>IP</TableCell>
+                
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.date}>
+                  {Test.assets.map((historyRow) => (
+                    <TableRow key={historyRow.Category}>
                       <TableCell component="th" scope="row">
-                        {historyRow.date}
+                        {historyRow.Category}
                       </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
+                      <TableCell>{historyRow.Host}</TableCell>
+                      <TableCell>{historyRow.IP}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
