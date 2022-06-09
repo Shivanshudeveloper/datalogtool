@@ -7,6 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Chip, Button } from '@mui/material';
+import Test from '../test.json'
+import Link from 'next/link'
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -39,19 +41,20 @@ export default function VendorsTable() {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {Test.domain.substring(0,Test.domain.length-3)}
               </TableCell>
-              <TableCell align="center">{row.calories}</TableCell>
+              <TableCell align="center">{Test.domain}</TableCell>
               <TableCell align="center">{row.fat}</TableCell>
               <TableCell align="center">
                   <Chip color='success' label='Monitor' />
               </TableCell>
               <TableCell align="center">
                     <Button
-                      href='/dashboard/websiteprofile'
                       color='primary'
                     >
-                      View
+                    <Link href="/dashboard/websiteprofile">
+          View
+        </Link>
                     </Button>
               </TableCell>
             </TableRow>
