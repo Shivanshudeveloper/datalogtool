@@ -38,13 +38,6 @@ const vendors = () => {
           <Typography sx={{ mb: 2 }} variant="h4">
             Vendors
           </Typography>{" "}
-          <Button
-            color="primary"
-            variant="contained"
-            sx={{ float: "right", ml: 2 }}
-          >
-            Add New
-          </Button>
           <Button color="primary" variant="outlined" sx={{ float: "right" }}>
             Filters
           </Button>

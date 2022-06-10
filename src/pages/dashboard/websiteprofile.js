@@ -24,8 +24,8 @@ import IssuePageTable from "../../components/IssuePageTable";
 import { Chart } from "../../components/chart";
 import { useTheme } from "@mui/material/styles";
 import PercentPieChart from "../../components/charts/PercentPieChart";
-
-
+import { useRouter } from 'next/router'
+import Test from '../test.json'
 
 const data = {
   series: [
@@ -123,8 +123,11 @@ const Analytics = () => {
     },
   };
 
-  const chartSeries = data.series.map((item) => item.data);
 
+  const chartSeries = data.series.map((item) => item.data);
+  const router = useRouter()
+  const { id } = router.query
+  
   return (
     <>
       <Head>
@@ -155,11 +158,11 @@ const Analytics = () => {
               <Container sx={{ mt: 2 }} maxWidth="xl">
                 <Grid container>
                   <Grid item xs={3}>
-                    <Typography sx={{ textAlign: "center" }}>CISCO</Typography>
+                    <Typography sx={{ textAlign: "center" }}><img src={Test.logo}></img></Typography>
                   </Grid>
                   <Grid item xs={3}>
                     <Typography sx={{ textAlign: "center" }}>
-                      zoho.com
+                      {id}
                     </Typography>
                   </Grid>
                   <Grid item xs={3}>

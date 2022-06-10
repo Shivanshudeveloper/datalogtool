@@ -16,6 +16,9 @@ import { wait } from '../../utils/wait';
 import { X as XIcon } from '../../icons/x';
 import { Tip } from '../tip';
 import PropTypes from 'prop-types';
+import Stack from '@mui/material/Stack';
+import Autocomplete from '@mui/material/Autocomplete';
+import Test from '../test.json'
 
 const results = {
   Platform: [
@@ -60,6 +63,10 @@ export const ContentSearchDialog = (props) => {
     setShowResults(true);
   };
 
+  const top100Films = [
+    { title: Test.domain},
+  ]
+
   return (
     <Dialog
       fullWidth
@@ -91,21 +98,12 @@ export const ContentSearchDialog = (props) => {
       <DialogContent>
         <form onSubmit={handleSubmit}>
           <Tip message="Search by entering a keyword and pressing Enter" />
-          <TextField
-            fullWidth
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon fontSize="small" />
-                </InputAdornment>
-              )
-            }}
-            label="Search"
-            onChange={(event) => setValue(event.target.value)}
-            placeholder="Search..."
-            sx={{ mt: 3 }}
-            value={value}
-          />
+          <Autocomplete
+        id="free-solo-demo"
+        freeSolo
+        options={top100Films.map((option) => option.title)}
+        renderInput={(params) => <TextField {...params} label="freeSolo" />}
+      />
         </form>
         {isLoading && (
           <Box

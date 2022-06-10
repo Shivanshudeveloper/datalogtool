@@ -16,9 +16,6 @@ function createData(name, calories, fat, carbs, protein) {
 
 const rows = [
   createData('ZOHO', 'subdomain.com', 6.0),
-  createData('CISCO', 'subdomain.com', 9.0 ),
-  createData('AWS', 'subdomain.com', 16.0 ),
-  createData('GCP', 'subdomain.com', 3.7),
 ];
 
 export default function VendorsTable() {
@@ -52,7 +49,7 @@ export default function VendorsTable() {
                     <Button
                       color='primary'
                     >
-                    <Link href="/dashboard/websiteprofile">
+                     <Link  href={{ pathname: "/dashboard/websiteprofile/", query: { id: Test.domain } }}>
           View
         </Link>
                     </Button>
