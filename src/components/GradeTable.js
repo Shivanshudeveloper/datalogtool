@@ -8,11 +8,11 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
 import { Chip } from '@mui/material';
+import Test from '../pages/main.json'
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
-
 const rows = [
   createData('DNS', '0', 6.0),
   createData('Encryption', '40', 9.0 ),

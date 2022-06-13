@@ -25,7 +25,7 @@ import { Chart } from "../../components/chart";
 import { useTheme } from "@mui/material/styles";
 import PercentPieChart from "../../components/charts/PercentPieChart";
 import { useRouter } from 'next/router'
-import Test from '../test.json'
+import Test from '../main.json'
 
 const data = {
   series: [
@@ -127,7 +127,6 @@ const Analytics = () => {
   const chartSeries = data.series.map((item) => item.data);
   const router = useRouter()
   const { id } = router.query
-  
   return (
     <>
       <Head>
@@ -241,7 +240,9 @@ const Analytics = () => {
                         </Typography>
                         <center>
                           <Typography variant="h1" sx={{ textAlign: "center", mt: 12 }}>
-                            46
+                          {Test.issue_count.map((historyRow) => (
+                      <h7>{historyRow["Vendor Total Issues"]}</h7>
+                  ))}
                           </Typography>
                         </center>
                       </CardContent>
