@@ -14,6 +14,7 @@ import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Card, CardContent, Chip, Divider, Grid } from "@mui/material";
+import Test from '../main.json';
 
 function createData(name, calories, fat, carbs, protein, price) {
   return {
@@ -50,12 +51,44 @@ function Row(props) {
   const [open2, setOpen2] = React.useState(false);
   const [open3, setOpen3] = React.useState(false);
 
+  const uniqueArray = Test.misconfiguration.filter((value, index) => {
+    const _value = JSON.stringify(value);
+    return index === Test.misconfiguration.findIndex(res => {
+      return JSON.stringify(res) === _value;
+    });
+  });
+
+  console.log(uniqueArray)
+
+  var clean = Test.misconfiguration.filter((arr, index, self) =>
+    index === self.findIndex((t) => (t.save === Test.misconfiguration.save && t.State === Test.misconfiguration.State)))
+
+console.log(clean);
+
   return (
     <React.Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+      {clean.map((historyRow) => (
         <TableCell align="left" component="th" scope="row">
-          Zone Transfer
+          <tr>{historyRow.Issues1}</tr>
+          <tr>{historyRow.Issues2}</tr>
+          <tr>{historyRow.Issues3}</tr>
+          <tr>{historyRow.Issue4}</tr>
+          <tr>{historyRow.Issue5}</tr>
+          <tr>{historyRow.Issue6}</tr>
+          <tr>{historyRow.Issue7}</tr>
+          <tr>{historyRow.Issue8}</tr>
+          <tr>{historyRow.Issue9}</tr>
+          <tr>{historyRow.Issue10}</tr>
+          <tr>{historyRow.Issue11}</tr>
+          <tr>{historyRow.Issue12}</tr>
+          <tr>{historyRow.Issue13}</tr>
+          <tr>{historyRow.Issue14}</tr>
+          <tr>{historyRow.Issue15}</tr>
+          <tr>{historyRow.Issue16}</tr>
+          <tr>{historyRow.Issue17}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           DNS
         </TableCell>
@@ -124,11 +157,29 @@ function Row(props) {
       </TableRow>
 
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+      {clean.map((historyRow) => (
         <TableCell align="left" component="th" scope="row">
-          Something
+          <tr>{historyRow.Issues1}</tr>
+          <tr>{historyRow.Issues2}</tr>
+          <tr>{historyRow.Issues3}</tr>
+          <tr>{historyRow.Issue4}</tr>
+          <tr>{historyRow.Issue5}</tr>
+          <tr>{historyRow.Issue6}</tr>
+          <tr>{historyRow.Issue7}</tr>
+          <tr>{historyRow.Issue8}</tr>
+          <tr>{historyRow.Issue9}</tr>
+          <tr>{historyRow.Issue10}</tr>
+          <tr>{historyRow.Issue11}</tr>
+          <tr>{historyRow.Issue12}</tr>
+          <tr>{historyRow.Issue13}</tr>
+          <tr>{historyRow.Issue14}</tr>
+          <tr>{historyRow.Issue15}</tr>
+          <tr>{historyRow.Issue16}</tr>
+          <tr>{historyRow.Issue17}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
-          Breach Something
+          DNS
         </TableCell>
         <TableCell align="left" component="th" scope="row">
           <Chip label="Critical" color="error" />
@@ -176,11 +227,29 @@ function Row(props) {
 
 
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+      {clean.map((historyRow) => (
         <TableCell align="left" component="th" scope="row">
-          Something
+         <tr>{historyRow.Issues1}</tr>
+          <tr>{historyRow.Issues2}</tr>
+          <tr>{historyRow.Issues3}</tr>
+          <tr>{historyRow.Issue4}</tr>
+          <tr>{historyRow.Issue5}</tr>
+          <tr>{historyRow.Issue6}</tr>
+          <tr>{historyRow.Issue7}</tr>
+          <tr>{historyRow.Issue8}</tr>
+          <tr>{historyRow.Issue9}</tr>
+          <tr>{historyRow.Issue10}</tr>
+          <tr>{historyRow.Issue11}</tr>
+          <tr>{historyRow.Issue12}</tr>
+          <tr>{historyRow.Issue13}</tr>
+          <tr>{historyRow.Issue14}</tr>
+          <tr>{historyRow.Issue15}</tr>
+          <tr>{historyRow.Issue16}</tr>
+          <tr>{historyRow.Issue17}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
-          Email Leak
+          DNS
         </TableCell>
         <TableCell align="left" component="th" scope="row">
           <Chip label="Critical" color="error" />
