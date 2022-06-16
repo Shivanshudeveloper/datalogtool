@@ -198,9 +198,12 @@ var newArray17 = uniqueArray.filter(function (el) {
                       <Divider />
                       Domain           
                       {newArray.map((historyRow) => (
-                         <TableCell align="left" component="th" scope="row">
-                         <tr>{historyRow.Host}</tr>      
-                         </TableCell>
+                          <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                          <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                           
+                          </TableCell>
+                          </div>
                            ))}
                     </CardContent>
                   </Card>
@@ -255,9 +258,13 @@ var newArray17 = uniqueArray.filter(function (el) {
                       <Divider />
                       Domain           
                       {newArray2.map((historyRow) => (
-                         <TableCell align="left" component="th" scope="row">
-                         <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>      
+                        <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                         <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                          
                          </TableCell>
+                         </div>
+
                            ))}
                     </CardContent>
                   </Card>
@@ -312,9 +319,12 @@ var newArray17 = uniqueArray.filter(function (el) {
                       <Divider />
                       Domain           
                       {newArray3.map((historyRow) => (
-                         <TableCell align="left" component="th" scope="row">
-                         <tr>{historyRow.Host}</tr>      
+                         <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                         <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                          
                          </TableCell>
+                         </div>
                            ))}
                     </CardContent>
                   </Card>
@@ -369,9 +379,12 @@ var newArray17 = uniqueArray.filter(function (el) {
                       <Divider />
                       Domain           
                       {newArray4.map((historyRow) => (
-                         <TableCell align="left" component="th" scope="row">
-                         <tr>{historyRow.Host}</tr>      
+                         <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                         <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                          
                          </TableCell>
+                         </div>
                            ))}
                     </CardContent>
                   </Card>
@@ -426,9 +439,12 @@ var newArray17 = uniqueArray.filter(function (el) {
                       <Divider />
                       Domain           
                       {newArray5.map((historyRow) => (
-                         <TableCell align="left" component="th" scope="row">
-                         <tr>{historyRow.Host}</tr>      
+                         <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                         <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                          
                          </TableCell>
+                         </div>
                            ))}
                     </CardContent>
                   </Card>
@@ -483,9 +499,12 @@ var newArray17 = uniqueArray.filter(function (el) {
                       <Divider />
                       Domain           
                       {newArray6.map((historyRow) => (
-                         <TableCell align="left" component="th" scope="row">
-                         <tr>{historyRow.Host}</tr>      
+                         <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                         <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                          
                          </TableCell>
+                         </div>
                            ))}
                     </CardContent>
                   </Card>
@@ -540,9 +559,12 @@ var newArray17 = uniqueArray.filter(function (el) {
                       <Divider />
                       Domain           
                       {newArray7.map((historyRow) => (
-                         <TableCell align="left" component="th" scope="row">
-                         <tr>{historyRow.Host}</tr>      
+                         <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                         <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                          
                          </TableCell>
+                         </div>
                            ))}
                     </CardContent>
                   </Card>
@@ -597,9 +619,12 @@ var newArray17 = uniqueArray.filter(function (el) {
                       <Divider />
                       Domain           
                       {newArray8.map((historyRow) => (
-                         <TableCell align="left" component="th" scope="row">
-                         <tr>{historyRow.Host}</tr>      
+                         <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                         <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                          
                          </TableCell>
+                         </div>
                            ))}
                     </CardContent>
                   </Card>
@@ -654,9 +679,12 @@ var newArray17 = uniqueArray.filter(function (el) {
                       <Divider />
                       Domain           
                       {newArray9.map((historyRow) => (
-                         <TableCell align="left" component="th" scope="row">
-                         <tr>{historyRow.Host}</tr>      
+                         <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                         <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                          
                          </TableCell>
+                         </div>
                            ))}
                     </CardContent>
                   </Card>
@@ -711,9 +739,12 @@ var newArray17 = uniqueArray.filter(function (el) {
                       <Divider />
                       Domain           
                       {newArray10.map((historyRow) => (
-                         <TableCell align="left" component="th" scope="row">
-                         <tr>{historyRow.Host}</tr>      
+                         <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                         <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                          
                          </TableCell>
+                         </div>
                            ))}
                     </CardContent>
                   </Card>
@@ -768,9 +799,12 @@ var newArray17 = uniqueArray.filter(function (el) {
                       <Divider />
                       Domain           
                       {newArray11.map((historyRow) => (
-                         <TableCell align="left" component="th" scope="row">
-                         <tr>{historyRow.Host}</tr>      
-                         </TableCell>
+                        <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                        <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                         
+                        </TableCell>
+                        </div>
                            ))}
                     </CardContent>
                   </Card>
@@ -825,9 +859,12 @@ var newArray17 = uniqueArray.filter(function (el) {
                       <Divider />
                       Domain           
                       {newArray12.map((historyRow) => (
-                         <TableCell align="left" component="th" scope="row">
-                         <tr>{historyRow.Host}</tr>      
-                         </TableCell>
+                        <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                        <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                         
+                        </TableCell>
+                        </div>
                            ))}
                     </CardContent>
                   </Card>
@@ -882,9 +919,12 @@ var newArray17 = uniqueArray.filter(function (el) {
                       <Divider />
                       Domain           
                       {newArray13.map((historyRow) => (
-                         <TableCell align="left" component="th" scope="row">
-                         <tr>{historyRow.Host}</tr>      
+                         <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                         <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                          
                          </TableCell>
+                         </div>
                            ))}
                     </CardContent>
                   </Card>
@@ -939,9 +979,12 @@ var newArray17 = uniqueArray.filter(function (el) {
                       <Divider />
                       Domain           
                       {newArray14.map((historyRow) => (
-                         <TableCell align="left" component="th" scope="row">
-                         <tr>{historyRow.Host}</tr>      
-                         </TableCell>
+                        <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                        <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                         
+                        </TableCell>
+                        </div>
                            ))}
                     </CardContent>
                   </Card>
@@ -996,9 +1039,12 @@ var newArray17 = uniqueArray.filter(function (el) {
                       <Divider />
                       Domain           
                       {newArray15.map((historyRow) => (
-                         <TableCell align="left" component="th" scope="row">
-                         <tr>{historyRow.Host}</tr>      
+                         <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                         <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                          
                          </TableCell>
+                         </div>
                            ))}
                     </CardContent>
                   </Card>
@@ -1054,9 +1100,12 @@ var newArray17 = uniqueArray.filter(function (el) {
                       <Divider />
                       Domain           
                       {newArray16.map((historyRow) => (
-                         <TableCell align="left" component="th" scope="row">
-                         <tr>{historyRow.Host}</tr>      
-                         </TableCell>
+                        <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                        <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                         
+                        </TableCell>
+                        </div>
                            ))}
                     </CardContent>
                   </Card>
@@ -1111,9 +1160,12 @@ var newArray17 = uniqueArray.filter(function (el) {
                       <Divider />
                       Domain           
                       {newArray17.map((historyRow) => (
-                         <TableCell align="left" component="th" scope="row">
-                         <tr>{historyRow.Host}</tr>      
-                         </TableCell>
+                        <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                        <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                         
+                        </TableCell>
+                        </div>
                            ))}
                     </CardContent>
                   </Card>
