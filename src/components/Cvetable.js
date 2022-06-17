@@ -45,33 +45,33 @@ function createData(name, calories, fat, carbs, protein, price) {
   };
 }
 function Row(props) {
-  const { row } = props;
+  const Row = props;
   const [open, setOpen] = React.useState(false)
+  
   return (
     <React.Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-        <div style={{overflow:Hidden}}>
-        
         <TableCell align="left" component="th" scope="row">
-        {Test.patching.map((index)=> (   
-          <tr>
-          <td style={{padding:12}}>{index.cve.map((i)=> 
-           <h7> {i.CVE}</h7>
-          )}</td>
-        </tr>
-      
-         ))}
-        </TableCell>
+        
+          {Row.row.CVE} 
+          
+        
+        </TableCell>  
+        
+        <TableCell align="left" component="th" scope="row"> 
+        
+       Apache
        
-        
-         </div>
-        <TableCell align="left" component="th" scope="row">
-            Apache
         </TableCell>
+        
+        
         <TableCell align="left" component="th" scope="row">
+        
           <Chip label="Critical" color="error" />
         </TableCell>
+        
         <TableCell>
+        
           <IconButton
             aria-label="expand row"
             size="small"
@@ -79,7 +79,9 @@ function Row(props) {
           >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
+          
         </TableCell>
+        
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -113,6 +115,7 @@ function Row(props) {
           </Collapse>
         </TableCell>
       </TableRow>
+  
     </React.Fragment>
   );
 }
@@ -136,6 +139,8 @@ Row.propTypes = {
 };
 
 const rows = [createData("www.test.com")];
+const a = Array(Test.patching.map((i)=>{i.cve}))
+
 
 export default function Cvetable() {
   return (
@@ -149,11 +154,13 @@ export default function Cvetable() {
             <TableCell>View</TableCell>
           </TableRow>
         </TableHead>
+        {Test.patching.map((index)=> (
         <TableBody>
-          {rows.map((row) => (
-            <Row key={row.name} row={row} />
-          ))}
+          {index.cve.map((i)=>
+           <Row key={i.CVE} row={i} />
+           )}
         </TableBody>
+         ))}
       </Table>
     </TableContainer>
   );
