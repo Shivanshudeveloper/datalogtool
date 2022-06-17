@@ -26,6 +26,7 @@ import { useTheme } from "@mui/material/styles";
 import PercentPieChart from "../../components/charts/PercentPieChart";
 import { useRouter } from 'next/router'
 import Test from '../main.json'
+import Link from 'next/link'
 
 const data = {
   series: [
@@ -157,7 +158,7 @@ const Analytics = () => {
               <Container sx={{ mt: 2 }} maxWidth="xl">
                 <Grid container>
                   <Grid item xs={3}>
-                    <Typography sx={{ textAlign: "center" }}><img src={Test.logo}></img></Typography>
+                    <Typography sx={{ textAlign: "center" }}> <Link href="https://www.etisalat.ae"><a target="_blank"><img style={{maxWidth:80}}src={Test.logo}></img></a></Link></Typography>
                   </Grid>
                   <Grid item xs={3}>
                     <Typography sx={{ textAlign: "center" }}>

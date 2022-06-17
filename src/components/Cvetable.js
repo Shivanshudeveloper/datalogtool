@@ -13,7 +13,8 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { Card, CardContent, Chip, Divider, Grid } from "@mui/material";
+import { Card, CardContent, Chip, Divider, Grid, Hidden } from "@mui/material";
+import Test from '../main.json';
 
 function createData(name, calories, fat, carbs, protein, price) {
   return {
@@ -43,17 +44,27 @@ function createData(name, calories, fat, carbs, protein, price) {
     ],
   };
 }
-
 function Row(props) {
   const { row } = props;
-  const [open, setOpen] = React.useState(false);
-
+  const [open, setOpen] = React.useState(false)
   return (
     <React.Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+        <div style={{overflow:Hidden}}>
+        
         <TableCell align="left" component="th" scope="row">
-            CVE 2022-2010
+        {Test.patching.map((index)=> (   
+          <tr>
+          <td style={{padding:12}}>{index.cve.map((i)=> 
+           <h7> {i.CVE}</h7>
+          )}</td>
+        </tr>
+      
+         ))}
         </TableCell>
+       
+        
+         </div>
         <TableCell align="left" component="th" scope="row">
             Apache
         </TableCell>
