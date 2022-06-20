@@ -1308,12 +1308,6 @@ Row.propTypes = {
 
 const rows = [createData("www.test.com")];
 
-const a = Test.patching.map((ind) => {
-         return ind.cve
-}
-)
-console.log(a)
-
 export default function IssuePageTable() {
   return (
     <TableContainer component={Paper}>

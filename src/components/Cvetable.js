@@ -47,7 +47,9 @@ function createData(name, calories, fat, carbs, protein, price) {
 function Row(props) {
   const Row = props;
   const [open, setOpen] = React.useState(false)
-  
+   const arr = Test.patching.filter((a)=>{
+    return a.cve[0] === Row.row
+   }) 
   return (
     <React.Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
@@ -103,7 +105,9 @@ function Row(props) {
                       <br />
                       <Divider />
                       Domains & IP
-                      <br />
+                      <br /><li>{arr.map((i)=>
+                        i.Host
+                      )}</li>
                       <br />
                       <br />
                       <br />
@@ -154,11 +158,11 @@ export default function Cvetable() {
             <TableCell>View</TableCell>
           </TableRow>
         </TableHead>
-        {Test.patching.map((index)=> (
+        {Test.patching.map((index,a)=> (
         <TableBody>
           {index.cve.map((i)=>
-           <Row key={i.CVE} row={i} />
-           )}
+           <Row key={a} row={i} />
+ )}
         </TableBody>
          ))}
       </Table>
