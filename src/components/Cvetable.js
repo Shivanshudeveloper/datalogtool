@@ -45,10 +45,13 @@ function createData(name, calories, fat, carbs, protein, price) {
   };
 }
 function Row(props) {
+  console.log(props)
   const Row = props;
+ var ind = Row.myKey;
+ console.log(ind)
   const [open, setOpen] = React.useState(false)
    const arr = Test.patching.filter((a)=>{
-    return a.cve[0] === Row.row
+    return a.cve[ind] === Row.row
    }) 
   return (
     <React.Fragment>
@@ -158,10 +161,10 @@ export default function Cvetable() {
             <TableCell>View</TableCell>
           </TableRow>
         </TableHead>
-        {Test.patching.map((index,a)=> (
+        {Test.patching.map((index)=> (
         <TableBody>
-          {index.cve.map((i)=>
-           <Row key={a} row={i} />
+          {index.cve.map((i,a)=>
+           <Row row={i} key={a} myKey={a}/>
  )}
         </TableBody>
          ))}
