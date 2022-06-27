@@ -2,6 +2,7 @@ import { Fragment, useState } from 'react';
 import {
   Badge,
   Box,
+  Button,
   CircularProgress,
   Dialog,
   DialogContent,
@@ -19,7 +20,9 @@ import PropTypes from 'prop-types';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import Test from '../test.json'
-
+import Link from 'next/link';
+import React from 'react';
+import router, {useRouter} from 'next/router'
 const results = {
   Platform: [
     {
@@ -52,6 +55,7 @@ export const ContentSearchDialog = (props) => {
   const [value, setValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const router = useRouter()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -61,6 +65,8 @@ export const ContentSearchDialog = (props) => {
     await wait(1500);
     setIsLoading(false);
     setShowResults(true);
+    router.push("/dashboard/websiteprofile/")
+    onClose()
   };
 
   const top100Films = [
@@ -96,15 +102,18 @@ export const ContentSearchDialog = (props) => {
         </IconButton>
       </Box>
       <DialogContent>
+        
         <form onSubmit={handleSubmit}>
           <Tip message="Search by entering a keyword and pressing Enter" />
           <Autocomplete
         id="free-solo-demo"
         freeSolo
         options={top100Films.map((option) => option.title)}
-        renderInput={(params) => <TextField {...params} label="freeSolo" />}
+        renderInput={(params) => <TextField {...params} label="Search"/>
+         }
       />
         </form>
+      
         {isLoading && (
           <Box
             sx={{
@@ -116,67 +125,14 @@ export const ContentSearchDialog = (props) => {
             <CircularProgress />
           </Box>
         )}
+        
+        
         {showResults && (
           <>
-            {Object.keys(results).map((type, index) => (
-              <div key={index}>
-                <Typography
-                  sx={{ my: 2 }}
-                  variant="h6"
-                >
-                  {type}
-                </Typography>
-                <Box
-                  sx={{
-                    borderColor: 'divider',
-                    borderRadius: 1,
-                    borderStyle: 'solid',
-                    borderWidth: 1
-                  }}
-                >
-                  {results[type].map((result, index) => (
-                    <Fragment key={result.title}>
-                      <Box sx={{ p: 2 }}>
-                        <Box
-                          sx={{
-                            alignItems: 'center',
-                            display: 'flex'
-                          }}
-                        >
-                          <Badge
-                            color="primary"
-                            sx={{ ml: 1 }}
-                            variant="dot"
-                          />
-                          <Typography
-                            variant="subtitle1"
-                            sx={{ ml: 2 }}
-                          >
-                            {result.title}
-                          </Typography>
-                        </Box>
-                        <Typography
-                          color="textSecondary"
-                          variant="body2"
-                        >
-                          {result.path}
-                        </Typography>
-                        <Typography
-                          color="textSecondary"
-                          variant="body2"
-                          sx={{ mt: 1 }}
-                        >
-                          {result.description}
-                        </Typography>
-                      </Box>
-                      {(index !== results[type].length - 1) && <Divider />}
-                    </Fragment>
-                  ))}
-                </Box>
-              </div>
-            ))}
-          </>
+         
+             </>
         )}
+       
       </DialogContent>
     </Dialog>
   );

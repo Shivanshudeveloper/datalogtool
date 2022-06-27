@@ -11,8 +11,23 @@ import {
   Typography
 } from '@mui/material';
 import { UserCircle as UserCircleIcon } from '../../../icons/user-circle';
+const initialState = {
+  user: null
+};
+import { useReducer,useEffect } from 'react';
+import firebase from '../../../lib/firebase';
 
-export const AccountGeneralSettings = (props) => {
+
+const reducer = (state, action) => {
+  if (action.type === 'AUTH_STATE_CHANGED') {
+    const { isAuthenticated, user } = action.payload;
+
+    return user;
+  }
+
+  return state;
+};
+export const AccountGeneralSettings = () => {
   // To get the user from the authContext, you can use
   // `const { user } = useAuth();`
   const user = {
@@ -20,10 +35,46 @@ export const AccountGeneralSettings = (props) => {
     name: 'Anika Visser'
   };
 
+  const [state, dispatch] = useReducer(reducer, initialState);
+  
+
+  useEffect(() => firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+
+      sessionStorage.setItem("userId", user.uid);
+      sessionStorage.setItem("userEmail", user.email);
+
+      // Here you should extract the complete user profile to make it available in your entire app.
+      // The auth state only provides basic information.
+      dispatch({
+        type: 'AUTH_STATE_CHANGED',
+        payload: {
+          isAuthenticated: true,
+          user: {
+            id: user.uid,
+            avatar: user.photoURL,
+            email: user.email,
+            name: user.displayName,
+            plan: 'Premium'
+          }
+        }
+      });
+    } else {
+      dispatch({
+        type: 'AUTH_STATE_CHANGED',
+        payload: {
+          isAuthenticated: false,
+          user: null
+        }
+      });
+    }
+  }), [dispatch]);
+  
+ 
   return (
     <Box
       sx={{ mt: 4 }}
-      {...props}>
+      {...state}>
       <Card>
         <CardContent>
           <Grid
@@ -51,7 +102,7 @@ export const AccountGeneralSettings = (props) => {
                 }}
               >
                 <Avatar
-                  src={user.avatar}
+                  src={state.avatar}
                   sx={{
                     height: 64,
                     mr: 2,
@@ -72,8 +123,7 @@ export const AccountGeneralSettings = (props) => {
                 }}
               >
                 <TextField
-                  defaultValue={user.name}
-                  label="Full Name"
+                  label={state.name}
                   size="small"
                   sx={{
                     flexGrow: 1,
@@ -92,9 +142,9 @@ export const AccountGeneralSettings = (props) => {
                 }}
               >
                 <TextField
-                  defaultValue="dummy.account@gmail.com"
+                  defaultValue={state.email}
                   disabled
-                  label="Email Address"
+                  label={state.email}
                   required
                   size="small"
                   sx={{

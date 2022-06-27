@@ -17,6 +17,21 @@ import { useAuth } from '../../hooks/use-auth';
 import { Cog as CogIcon } from '../../icons/cog';
 import { UserCircle as UserCircleIcon } from '../../icons/user-circle';
 import { SwitchHorizontalOutlined as SwitchHorizontalOutlinedIcon } from '../../icons/switch-horizontal-outlined';
+import { useReducer,useEffect } from 'react';
+import firebase from '../../lib/firebase';
+
+const initialState = {
+  user: null
+};
+const reducer = (state, action) => {
+  if (action.type === 'AUTH_STATE_CHANGED') {
+    const { isAuthenticated, user } = action.payload;
+
+    return user;
+  }
+
+  return state;
+};
 
 export const AccountPopover = (props) => {
   const { anchorEl, onClose, open, ...other } = props;
@@ -28,6 +43,42 @@ export const AccountPopover = (props) => {
     avatar: '/static/mock-images/avatars/avatar-anika_visser.png',
     name: 'Anika Visser'
   };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+  
+
+  useEffect(() => firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+
+      sessionStorage.setItem("userId", user.uid);
+      sessionStorage.setItem("userEmail", user.email);
+
+      // Here you should extract the complete user profile to make it available in your entire app.
+      // The auth state only provides basic information.
+      dispatch({
+        type: 'AUTH_STATE_CHANGED',
+        payload: {
+          isAuthenticated: true,
+          user: {
+            id: user.uid,
+            avatar: user.photoURL,
+            email: user.email,
+            name: user.displayName,
+            plan: 'Premium'
+          }
+        }
+      });
+    } else {
+      dispatch({
+        type: 'AUTH_STATE_CHANGED',
+        payload: {
+          isAuthenticated: false,
+          user: null
+        }
+      });
+    }
+  }), [dispatch]);
+
 
   const handleLogout = async () => {
     try {
@@ -61,7 +112,7 @@ export const AccountPopover = (props) => {
         }}
       >
         <Avatar
-          src={user.avatar}
+          src={state.avatar}
           sx={{
             height: 40,
             width: 40
@@ -69,26 +120,21 @@ export const AccountPopover = (props) => {
         >
           <UserCircleIcon fontSize="small" />
         </Avatar>
-        <Box
+       <Box
           sx={{
             ml: 1
           }}
         >
           <Typography variant="body1">
-            {user.name}
+            {state.name}
           </Typography>
-          <Typography
-            color="textSecondary"
-            variant="body2"
-          >
-            Acme Inc
-          </Typography>
+         
         </Box>
       </Box>
       <Divider />
       <Box sx={{ my: 1 }}>
-        <NextLink
-          href="/dashboard/social/profile"
+       {/*  <NextLink
+            href="/dashboard/social/profile"
           passHref
         >
           <MenuItem component="a">
@@ -96,14 +142,15 @@ export const AccountPopover = (props) => {
               <UserCircleIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText
-              primary={(
-                <Typography variant="body1">
+             primary={(
+              <Typography variant="body1">
                   Profile
                 </Typography>
               )}
             />
           </MenuItem>
         </NextLink>
+             */}
         <NextLink
           href="/dashboard/account"
           passHref
@@ -121,7 +168,7 @@ export const AccountPopover = (props) => {
             />
           </MenuItem>
         </NextLink>
-        <NextLink
+    {/*    <NextLink
           href="/dashboard"
           passHref
         >
@@ -138,6 +185,7 @@ export const AccountPopover = (props) => {
             />
           </MenuItem>
         </NextLink>
+              */}
         <Divider />
         <MenuItem onClick={handleLogout}>
           <ListItemIcon>

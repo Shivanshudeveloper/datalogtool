@@ -102,7 +102,7 @@ function Row(props) {
                   <Card>
                     <CardContent>
                       Summary
-                      <br />
+                      <br />{Row.row.Desc} 
                       <br />
                       <br />
                       <br />

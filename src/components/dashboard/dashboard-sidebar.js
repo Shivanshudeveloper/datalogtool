@@ -49,16 +49,16 @@ const getSections = (t) => [
         path: "/dashboard",
         icon: <HomeIcon fontSize="small" />,
       },
-      {
-        title: t("Attack Surface"),
-        path: "/dashboard/attacksurface",
-        icon: <ChartBarIcon fontSize="small" />,
-      },
-      {
-        title: t("Assets"),
-        path: "/dashboard/assets",
-        icon: <ChartPieIcon fontSize="small" />,
-      },
+     // {
+     //   title: t("Attack Surface"),
+     //   path: "/dashboard/attacksurface",
+     //   icon: <ChartBarIcon fontSize="small" />,
+     //  },
+     // {
+     //   title: t("Assets"),
+     //   path: "/dashboard/assets",
+     //   icon: <ChartPieIcon fontSize="small" />,
+     // },
       // {
       //   title: t("Issues"),
       //   path: "/dashboard/issues",
@@ -384,7 +384,7 @@ export const DashboardSidebar = (props) => {
                 </a>
               </NextLink>
             </Box>
-            <Box sx={{ px: 2 }}>
+          {/*  <Box sx={{ px: 2 }}>
               <Box
                 onClick={handleOpenOrganizationsPopover}
                 ref={organizationsRef}
@@ -416,6 +416,7 @@ export const DashboardSidebar = (props) => {
                 />
               </Box>
             </Box>
+                */}
           </div>
           <Divider
             sx={{

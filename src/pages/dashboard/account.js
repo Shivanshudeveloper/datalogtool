@@ -13,9 +13,9 @@ import { gtm } from '../../lib/gtm';
 const tabs = [
   { label: 'General', value: 'general' },
   { label: 'Billing', value: 'billing' },
-  { label: 'Team', value: 'team' },
-  { label: 'Notifications', value: 'notifications' },
-  { label: 'Security', value: 'security' }
+// { label: 'Team', value: 'team' },
+  //{ label: 'Notifications', value: 'notifications' },
+ // { label: 'Security', value: 'security' }
 ];
 
 const Account = () => {

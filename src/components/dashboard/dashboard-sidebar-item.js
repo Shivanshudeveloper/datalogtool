@@ -25,7 +25,6 @@ export const DashboardSidebarItem = (props) => {
   };
 
   let paddingLeft = 24;
-
   if (depth > 0) {
     paddingLeft = 32 + 8 * depth;
   }
@@ -124,6 +123,7 @@ export const DashboardSidebarItem = (props) => {
         >
           <Box sx={{ flexGrow: 1 }}>
             {title}
+            
           </Box>
           {info}
         </Button>

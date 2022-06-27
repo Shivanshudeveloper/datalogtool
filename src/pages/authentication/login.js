@@ -35,14 +35,13 @@ const Login = () => {
     
     const res = await axios.get('https://geolocation-db.com/json/')
 
-
-
     var ipsavedata = window.localStorage.getItem("ipaddress");
 
     if (!ipsavedata) {
       window.localStorage.setItem("ipaddress", res.data.IPv4);
 
       const resultUser = await axios.get(`https://ipinfo.io/${res.data.IPv4}?token=ced5ed49b1fe42`);
+      console.log(resultUser)
       var timedate = new Date(Date.now());
 
       var data = {

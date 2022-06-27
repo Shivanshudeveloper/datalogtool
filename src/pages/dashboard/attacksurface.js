@@ -1,37 +1,78 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useReducer } from "react";
 import Head from "next/head";
 import {
   Box,
   Button,
-  CardContent,
   Container,
   Grid,
   MenuItem,
-  TextField,
-  FormControl,
-  Select,
+  CardContent,
   Typography,
   Card,
+  Tabs,
+  Tab,
+  TextField,
+} from "@mui/material";
+import { AuthGuard } from "../../components/authentication/auth-guard";
+import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
+import GradeTable from "../../components/GradeTable";
+import Attacksurfacetable from "../../components/Attacksurfacetable";
+import Cvetable from "../../components/Cvetable";
+import { gtm } from "../../lib/gtm";
+import PropTypes from "prop-types";
+import IssuePageTable from "../../components/IssuePageTable";
+import { Chart } from "../../components/chart";
+import { useTheme } from "@mui/material/styles";
+import PercentPieChart from "../../components/charts/PercentPieChart";
+import { useRouter } from 'next/router'
+import Test from '../main.json'
+import Link from 'next/link';
+import { useAuth } from "../../hooks/use-auth";
+import { useMounted } from "../../hooks/use-mounted";
+import firebase from '../../lib/firebase';
+import {
+
+  
+  FormControl,
+  Select,
+
   Divider,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Chart } from "../../components/chart";
-import { useTheme } from "@mui/material/styles";
+
 
 
 import LinearProgress, {
   linearProgressClasses,
 } from "@mui/material/LinearProgress";
 
-import { AuthGuard } from "../../components/authentication/auth-guard";
-import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
 
 import AreaChartGraph from "../../components/charts/AreaChartGraph";
 import Tooltip from '@mui/material/Tooltip';
+import Attack from '../../attack_surface.json'
+import { enGB } from "date-fns/locale";
 
-import { gtm } from "../../lib/gtm";
-import PercentPieChart from "../../components/charts/PercentPieChart";
 
+const initialState = {
+  isAuthenticated: false,
+  isInitialized: false,
+  user: null
+};
+
+const reducer = (state, action) => {
+  if (action.type === 'AUTH_STATE_CHANGED') {
+    const { isAuthenticated, user } = action.payload;
+
+    return {
+      ...state,
+      isAuthenticated,
+      isInitialized: true,
+      user
+    };
+  }
+
+  return state;
+};
 const BorderLinearProgressCritical = styled(LinearProgress)(({ theme }) => ({
   height: 10,
   borderRadius: 5,
@@ -103,17 +144,111 @@ const data3 = {
   ]
 };
 
-const AttackSurface = () => {
+
+const data = {
+  series: [
+    {
+      color: "#FFB547",
+      data: 14859,
+      label: "Strategy",
+    },
+    {
+      color: "#7BC67E",
+      data: 35690,
+      label: "Outsourcing",
+    },
+    {
+      color: "#7783DB",
+      data: 45120,
+      label: "Marketing",
+    },
+    {
+      color: "#9DA4DD",
+      data: 25486,
+      label: "Other",
+    },
+  ],
+};
+
+const Analytics = () => {
   useEffect(() => {
     gtm.push({ event: "page_view" });
   }, []);
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+
+    
+
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && (
+          <Box sx={{ p: 3, px: 0 }}>
+            <Typography>{children}</Typography>
+          </Box>
+        )}
+      </div>
+    );
+  }
+
+  TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.number.isRequired,
+    value: PropTypes.number.isRequired,
+  };
+
+  function a11yProps(index) {
+    return {
+      id: `simple-tab-${index}`,
+      "aria-controls": `simple-tabpanel-${index}`,
+    };
+  }
+
+  const theme = useTheme();
+
+  const chartOptions2 = {
+    chart: {
+      background: "transparent",
+      stacked: false,
+      toolbar: {
+        show: false,
+      },
+    },
+    colors: data.series.map((item) => item.color),
+    dataLabels: {
+      enabled: false,
+    },
+    fill: {
+      opacity: 1,
+    },
+    labels: data.series.map((item) => item.label),
+    legend: {
+      show: false,
+    },
+    stroke: {
+      width: 0,
+    },
+    theme: {
+      mode: theme.palette.mode,
+    },
+  };
 
   const [lastOverallScore, setLastOverallScore] = React.useState(7);
   const handleChangeLastOverallScore = (event) => {
     setLastOverallScore(event.target.value);
   };
 
-  const theme = useTheme();
+
 
 
   const chartOptions3 = {
@@ -183,10 +318,57 @@ const AttackSurface = () => {
 
   const chartSeries3 = data3.series;
 
+  const chartSeries = data.series.map((item) => item.data);
+  const router = useRouter()
+  const { id } = router.query
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+
+      sessionStorage.setItem("userId", user.uid);
+      sessionStorage.setItem("userEmail", user.email);
+      
+
+      // Here you should extract the complete user profile to make it available in your entire app.
+      // The auth state only provides basic information.
+      dispatch({
+        type: 'AUTH_STATE_CHANGED',
+        payload: {
+          isAuthenticated: true,
+          user: {
+            id: user.uid,
+            avatar: user.photoURL,
+            email: user.email,
+            name: user.displayName,
+            plan: 'Premium'
+          }
+        }
+      });
+    } else {
+      dispatch({
+        type: 'AUTH_STATE_CHANGED',
+        payload: {
+          isAuthenticated: false,
+          user: null
+        }
+      });
+    }
+  }), [dispatch]);
+  
+const arr = new Array(state.user)
+if(arr[0].email===Attack.email)
+{
+  const a = Attack.severity_count
+  const b = Attack.score
+  const c = Attack.attack_surface_counts
+}
+
   return (
     <>
       <Head>
-        <title>Dashboard: Attack Surface | Material Kit Pro</title>
+        <title>Dashboard</title>
       </Head>
       <Box
         component="main"
@@ -196,6 +378,21 @@ const AttackSurface = () => {
         }}
       >
         <Container maxWidth="xl">
+          {" "}
+          <Box sx={{ width: "100%" }}>
+            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                aria-label="basic tabs example"
+              >
+                <Tab label="Home" {...a11yProps(0)} />
+                <Tab label="Issues" {...a11yProps(1)} />
+                <Tab label="CVE" {...a11yProps(2)} />
+              </Tabs>
+            </Box>
+            <TabPanel value={value} index={0}>
+            <Container maxWidth="xl">
           <Box sx={{ mb: 4 }}>
             <Grid container justifyContent="space-between" spacing={3}>
               <Grid item>
@@ -218,7 +415,8 @@ const AttackSurface = () => {
                     Sub-domains
                   </Typography>
                   <Typography variant="h5" sx={{ textAlign: "center" }}>
-                    1k
+                    {c[0].Subdomains}
+
                   </Typography>
                 </CardContent>
               </Card>
@@ -237,7 +435,7 @@ const AttackSurface = () => {
                     IPv4
                   </Typography>
                   <Typography variant="h5" sx={{ textAlign: "center" }}>
-                    2k
+                  {c[0].IPv4}
                   </Typography>
                 </CardContent>
               </Card>
@@ -256,7 +454,7 @@ const AttackSurface = () => {
                     Total Issues
                   </Typography>
                   <Typography variant="h5" sx={{ textAlign: "center" }}>
-                    40
+                  {c[0].TotalIssues}
                   </Typography>
                 </CardContent>
               </Card>
@@ -275,7 +473,7 @@ const AttackSurface = () => {
                     Breaches
                   </Typography>
                   <Typography variant="h5" sx={{ textAlign: "center" }}>
-                    20
+                  {c[0].Breaches}
                   </Typography>
                 </CardContent>
               </Card>
@@ -290,27 +488,19 @@ const AttackSurface = () => {
                   </Typography>
                   <br />
                   <br />
-                    <Tooltip title="76%">
+                    
                       <Typography sx={{ textAlign: "left", cursor: 'pointer' }}>Critical</Typography>
-                    </Tooltip>
+                    
 
-                    <Tooltip title="76%">
-                      <BorderLinearProgressCritical
-                        sx={{ cursor: 'pointer' }}
-                        variant="determinate"
-                        value={50}
-                      />
-                    </Tooltip>
+                    <h7>{a[0].Critical}</h7>
 
                   <br />
                   <br />
-                    <Tooltip title="76%">
+                    
                       <Typography sx={{ textAlign: "left", cursor: 'pointer' }}>High</Typography>
-                    </Tooltip>
+                    
 
-                    <Tooltip title="76%">
-                      <BorderLinearProgressHigh sx={{ cursor: 'pointer' }} variant="determinate" value={75} />
-                    </Tooltip>
+                      <h7>{a[0].High}</h7>
 
                   <br />
                   <br />
@@ -318,22 +508,14 @@ const AttackSurface = () => {
                       <Typography sx={{ textAlign: "left", cursor: 'pointer' }}>Medium</Typography>
                     </Tooltip>
 
-                    <Tooltip title="76%">
-                      <BorderLinearProgressMedium
-                        variant="determinate"
-                        value={20}
-                        sx={{ cursor: 'pointer' }}
-                      />
-                    </Tooltip>
-
+                   
+                    <h7>{a[0].Medium}</h7>
                   <br />
                   <br />
                     <Tooltip title="76%">
                       <Typography sx={{ textAlign: "left", cursor: 'pointer' }}>Low</Typography>
                     </Tooltip>
-                    <Tooltip title="76%">
-                      <BorderLinearProgressLow sx={{ cursor: 'pointer' }} variant="determinate" value={80} />
-                    </Tooltip>
+                    <h7>{a[0].Low}</h7>
                 </CardContent>
               </Card>
             </Grid>
@@ -543,15 +725,116 @@ const AttackSurface = () => {
             </Grid>
           </Grid>
         </Container>
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <Box
+                component="main"
+                sx={{
+                  flexGrow: 1,
+                  py: 4,
+                }}
+              >
+                <Container maxWidth="xl">
+                  <Box sx={{ mb: 4 }}>
+                    <Grid container justifyContent="space-between" spacing={3}>
+                      <Grid item>
+                        <Typography variant="h4">Attack Surface</Typography>
+                      </Grid>
+                    </Grid>
+                  </Box>{" "}
+                  <Grid container>
+                    <Grid item xs={12} sx={{ mb: 4 }}>
+                      <Typography sx={{ textAlign: "center" }}>
+                        Issue Profile
+                      </Typography>
+                    </Grid>
+
+                    <Grid item xs={4}>
+                      <Typography sx={{ textAlign: "center" }}>Host</Typography>
+                      <Typography sx={{ textAlign: "center" }}>www.zoho.com</Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography sx={{ textAlign: "center" }}>Hosting</Typography>
+                      <Typography sx={{ textAlign: "center" }}>Go Daddy</Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography sx={{ textAlign: "center" }}>IP Address</Typography>
+                      <Typography sx={{ textAlign: "center" }}>192.168.1.1</Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid container sx={{ mt: 5 }}>
+                    <Grid item xs={12}>
+                      <IssuePageTable />
+                    </Grid>
+                  </Grid>
+                </Container>
+              </Box>
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+              <Box
+                component="main"
+                sx={{
+                  flexGrow: 1,
+                  py: 4,
+                }}
+              >
+                <Container maxWidth="xl">
+                  <Box sx={{ mb: 4 }}>
+                    <Grid container justifyContent="space-between" spacing={3}>
+                      <Grid item>
+                        <Typography variant="h4">CVE Profile</Typography>
+                      </Grid>
+                    </Grid>
+                  </Box>{" "}
+                  <Grid container>
+                    <Grid item xs={12} sx={{ mb: 4 }}>
+                      <Typography sx={{ textAlign: "center" }}>
+                        Issue Profile
+                      </Typography>
+                    </Grid>
+
+                    <Grid item xs={4}>
+                      <Typography sx={{ textAlign: "center" }}>Host</Typography>
+                      <Typography sx={{ textAlign: "center" }}>
+                        www.zoho.com
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography sx={{ textAlign: "center" }}>
+                        Hosting
+                      </Typography>
+                      <Typography sx={{ textAlign: "center" }}>
+                        Go Daddy
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography sx={{ textAlign: "center" }}>
+                        IP Address
+                      </Typography>
+                      <Typography sx={{ textAlign: "center" }}>
+                        192.168.1.1
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid container sx={{ mt: 5 }}>
+                    <Grid item xs={12}>
+                      <Cvetable />
+                    </Grid>
+                  </Grid>
+                </Container>
+              </Box>
+            </TabPanel>
+          </Box>
+        </Container>
       </Box>
     </>
   );
 };
 
-AttackSurface.getLayout = (page) => (
+Analytics.getLayout = (page) => (
   <AuthGuard>
     <DashboardLayout>{page}</DashboardLayout>
   </AuthGuard>
 );
 
-export default AttackSurface;
+export default Analytics;

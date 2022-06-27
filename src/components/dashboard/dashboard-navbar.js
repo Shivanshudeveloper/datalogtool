@@ -22,6 +22,21 @@ import { Bell as BellIcon } from "../../icons/bell";
 import { UserCircle as UserCircleIcon } from "../../icons/user-circle";
 import { Search as SearchIcon } from "../../icons/search";
 import { Users as UsersIcon } from "../../icons/users";
+import { useReducer,useEffect } from 'react';
+import firebase from '../../lib/firebase';
+
+const initialState = {
+  user: null
+};
+const reducer = (state, action) => {
+  if (action.type === 'AUTH_STATE_CHANGED') {
+    const { isAuthenticated, user } = action.payload;
+
+    return user;
+  }
+
+  return state;
+};
 
 const languages = {
   en: "/static/icons/uk_flag.svg",
@@ -179,10 +194,41 @@ const AccountButton = () => {
   const [openPopover, setOpenPopover] = useState(false);
   // To get the user from the authContext, you can use
   // `const { user } = useAuth();`
-  const user = {
-    avatar: "/static/mock-images/avatars/avatar-anika_visser.png",
-    name: "Anika Visser",
-  };
+  const [state, dispatch] = useReducer(reducer, initialState);
+  
+
+  useEffect(() => firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+
+      sessionStorage.setItem("userId", user.uid);
+      sessionStorage.setItem("userEmail", user.email);
+
+      // Here you should extract the complete user profile to make it available in your entire app.
+      // The auth state only provides basic information.
+      dispatch({
+        type: 'AUTH_STATE_CHANGED',
+        payload: {
+          isAuthenticated: true,
+          user: {
+            id: user.uid,
+            avatar: user.photoURL,
+            email: user.email,
+            name: user.displayName,
+            plan: 'Premium'
+          }
+        }
+      });
+    } else {
+      dispatch({
+        type: 'AUTH_STATE_CHANGED',
+        payload: {
+          isAuthenticated: false,
+          user: null
+        }
+      });
+    }
+  }), [dispatch]);
+  
 
   const handleOpenPopover = () => {
     setOpenPopover(true);
@@ -209,7 +255,7 @@ const AccountButton = () => {
             height: 40,
             width: 40,
           }}
-          src={user.avatar}
+          src={state.avatar}
         >
           <UserCircleIcon fontSize="small" />
         </Avatar>
@@ -262,7 +308,7 @@ export const DashboardNavbar = (props) => {
           {/* <LanguageButton /> */}
           <ContentSearchButton />
           {/* <ContactsButton /> */}
-          <NotificationsButton />
+          {/*<NotificationsButton />*/}
           <AccountButton />
         </Toolbar>
       </DashboardNavbarRoot>
