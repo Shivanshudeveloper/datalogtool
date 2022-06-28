@@ -70,6 +70,7 @@ export const AccountGeneralSettings = () => {
     }
   }), [dispatch]);
   
+  console.log(state)
  
   return (
     <Box

@@ -12,6 +12,8 @@ import {
   Tabs,
   Tab,
   TextField,
+  Dialog,
+  DialogContent,
 } from "@mui/material";
 import { AuthGuard } from "../../components/authentication/auth-guard";
 import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
@@ -27,6 +29,10 @@ import PercentPieChart from "../../components/charts/PercentPieChart";
 import { useRouter } from 'next/router'
 import Test from '../main.json'
 import Link from 'next/link'
+import {useState} from 'react'
+import queryString, { stringify } from "query-string";
+
+
 
 const data = {
   series: [
@@ -128,6 +134,48 @@ const Analytics = () => {
   const chartSeries = data.series.map((item) => item.data);
   const router = useRouter()
   const { id } = router.query
+  const [files, setFiles] = useState([]);
+
+  const [membershipdata, setmembershipdata] = useState({});
+
+  
+        const setthemembershipdata = async (id) =>{
+          try{
+          const res = await fetch(`http://localhost:8080/api/v1/main/vendors`, {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: "etisalat",
+              target: "etisalat.ae",
+              score: "7",
+            }),
+          });
+          const content = await res.json();
+
+          toast.success("Vendors created!");
+          router.push("/dashboard/vendors");
+        } catch (err) {
+          console.log(err);
+        }
+    };
+  
+
+  const handleDrop = (newFiles) => {
+    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+  };
+
+  const handleRemove = (file) => {
+    setFiles((prevFiles) =>
+      prevFiles.filter((_file) => _file.path !== file.path)
+    );
+  };
+
+  const handleRemoveAll = () => {
+    setFiles([]);
+  };
   return (
     <>
       <Head>
@@ -175,7 +223,7 @@ const Analytics = () => {
                   </Grid>
                   <Grid item xs={3}>
                     <center>
-                      <Button variant="contained" color="primary">
+                      <Button variant="contained" color="primary"  onClick={setthemembershipdata} href="/dashboard/vendors">
                         Add New
                       </Button>
                     </center>

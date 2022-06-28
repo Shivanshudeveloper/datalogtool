@@ -9,6 +9,11 @@ import Paper from '@mui/material/Paper';
 import { Chip, Button } from '@mui/material';
 import Test from '../test.json'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import queryString, { stringify } from "query-string";
+
+import {useState,useEffect} from 'react'
+
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -19,6 +24,36 @@ const rows = [
 ];
 
 export default function VendorsTable() {
+
+  const router = useRouter();
+  const [membershipdata, setmembershipdata] = useState([]);
+
+  const [id, setid] = useState(null);
+  useEffect(() => {
+   
+      setid(id);
+      getthemembersipdata(id);
+   
+  }, []);
+
+  
+
+  const getthemembersipdata = async () => {
+    try {
+      const res = await fetch(`http://localhost:8080/api/v1/main/vendors`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      const content = await res.json();
+      setmembershipdata(content);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  console.log(membershipdata)
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -32,16 +67,13 @@ export default function VendorsTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
+         {membershipdata.map((a)=>
+            <TableRow key={a._id}>
               <TableCell component="th" scope="row">
-                {Test.domain.substring(0,Test.domain.length-3)}
+                {a.name}
               </TableCell>
-              <TableCell align="center">{Test.domain}</TableCell>
-              <TableCell align="center">{row.fat}</TableCell>
+              <TableCell align="center">{a.target}</TableCell>
+              <TableCell align="center">{a.score}</TableCell>
               <TableCell align="center">
                   <Chip color='success' label='Monitor' />
               </TableCell>
@@ -55,7 +87,7 @@ export default function VendorsTable() {
                     </Button>
               </TableCell>
             </TableRow>
-          ))}
+            )}
         </TableBody>
       </Table>
     </TableContainer>
