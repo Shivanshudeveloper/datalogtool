@@ -31,7 +31,7 @@ import Test from '../main.json'
 import Link from 'next/link'
 import {useState} from 'react'
 import queryString, { stringify } from "query-string";
-
+import { API_SERVICE } from "../../config/API";
 
 
 const data = {
@@ -141,7 +141,7 @@ const Analytics = () => {
   
         const setthemembershipdata = async (id) =>{
           try{
-          const res = await fetch(`http://localhost:8080/api/v1/main/vendors`, {
+          const res = await fetch(`${API_SERVICE}/vendors`, {
             method: "POST",
             headers: {
               Accept: "application/json",

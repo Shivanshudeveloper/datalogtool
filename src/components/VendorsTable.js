@@ -11,8 +11,8 @@ import Test from '../test.json'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import queryString, { stringify } from "query-string";
-
-import {useState,useEffect} from 'react'
+import { API_SERVICE } from '../config/API';
+import {useState,useEffect} from 'react';
 
 
 function createData(name, calories, fat, carbs, protein) {
@@ -40,7 +40,7 @@ export default function VendorsTable() {
 
   const getthemembersipdata = async () => {
     try {
-      const res = await fetch(`http://localhost:8080/api/v1/main/vendors`, {
+      const res = await fetch(`${API_SERVICE}n/vendors`, {
         method: "GET",
         headers: {
           Accept: "application/json",
