@@ -10,6 +10,9 @@ const membershipController = require("../controllers/membership");
 const guestController = require("../controllers/guest");
 
 const vendorController = require("../controllers/vendor")
+const testController = require("../controllers/test")
+const misconfigController = require("../controllers/misconfig")
+
 
 router.get("/test", (req, res) => {
   res.send("Working");
@@ -39,5 +42,11 @@ router.get("/vendors", vendorController.getVendor);
 router.delete("/vendors/:id", vendorController.deleteVendor);
 router.put("/vendors/:id", vendorController.updateVendor);
 router.get("/vendors/:id", vendorController.getspeceficVendor);
+
+router.get("/tests", testController.getTest);
+router.post("/tests", testController.addTest);
+
+router.get("/misconfig", misconfigController.getMisconfig);
+router.post("/misconfig", misconfigController.addMisconfig);
 
 module.exports = router;

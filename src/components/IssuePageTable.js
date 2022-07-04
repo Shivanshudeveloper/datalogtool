@@ -15,6 +15,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Card, CardContent, Chip, Divider, Grid, Hidden } from "@mui/material";
 import Test from '../main.json';
+import {useState,useEffect} from 'react'
 
 function createData(name, calories, fat, carbs, protein, price) {
   return {
@@ -68,16 +69,17 @@ function Row(props) {
   const [open25, setOpen25] = React.useState(false);
   const [open26, setOpen26] = React.useState(false);
 
+  console.log(row)
 
-  const uniqueArray = Test.misconfiguration.filter((value, index) => {
+  const uniqueArray = row.misconfiguration.filter((value, index) => {
     const _value = JSON.stringify(value);
-    return index === Test.misconfiguration.findIndex(res => {
+    return index === row.misconfiguration.findIndex(res => {
       return JSON.stringify(res) === _value;
     });
   });
 
-  var clean = Test.misconfiguration.filter((arr, index, self) =>
-    index === self.findIndex((t) => (t.save === Test.misconfiguration.save && t.State === Test.misconfiguration.State)))
+  var clean = row.misconfiguration.filter((arr, index, self) =>
+    index === self.findIndex((t) => (t.save === row.misconfiguration.save && t.State === row.misconfiguration.State)))
 
 
 
@@ -89,7 +91,6 @@ var newArray2 = uniqueArray.filter(function (el) {
   return el.Issues2 === "content-security-policy";
 });
 
-console.log(newArray2)
 var newArray3 = uniqueArray.filter(function (el) {
   return el.Issues3 === "permission-policy";
 });
@@ -149,7 +150,6 @@ var newArray16 = uniqueArray.filter(function (el) {
 var newArray17 = uniqueArray.filter(function (el) {
   return el.Issue17 === "access-control-allow-headers";
 });
-
 
   return (
     <React.Fragment>
@@ -1576,8 +1576,36 @@ Row.propTypes = {
 const rows = [createData("www.test.com")];
 
 export default function IssuePageTable() {
+  const [membershipdata, setmembershipdata] = useState([]);
+
+  const [id, setid] = useState(null);
+  useEffect(() => {
+   
+      setid(id);
+      getthemembersipdata(id);
+   
+  }, []);
+
+  
+
+  const getthemembersipdata = async () => {
+    try {
+      const res = await fetch(`http://localhost:8080/api/v1/main/misconfig`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      const content = await res.json();
+      setmembershipdata(content);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <TableContainer component={Paper}>
+      {membershipdata.map((a)=>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
@@ -1590,10 +1618,11 @@ export default function IssuePageTable() {
         <TableBody>
           {rows.map((row) => (
             
-            <Row key={row.name} row={row} />
+            <Row key={row.name} row={a} />
           ))}
         </TableBody>
       </Table>
+      )}
     </TableContainer>
   );
 }

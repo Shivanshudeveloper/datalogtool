@@ -34,6 +34,9 @@ import { gtm } from "../../lib/gtm";
 import { useTheme } from "@mui/material/styles";
 import { Chart } from "../../components/chart";
 import PercentPieChart from "../../components/charts/PercentPieChart";
+import { useRouter } from 'next/router'
+import queryString, { stringify } from "query-string";
+import { API_SERVICE } from '../../config/API';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -264,6 +267,66 @@ const index = (props) => {
   };
 
   const chartSeries3 = data3.series;
+  const router = useRouter();
+  const [membershipdata, setmembershipdata] = useState([]);
+
+  const [id, setid] = useState(null);
+  useEffect(() => {
+   
+      setid(id);
+      getthemembersipdata(id);
+   
+  }, []);
+
+  
+
+  const getthemembersipdata = async () => {
+    try {
+      const res = await fetch(`${API_SERVICE}/vendors`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      const content = await res.json();
+      setmembershipdata(content);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const [issuedata, setissuedata] = useState([]);
+  useEffect(() => {
+   
+      setid(id);
+      getissuedata(id);
+   
+  }, []);
+
+  
+
+  const getissuedata = async () => {
+    try {
+      const res = await fetch(`${API_SERVICE}/misconfig`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      const content = await res.json();
+      setissuedata(content);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const a = membershipdata.length
+   const b = issuedata.map((a)=>
+    a.misconfiguration.filter((arr, index, self) =>
+    index === self.findIndex((t) => (t.save === a.misconfiguration.save && t.State === a.misconfiguration.State)))
+   ) 
+   const c = b.length
   return (
     <>
       <Head>
@@ -328,7 +391,7 @@ const index = (props) => {
                       Total Third Party Apps
                     </Typography>
                     <Typography sx={{ textAlign: "center" }} variant="h2">
-                      40
+                      {a}
                     </Typography>
                   </CardContent>
                 </Card>
@@ -347,7 +410,7 @@ const index = (props) => {
                       Total Issues
                     </Typography>{" "}
                     <Typography sx={{ textAlign: "center" }} variant="h2">
-                      40
+                      {c*14}
                     </Typography>
                   </CardContent>
                 </Card>

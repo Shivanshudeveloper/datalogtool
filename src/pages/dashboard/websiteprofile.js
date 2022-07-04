@@ -137,8 +137,32 @@ const Analytics = () => {
   const [files, setFiles] = useState([]);
 
   const [membershipdata, setmembershipdata] = useState({});
+  const [testdata, settestestdata] = useState([]);
 
-  
+  const [idk, setid] = useState(null);
+  useEffect(() => {
+   
+      setid(idk);
+      gettestdata(id);
+   
+  }, []);
+
+  const gettestdata = async () => {
+    try {
+      const res = await fetch(`http://localhost:8080/api/v1/main/tests`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      const content = await res.json();
+      settestestdata(content);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  console.log(testdata)
         const setthemembershipdata = async (id) =>{
           try{
           const res = await fetch(`${API_SERVICE}/vendors`, {
@@ -206,8 +230,10 @@ const Analytics = () => {
               <Container sx={{ mt: 2 }} maxWidth="xl">
                 <Grid container>
                   <Grid item xs={3}>
-                    <Typography sx={{ textAlign: "center" }}> <Link href="https://www.etisalat.ae"><a target="_blank"><img style={{maxWidth:80}}src={Test.logo}></img></a></Link></Typography>
-                  </Grid>
+                    {testdata.map((b)=>(
+                    <Typography sx={{ textAlign: "center" }}> <Link href={b.logo}><a target="_blank"><img style={{maxWidth:80}}src={Test.logo}></img></a></Link></Typography>
+                    ))}
+                    </Grid>
                   <Grid item xs={3}>
                     <Typography sx={{ textAlign: "center" }}>
                       {id}
@@ -283,18 +309,20 @@ const Analytics = () => {
                   </Grid>
                   <Grid item xs={4}>
                     <Card sx={{ height: "100%" }}>
+                      {testdata.map((a)=>(
                       <CardContent>
                         <Typography sx={{ textAlign: "center" }}>
                           Total Issues
                         </Typography>
                         <center>
                           <Typography variant="h1" sx={{ textAlign: "center", mt: 12 }}>
-                          {Test.issue_count.map((historyRow) => (
+                          {a.issue_count.map((historyRow) => (
                       <h7>{historyRow["Vendor Total Issues"]}</h7>
                   ))}
                           </Typography>
                         </center>
                       </CardContent>
+                      ))}
                     </Card>
                   </Grid>
                 </Grid>

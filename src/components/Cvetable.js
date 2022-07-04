@@ -15,6 +15,11 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Card, CardContent, Chip, Divider, Grid, Hidden } from "@mui/material";
 import Test from '../main.json';
+import {useState,useEffect} from 'react'
+import queryString, { stringify } from "query-string";
+import { API_SERVICE } from "../config";
+import { useRouter } from 'next/router'
+
 
 function createData(name, calories, fat, carbs, protein, price) {
   return {
@@ -45,14 +50,39 @@ function createData(name, calories, fat, carbs, protein, price) {
   };
 }
 function Row(props) {
-  console.log(props)
+  const [membershipdata, setmembershipdata] = useState([]);
+
+  const [id, setid] = useState(null);
+  useEffect(() => {
+   
+      setid(id);
+      getthemembersipdata(id);
+   
+  }, []);
+
+  
+
+  const getthemembersipdata = async () => {
+    try {
+      const res = await fetch(`http://localhost:8080/api/v1/main/tests`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      const content = await res.json();
+      setmembershipdata(content);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const Row = props;
  var ind = Row.myKey;
- console.log(ind)
   const [open, setOpen] = React.useState(false)
    const arr = Test.patching.filter((a)=>{
-    return a.cve[ind] === Row.row
-   }) 
+      return a.cve[ind] === Row.row
+    } ) 
   return (
     <React.Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
@@ -89,6 +119,7 @@ function Row(props) {
         
       </TableRow>
       <TableRow>
+        {membershipdata.map((member)=>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
@@ -108,9 +139,9 @@ function Row(props) {
                       <br />
                       <Divider />
                       Domains & IP
-                      <br /><li>{arr.map((i)=>
-                        i.Host
-                      )}</li>
+                      <br />{member.patching.map((c)=>
+                      <li>{c.Host}</li>
+                      )}
                       <br />
                       <br />
                       <br />
@@ -121,6 +152,7 @@ function Row(props) {
             </Box>
           </Collapse>
         </TableCell>
+        )}
       </TableRow>
   
     </React.Fragment>
@@ -150,8 +182,37 @@ const a = Array(Test.patching.map((i)=>{i.cve}))
 
 
 export default function Cvetable() {
+  const router = useRouter();
+  const [membershipdata, setmembershipdata] = useState([]);
+
+  const [id, setid] = useState(null);
+  useEffect(() => {
+   
+      setid(id);
+      getthemembersipdata(id);
+   
+  }, []);
+
+  
+
+  const getthemembersipdata = async () => {
+    try {
+      const res = await fetch(`http://localhost:8080/api/v1/main/tests`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      const content = await res.json();
+      setmembershipdata(content);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <TableContainer component={Paper}>
+      {membershipdata.map((a)=>(
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
@@ -161,7 +222,7 @@ export default function Cvetable() {
             <TableCell>View</TableCell>
           </TableRow>
         </TableHead>
-        {Test.patching.map((index)=> (
+        {a.patching.map((index)=> (
         <TableBody>
           {index.cve.map((i,a)=>
            <Row row={i} key={a} myKey={a}/>
@@ -169,6 +230,7 @@ export default function Cvetable() {
         </TableBody>
          ))}
       </Table>
+      ))}
     </TableContainer>
   );
 }

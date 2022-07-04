@@ -40,7 +40,7 @@ export default function VendorsTable() {
 
   const getthemembersipdata = async () => {
     try {
-      const res = await fetch(`${API_SERVICE}n/vendors`, {
+      const res = await fetch(`${API_SERVICE}/vendors`, {
         method: "GET",
         headers: {
           Accept: "application/json",
