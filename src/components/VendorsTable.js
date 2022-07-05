@@ -13,6 +13,9 @@ import { useRouter } from 'next/router'
 import queryString, { stringify } from "query-string";
 import { API_SERVICE } from '../config/API';
 import {useState,useEffect} from 'react';
+import { useReducer } from 'react';
+import firebase from '../lib/firebase';
+
 
 
 function createData(name, calories, fat, carbs, protein) {
@@ -40,7 +43,7 @@ export default function VendorsTable() {
 
   const getthemembersipdata = async () => {
     try {
-      const res = await fetch(`${API_SERVICE}/vendors`, {
+      const res = await fetch(`${API_SERVICE}/vendors/`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -53,9 +56,67 @@ export default function VendorsTable() {
       console.log(err);
     }
   };
-  console.log(membershipdata)
+  const initialState = {
+    user: null
+  };
+  const reducer = (state, action) => {
+    if (action.type === 'AUTH_STATE_CHANGED') {
+      const { isAuthenticated, user } = action.payload;
+  
+      return user;
+    }
+  
+    return state;
+  };
+  
+
+  // To get the user from the authContext, you can use
+  // `const { user } = useAuth();`
+  const user = {
+    avatar: '/static/mock-images/avatars/avatar-anika_visser.png',
+    name: 'Anika Visser'
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+  
+
+  useEffect(() => firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+
+      sessionStorage.setItem("userId", user.uid);
+      sessionStorage.setItem("userEmail", user.email);
+
+      // Here you should extract the complete user profile to make it available in your entire app.
+      // The auth state only provides basic information.
+      dispatch({
+        type: 'AUTH_STATE_CHANGED',
+        payload: {
+          isAuthenticated: true,
+          user: {
+            id: user.uid,
+            avatar: user.photoURL,
+            email: user.email,
+            name: user.displayName,
+            plan: 'Premium'
+          }
+        }
+      });
+    } else {
+      dispatch({
+        type: 'AUTH_STATE_CHANGED',
+        payload: {
+          isAuthenticated: false,
+          user: null
+        }
+      });
+    }
+  }), [dispatch]);
+  const a = membershipdata.filter((c)=>{
+    return c.user===state.id
+  })
   return (
     <TableContainer component={Paper}>
+      
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -67,13 +128,13 @@ export default function VendorsTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-         {membershipdata.map((a)=>
-            <TableRow key={a._id}>
+         {a.map((c)=>
+            <TableRow key={c}>
               <TableCell component="th" scope="row">
-                {a.name}
+             {c.name}
               </TableCell>
-              <TableCell align="center">{a.target}</TableCell>
-              <TableCell align="center">{a.score}</TableCell>
+              <TableCell align="center">{c.target}</TableCell>
+              <TableCell align="center">{c.score}</TableCell>
               <TableCell align="center">
                   <Chip color='success' label='Monitor' />
               </TableCell>
@@ -87,9 +148,11 @@ export default function VendorsTable() {
                     </Button>
               </TableCell>
             </TableRow>
-            )}
+    )}
+           
         </TableBody>
       </Table>
+      
     </TableContainer>
   );
 }

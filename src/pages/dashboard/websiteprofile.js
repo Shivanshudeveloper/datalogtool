@@ -32,6 +32,21 @@ import Link from 'next/link'
 import {useState} from 'react'
 import queryString, { stringify } from "query-string";
 import { API_SERVICE } from "../../config/API";
+import firebase from '../../lib/firebase';
+import { useReducer } from 'react';
+
+const initialState = {
+  user: null
+};
+const reducer = (state, action) => {
+  if (action.type === 'AUTH_STATE_CHANGED') {
+    const { isAuthenticated, user } = action.payload;
+
+    return user;
+  }
+
+  return state;
+};
 
 
 const data = {
@@ -146,6 +161,59 @@ const Analytics = () => {
       gettestdata(id);
    
   }, []);
+  // To get the user from the authContext, you can use
+  // `const { user } = useAuth();`
+  const user = {
+    avatar: '/static/mock-images/avatars/avatar-anika_visser.png',
+    name: 'Anika Visser'
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+  
+
+  useEffect(() => firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+
+      sessionStorage.setItem("userId", user.uid);
+      sessionStorage.setItem("userEmail", user.email);
+
+      // Here you should extract the complete user profile to make it available in your entire app.
+      // The auth state only provides basic information.
+      dispatch({
+        type: 'AUTH_STATE_CHANGED',
+        payload: {
+          isAuthenticated: true,
+          user: {
+            id: user.uid,
+            avatar: user.photoURL,
+            email: user.email,
+            name: user.displayName,
+            plan: 'Premium'
+          }
+        }
+      });
+    } else {
+      dispatch({
+        type: 'AUTH_STATE_CHANGED',
+        payload: {
+          isAuthenticated: false,
+          user: null
+        }
+      });
+    }
+  }), [dispatch]);
+
+
+  const handleLogout = async () => {
+    try {
+      onClose?.();
+      await logout();
+      router.push('/');
+    } catch (err) {
+      console.error(err);
+      toast.error('Unable to logout.');
+    }
+  };
 
   const gettestdata = async () => {
     try {
@@ -162,7 +230,7 @@ const Analytics = () => {
       console.log(err);
     }
   };
-  console.log(testdata)
+  console.log(state.id)
         const setthemembershipdata = async (id) =>{
           try{
           const res = await fetch(`${API_SERVICE}/vendors`, {
@@ -173,6 +241,7 @@ const Analytics = () => {
             },
             body: JSON.stringify({
               name: "etisalat",
+              user: state.id,
               target: "etisalat.ae",
               score: "7",
             }),
