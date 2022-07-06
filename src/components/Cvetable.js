@@ -49,6 +49,8 @@ function createData(name, calories, fat, carbs, protein, price) {
     ],
   };
 }
+
+
 function Row(props) {
   const [membershipdata, setmembershipdata] = useState([]);
 
@@ -82,7 +84,7 @@ function Row(props) {
   const [open, setOpen] = React.useState(false)
    const arr = Test.patching.filter((a)=>{
       return a.cve[ind] === Row.row
-    } ) 
+    } )
   return (
     <React.Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
@@ -134,13 +136,13 @@ function Row(props) {
                     <CardContent>
                       Summary
                       <br />{Row.row.Desc} 
-                      <br />
+                      <br />  
                       <br />
                       <br />
                       <Divider />
                       Domains & IP
                       <br />{member.patching.map((c)=>
-                      <li>{c.Host}</li>
+                      <li>{c.Host}</li>    
                       )}
                       <br />
                       <br />

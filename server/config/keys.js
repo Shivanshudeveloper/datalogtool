@@ -1,6 +1,6 @@
 module.exports = {
   MongoURI:
-    "mongodb+srv://application:Test@1234567890@cluster0.smhec.mongodb.net/wewareservices?retryWrites=true&w=majority"
+    "mongodb+srv://admin:Admin@1234567890@cluster0.vs5xtkl.mongodb.net/datalog?retryWrites=true&w=majority"
 };
 
 // module.exports = {

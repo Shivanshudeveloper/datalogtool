@@ -300,7 +300,7 @@ const Analytics = () => {
                 <Grid container>
                   <Grid item xs={3}>
                     {testdata.map((b)=>(
-                    <Typography sx={{ textAlign: "center" }}> <Link href={b.logo}><a target="_blank"><img style={{maxWidth:80}}src={Test.logo}></img></a></Link></Typography>
+                    <Typography sx={{ textAlign: "center" }}> <Link href="https://www.etisalat.ae/en/index.jsp" passHref><a target="_blank"><img style={{maxWidth:80}}src={b.logo}></img></a></Link></Typography>
                     ))}
                     </Grid>
                   <Grid item xs={3}>
@@ -318,9 +318,11 @@ const Analytics = () => {
                   </Grid>
                   <Grid item xs={3}>
                     <center>
-                      <Button variant="contained" color="primary"  onClick={setthemembershipdata} href="/dashboard/vendors">
+                    <Link href="/dashboard/vendors">
+                      <Button variant="contained" color="primary"  onClick={setthemembershipdata}>
                         Add New
                       </Button>
+                      </Link>
                     </center>
                   </Grid>
                 </Grid>

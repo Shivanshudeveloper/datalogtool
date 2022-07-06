@@ -523,9 +523,7 @@ const index = (props) => {
                       <PercentPieChart
                         color="#4CAF50"
                         label="Very good"
-                        subtitle="Excellent"
-                        value="85"
-                        showInfo="true"
+                        value={cr +  c*14}
                       />
                     </Grid>
                   </Box>
@@ -657,20 +655,20 @@ const index = (props) => {
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {rows.map((row) => (
+                        {a.map((row,index) => (
                           <StyledTableRow key={row.name}>
                             <StyledTableCell
                               component="th"
                               scope="row"
                               align="center"
                             >
-                              {row.num}
+                              {index+1}
                             </StyledTableCell>
                             <StyledTableCell align="center">
-                              {row.vendor}
+                              {row.name}
                             </StyledTableCell>
                             <StyledTableCell align="center">
-                              <ScoreBox score={row.score} />
+                              {row.score*10}
                             </StyledTableCell>
                           </StyledTableRow>
                         ))}

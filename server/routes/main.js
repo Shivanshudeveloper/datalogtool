@@ -12,6 +12,7 @@ const guestController = require("../controllers/guest");
 const vendorController = require("../controllers/vendor")
 const testController = require("../controllers/test")
 const misconfigController = require("../controllers/misconfig")
+const domainController = require("../controllers/domain")
 
 
 router.get("/test", (req, res) => {
@@ -48,5 +49,10 @@ router.post("/tests", testController.addTest);
 
 router.get("/misconfig", misconfigController.getMisconfig);
 router.post("/misconfig", misconfigController.addMisconfig);
+
+router.get("/domain", domainController.getDomain);
+router.post("/domain", domainController.addDomain);
+router.delete("/domain/:id", domainController.deleteDomain);
+router.put("/domain/:id", domainController.updateDomain);
 
 module.exports = router;
