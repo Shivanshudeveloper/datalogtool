@@ -114,23 +114,7 @@ const ScoreBox = ({ score }) => {
 };
 
 
-const data3 = {
-  series: [{ data: [10, 5, 11, 20, 13, 28, 18, 4, 13, 12, 13, 5] }],
-  categories: [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec'
-  ]
-};
+
 
 const data = {
   series: [
@@ -171,104 +155,6 @@ const index = (props) => {
     setLastTotalIssues(event.target.value);
   };
   const theme = useTheme();
-
-  const chartOptions2 = {
-    chart: {
-      background: "transparent",
-      stacked: false,
-      toolbar: {
-        show: false,
-      },
-    },
-    colors: data.series.map((item) => item.color),
-    dataLabels: {
-      enabled: false,
-    },
-    fill: {
-      opacity: 1,
-    },
-    labels: data.series.map((item) => item.label),
-    legend: {
-      show: false,
-    },
-    stroke: {
-      width: 0,
-    },
-    theme: {
-      mode: theme.palette.mode,
-    },
-  };
-
-  const chartSeries = data.series.map((item) => item.data);
-
-
-
-  const chartOptions3 = {
-    chart: {
-      background: 'transparent',
-      stacked: false,
-      toolbar: {
-        show: false
-      }
-    },
-    colors: ['#00ab57'],
-    dataLabels: {
-      enabled: false
-    },
-    fill: {
-      gradient: {
-        opacityFrom: 0.4,
-        opacityTo: 0.1,
-        shadeIntensity: 1,
-        stops: [0, 100],
-        type: 'vertical'
-      },
-      type: 'gradient'
-    },
-    grid: {
-      borderColor: theme.palette.divider,
-      strokeDashArray: 2
-    },
-    markers: {
-      size: 6,
-      strokeColors: theme.palette.background.default,
-      strokeWidth: 3
-    },
-    stroke: {
-      curve: 'smooth'
-    },
-    theme: {
-      mode: theme.palette.mode
-    },
-    xaxis: {
-      axisBorder: {
-        color: theme.palette.divider,
-        show: true
-      },
-      axisTicks: {
-        color: theme.palette.divider,
-        show: true
-      },
-      categories: data3.categories,
-      labels: {
-        offsetY: 5,
-        style: {
-          colors: theme.palette.text.secondary
-        }
-      }
-    },
-    yaxis: {
-      labels: {
-                formatter: (value) => (value > 0 ? `${value}K` : value),
-        offsetX: -10,
-        style: {
-          colors: theme.palette.text.secondary
-        }
-      }
-    }
-  };
-
-  const chartSeries3 = data3.series;
   const router = useRouter();
   const [membershipdata, setmembershipdata] = useState([]);
 
@@ -386,7 +272,137 @@ const index = (props) => {
     a.misconfiguration.filter((arr, index, self) =>
     index === self.findIndex((t) => (t.save === a.misconfiguration.save && t.State === a.misconfiguration.State)))
    ) 
-   const c = b.length
+   const c = b.length;
+   const data = {
+    series: [
+      {
+        color: "#FFB547",
+        data: cr,
+        label: cr,
+      },
+      {
+        color: "#00ab57",
+        data: c*14,
+        label: c*14,
+      },
+    ],
+  };
+  
+  const data3 = {
+    series: [{ data: [cr,c*14] }],
+    categories: [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ]
+  };
+
+  const chartOptions2 = {
+    chart: {
+      background: "transparent",
+      stacked: false,
+      toolbar: {
+        show: false,
+      },
+    },
+    colors: data.series.map((item) => item.color),
+    dataLabels: {
+      enabled: false,
+    },
+    fill: {
+      opacity: 1,
+    },
+    labels: data.series.map((item) => item.label),
+    legend: {
+      show: false,
+    },
+    stroke: {
+      width: 0,
+    },
+    theme: {
+      mode: theme.palette.mode,
+    },
+  };
+
+  const chartSeries = data.series.map((item) => item.data);
+
+
+
+  const chartOptions3 = {
+    chart: {
+      background: 'transparent',
+      stacked: false,
+      toolbar: {
+        show: false
+      }
+    },
+    colors: ['#00ab57'],
+    dataLabels: {
+      enabled: false
+    },
+    fill: {
+      gradient: {
+        opacityFrom: 0.4,
+        opacityTo: 0.1,
+        shadeIntensity: 1,
+        stops: [0, 100],
+        type: 'vertical'
+      },
+      type: 'gradient'
+    },
+    grid: {
+      borderColor: theme.palette.divider,
+      strokeDashArray: 2
+    },
+    markers: {
+      size: 6,
+      strokeColors: theme.palette.background.default,
+      strokeWidth: 3
+    },
+    stroke: {
+      curve: 'smooth'
+    },
+    theme: {
+      mode: theme.palette.mode
+    },
+    xaxis: {
+      axisBorder: {
+        color: theme.palette.divider,
+        show: true
+      },
+      axisTicks: {
+        color: theme.palette.divider,
+        show: true
+      },
+      categories: data3.categories,
+      labels: {
+        offsetY: 5,
+        style: {
+          colors: theme.palette.text.secondary
+        }
+      }
+    },
+    yaxis: {
+      labels: {
+                formatter: (value) => (value > 0 ? `${value}K` : value),
+        offsetX: -10,
+        style: {
+          colors: theme.palette.text.secondary
+        }
+      }
+    }
+  };
+
+  const chartSeries3 = data3.series;
   return (
     <>
       <Head>
