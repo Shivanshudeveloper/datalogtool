@@ -85,6 +85,7 @@ function Row(props) {
    const arr = Test.patching.filter((a)=>{
       return a.cve[ind] === Row.row
     } )
+    console.log(Row)
   return (
     <React.Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
@@ -141,9 +142,7 @@ function Row(props) {
                       <br />
                       <Divider />
                       Domains & IP
-                      <br />{member.patching.map((c)=>
-                      <li>{c.Host}</li>    
-                      )}
+                      <br />{Row.row.Host}
                       <br />
                       <br />
                       <br />

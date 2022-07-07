@@ -15,9 +15,6 @@ const testSchema = new Schema({
   logo: {
     type: String,
   },
-  assets: {
-    type: Array
-  },
   patching : {
     type: Array,
   },

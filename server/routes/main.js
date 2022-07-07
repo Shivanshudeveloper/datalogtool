@@ -46,9 +46,12 @@ router.get("/vendors/:id", vendorController.getspeceficVendor);
 
 router.get("/tests", testController.getTest);
 router.post("/tests", testController.addTest);
+router.delete("/tests/:id", testController.deleteTest);
+
 
 router.get("/misconfig", misconfigController.getMisconfig);
 router.post("/misconfig", misconfigController.addMisconfig);
+router.delete("/misconfig/:id", misconfigController.deleteMisconfig);
 
 router.get("/domain", domainController.getDomain);
 router.post("/domain", domainController.addDomain);

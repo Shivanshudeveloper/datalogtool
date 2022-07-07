@@ -30,7 +30,24 @@ const addMisconfig = async (req, res) => {
       .catch((err) => console.log(err));
 
     }
+
+    const deleteMisconfig = async (req, res) => {
+      let membershipID = req.params.id;
+      await misconfig_Model.deleteOne({ _id: membershipID }, (err, data) => {
+        if (err) {
+          res.status(500).json({
+            message: "Something went wrong, please try again later.",
+          });
+        } else {
+          res.status(200).json({
+            message: "Post Deleted",
+            data: data,
+          });
+        }
+      });
+    };
 module.exports = {
   getMisconfig,
-  addMisconfig
+  addMisconfig,
+  deleteMisconfig
 };
