@@ -1,28 +1,30 @@
-const misconfig = require("../models/Misconfiguration");
-const misconfig_Model = require("../models/Misconfiguration");
+const assets = require("../models/Assets");
+const assets_Model = require("../models/Assets");
 
-const getMisconfig = async (req, res) => {
+const getAsset = async (req, res) => {
   console.log(req.query.userId);
-  misconfig_Model.find({ userId: req.query.userId }).then((membership) =>
+  assets_Model.find({ userId: req.query.userId }).then((membership) =>
     res.json(membership)
   );
 };
 
-const addMisconfig = async (req, res) => {
+const addAsset = async (req, res) => {
     res.setHeader("Content-Type", "application/json");
     const {  email,
       domain,
       ip,
       logo,
-      misconfiguration, } = req.body;
-    const newTest = new misconfig_Model({
+      assets,
+      issue_count } = req.body;
+    const newAsset = new assets_Model({
         email,
-      domain,
-      ip,
-      logo,
-      misconfiguration
+        domain,
+        ip,
+        logo,
+        assets,
+        issue_count
     });
-    newTest
+    newAsset
       .save()
       .then((data) => {
         res.status(200).json("Added");
@@ -31,9 +33,9 @@ const addMisconfig = async (req, res) => {
 
     }
 
-    const deleteMisconfig = async (req, res) => {
+    const deleteAsset = async (req, res) => {
       let membershipID = req.params.id;
-      await misconfig_Model.deleteOne({ _id: membershipID }, (err, data) => {
+      await assets_Model.deleteOne({ _id: membershipID }, (err, data) => {
         if (err) {
           res.status(500).json({
             message: "Something went wrong, please try again later.",
@@ -47,7 +49,7 @@ const addMisconfig = async (req, res) => {
       });
     };
 module.exports = {
-  getMisconfig,
-  addMisconfig,
-  deleteMisconfig
+  getAsset,
+  addAsset,
+  deleteAsset
 };

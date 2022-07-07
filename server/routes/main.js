@@ -13,6 +13,7 @@ const vendorController = require("../controllers/vendor")
 const testController = require("../controllers/test")
 const misconfigController = require("../controllers/misconfig")
 const domainController = require("../controllers/domain")
+const assetsController = require("../controllers/assets")
 
 
 router.get("/test", (req, res) => {
@@ -57,5 +58,9 @@ router.get("/domain", domainController.getDomain);
 router.post("/domain", domainController.addDomain);
 router.delete("/domain/:id", domainController.deleteDomain);
 router.put("/domain/:id", domainController.updateDomain);
+
+router.get("/assets", assetsController.getAsset);
+router.post("/assets", assetsController.addAsset);
+router.delete("/assets/:id", assetsController.deleteAsset);
 
 module.exports = router;
