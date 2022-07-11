@@ -24,7 +24,7 @@ const vendors = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Vendors | Material Kit Pro</title>
+        <title>Dashboard: Vendors | Genesis</title>
       </Head>
       <Box
         component="main"

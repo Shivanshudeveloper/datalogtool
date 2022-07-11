@@ -49,30 +49,6 @@ const reducer = (state, action) => {
 };
 
 
-const data = {
-  series: [
-    {
-      color: "#FFB547",
-      data: 14859,
-      label: "Strategy",
-    },
-    {
-      color: "#7BC67E",
-      data: 35690,
-      label: "Outsourcing",
-    },
-    {
-      color: "#7783DB",
-      data: 45120,
-      label: "Marketing",
-    },
-    {
-      color: "#9DA4DD",
-      data: 25486,
-      label: "Other",
-    },
-  ],
-};
 
 const Analytics = () => {
   useEffect(() => {
@@ -118,36 +94,7 @@ const Analytics = () => {
 
   const theme = useTheme();
 
-  const chartOptions2 = {
-    chart: {
-      background: "transparent",
-      stacked: false,
-      toolbar: {
-        show: false,
-      },
-    },
-    colors: data.series.map((item) => item.color),
-    dataLabels: {
-      enabled: false,
-    },
-    fill: {
-      opacity: 1,
-    },
-    labels: data.series.map((item) => item.label),
-    legend: {
-      show: false,
-    },
-    stroke: {
-      width: 0,
-    },
-    theme: {
-      mode: theme.palette.mode,
-    },
-  };
-
-
-  const chartSeries = data.series.map((item) => item.data);
-  const router = useRouter()
+    const router = useRouter()
   const { id } = router.query
   const [files, setFiles] = useState([]);
 
@@ -217,7 +164,7 @@ const Analytics = () => {
 
   const gettestdata = async () => {
     try {
-      const res = await fetch(`http://localhost:8080/api/v1/main/tests`, {
+      const res = await fetch(`${API_SERVICE}/tests`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -269,6 +216,78 @@ const Analytics = () => {
   const handleRemoveAll = () => {
     setFiles([]);
   };
+
+  const [issuedata, setissuedata] = useState([]);
+  useEffect(() => {
+   
+      setid(id);
+      getissuedata(id);
+   
+  }, []);
+
+  
+
+  const getissuedata = async () => {
+    try {
+      const res = await fetch(`${API_SERVICE}/misconfig`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      const content = await res.json();
+      setissuedata(content);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const b = issuedata.map((a)=>
+  a.misconfiguration.filter((arr, index, self) =>
+  index === self.findIndex((t) => (t.save === a.misconfiguration.save && t.State === a.misconfiguration.State)))
+ ) 
+ const c = b.length;
+
+ const data = {
+  series: [
+    {
+      color: "#FFB547",
+      data: c*14,
+      label: "Strategy",
+    },
+  ],
+};
+
+const chartOptions2 = {
+  chart: {
+    background: "transparent",
+    stacked: false,
+    toolbar: {
+      show: false,
+    },
+  },
+  colors: data.series.map((item) => item.color),
+  dataLabels: {
+    enabled: false,
+  },
+  fill: {
+    opacity: 1,
+  },
+  labels: data.series.map((item) => item.label),
+  legend: {
+    show: false,
+  },
+  stroke: {
+    width: 0,
+  },
+  theme: {
+    mode: theme.palette.mode,
+  },
+};
+
+
+const chartSeries = data.series.map((item) => item.data);
+
   return (
     <>
       <Head>
@@ -387,9 +406,7 @@ const Analytics = () => {
                         </Typography>
                         <center>
                           <Typography variant="h1" sx={{ textAlign: "center", mt: 12 }}>
-                          {a.issue_count.map((historyRow) => (
-                      <h7>{historyRow["Vendor Total Issues"]}</h7>
-                  ))}
+                           {c*14}
                           </Typography>
                         </center>
                       </CardContent>
@@ -426,7 +443,7 @@ const Analytics = () => {
 
                     <Grid item xs={4}>
                       <Typography sx={{ textAlign: "center" }}>Host</Typography>
-                      <Typography sx={{ textAlign: "center" }}>www.zoho.com</Typography>
+                      <Typography sx={{ textAlign: "center" }}>www.etisalat.ae</Typography>
                     </Grid>
                     <Grid item xs={4}>
                       <Typography sx={{ textAlign: "center" }}>Hosting</Typography>

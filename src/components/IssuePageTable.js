@@ -160,9 +160,11 @@ var newArray17 = uniqueArray.filter(function (el) {
           <tr>{historyRow.Issues1}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+        {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -237,9 +239,11 @@ be accessed using HTTPS. Consider adding the 'includeSubDomains' flag if appropr
           <tr>{historyRow.Issues2}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+        {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -312,9 +316,11 @@ restrict content that browsers will be allowed to load.</li>
           <tr>{historyRow.Issues3}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+       {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -387,9 +393,11 @@ header.
           <tr>{historyRow.Issue4}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+        {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -464,9 +472,11 @@ control of their computer while clicking on seemingly innocuous web pages</li>
           <tr>{historyRow.Issue5}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+       {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -542,9 +552,11 @@ with a value of 'nosniff'.
           <tr>{historyRow.Issue6}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+       {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -621,9 +633,11 @@ client still blocks unwanted requests. </li>
           <tr>{historyRow.Issue7}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+        {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -698,9 +712,11 @@ value
           <tr>{historyRow.Issue8}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+       {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -774,9 +790,11 @@ high resolution timer with better precision.</li>
           <tr>{historyRow.Issue9}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+       {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -852,9 +870,11 @@ high resolution timer with better precision</li>
           <tr>{historyRow.Issue10}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+       {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -930,9 +950,11 @@ high resolution timer with better precision</li>
           <tr>{historyRow.Issue11}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+        {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -1005,9 +1027,11 @@ browsers to block a given response before it enters an attacker's process. </li>
           <tr>{historyRow.Issue12}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+       {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -1083,9 +1107,11 @@ known and trusted domains to perform cross-domain requests if needed or should b
           <tr>{historyRow.Issue13}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+        {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -1162,9 +1188,11 @@ let servers describe which origins are permitted to read that information from a
           <tr>{historyRow.Issue14}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+       {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -1239,9 +1267,11 @@ since all information of a HTTP request can be faked</li>
           <tr>{historyRow.Issue15}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+       {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -1313,9 +1343,11 @@ seconds.</li>
           <tr>{historyRow.Issue16}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+       {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -1389,9 +1421,11 @@ web browser.</li>
           <tr>{historyRow.Issue17}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+       {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Critical" color="error" />
         </TableCell>
@@ -1449,9 +1483,11 @@ web browser.</li>
           <tr>{historyRow.Issues1}</tr>
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-          DNS
+       {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Critical" color="error" />
         </TableCell>
@@ -1504,10 +1540,11 @@ web browser.</li>
          
         </TableCell>
          ))}
-        <TableCell align="left" component="th" scope="row">
-        <tr>DNS</tr>
-       
+       {clean.map((historyRow, index) => (
+        <TableCell align="left" component="th" scope="row"key={index}>
+          <tr>{historyRow.Category}</tr>
         </TableCell>
+         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Critical" color="error" />
           
