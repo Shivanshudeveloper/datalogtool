@@ -16,6 +16,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Card, CardContent, Chip, Divider, Grid, Hidden } from "@mui/material";
 import Test from '../main.json';
 import {useState,useEffect} from 'react'
+import { API_SERVICE } from '../config/API';
 
 function createData(name, calories, fat, carbs, protein, price) {
   return {
@@ -1590,7 +1591,7 @@ export default function IssuePageTable() {
 
   const getthemembersipdata = async () => {
     try {
-      const res = await fetch(`http://localhost:8080/api/v1/main/misconfig`, {
+      const res = await fetch(`${API_SERVICE}/misconfig`, {
         method: "GET",
         headers: {
           Accept: "application/json",
