@@ -152,19 +152,21 @@ var newArray17 = uniqueArray.filter(function (el) {
   return el.Issue17 === "access-control-allow-headers";
 });
 
+console.log(uniqueArray)
   return (
     <React.Fragment>
+      {uniqueArray.map((historyRow, index) => (
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow, index) => (
+      
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issues1}</tr>
         </TableCell>
-         ))}
-        {clean.map((historyRow, index) => (
+         
+       
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+        
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -179,6 +181,7 @@ var newArray17 = uniqueArray.filter(function (el) {
           </tr>
         </TableCell>
       </TableRow>
+      ))}
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
@@ -233,17 +236,17 @@ be accessed using HTTPS. Consider adding the 'includeSubDomains' flag if appropr
           </Collapse>
         </TableCell>
       </TableRow>
+      {uniqueArray.map((historyRow, index) => (
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow, index) => (
+      
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issues2}</tr>
         </TableCell>
-         ))}
-        {clean.map((historyRow, index) => (
+        
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+         
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -258,6 +261,7 @@ be accessed using HTTPS. Consider adding the 'includeSubDomains' flag if appropr
           </tr>
         </TableCell>
       </TableRow>
+      ))}
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open10} timeout="auto" unmountOnExit>
@@ -310,17 +314,14 @@ restrict content that browsers will be allowed to load.</li>
           </Collapse>
         </TableCell>
       </TableRow>
+      {uniqueArray.map((historyRow, index) => (
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow, index) => (
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issues3}</tr>
         </TableCell>
-         ))}
-       {clean.map((historyRow, index) => (
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -335,6 +336,7 @@ restrict content that browsers will be allowed to load.</li>
           </tr>
         </TableCell>
       </TableRow>
+      ))}
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open11} timeout="auto" unmountOnExit>

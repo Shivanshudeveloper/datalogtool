@@ -15,6 +15,10 @@ const misconfigController = require("../controllers/misconfig")
 const domainController = require("../controllers/domain")
 const assetsController = require("../controllers/assets")
 
+const breachesController = require("../controllers/breaches")
+const encryptionController = require("../controllers/encryption")
+const newassetsController = require("../controllers/newassets")
+
 
 router.get("/test", (req, res) => {
   res.send("Working");
@@ -62,5 +66,17 @@ router.put("/domain/:id", domainController.updateDomain);
 router.get("/assets", assetsController.getAsset);
 router.post("/assets", assetsController.addAsset);
 router.delete("/assets/:id", assetsController.deleteAsset);
+
+router.get("/breaches", breachesController.getBreaches);
+router.post("/breaches", breachesController.addBreaches);
+router.delete("/breaches/:id", breachesController.deleteBreaches);
+
+router.get("/encryption", encryptionController.getEncryption);
+router.post("/encryption", encryptionController.addEncryption);
+router.delete("/encryption/:id", encryptionController.deleteEncryption);
+
+router.get("/newassets", newassetsController.getNewassets);
+router.post("/newassets", newassetsController.addNewassets);
+router.delete("/newassets/:id", newassetsController.deleteNewassets);
 
 module.exports = router;
