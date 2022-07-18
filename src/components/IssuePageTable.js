@@ -154,8 +154,10 @@ var newArray17 = uniqueArray.filter(function (el) {
 
 console.log(uniqueArray)
   return (
+    <>
+    {uniqueArray.map((historyRow, index) => (
     <React.Fragment>
-      {uniqueArray.map((historyRow, index) => (
+      
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -181,8 +183,59 @@ console.log(uniqueArray)
           </tr>
         </TableCell>
       </TableRow>
-      ))}
+
       <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Box sx={{ margin: 1 }}>
+              <Grid container sx={{ mt: 5 }} spacing={2}>
+                <Grid item xs={12}>
+                  {" "}
+                  <Typography>Details</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Card>
+                    <CardContent>
+                      <b>Info</b>  
+                      <br />
+                      <br />
+                      <li>{historyRow.Info1}</li>
+
+                      <Divider />
+                      <br />
+                     <b>Remediation</b>  
+                      <br />
+                      <br />  
+                      <li>Configure the remote web server to use HSTS</li>                  
+                      <Divider />
+                      <br />
+                     <b> Refrences</b> 
+                      <br />
+                      <br /> 
+                    <li><a href="https://portswigger.net/kb/issues/01000300_strict-transport-security-not-enforced">https://portswigger.net/kb/issues/01000300_strict-transport-security-not-enforced</a></li>   
+                    <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html</a></li>   
+                    <li><a href="https://www.acunetix.com/vulnerabilities/web/http-strict-transport-security-hsts-not-implemented/">https://www.acunetix.com/vulnerabilities/web/http-strict-transport-security-hsts-not-implemented</a></li>                 
+                      <Divider />
+                      <br />
+                    <b>  Domain    </b>       
+                      {newArray.map((historyRow) => (
+                          <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                         
+                          <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                           
+                          </TableCell>
+                          </div>
+                           ))}
+                    </CardContent>
+                  </Card>
+                </Grid>
+              </Grid>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </TableRow>
+      
+        <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
@@ -236,7 +289,8 @@ be accessed using HTTPS. Consider adding the 'includeSubDomains' flag if appropr
           </Collapse>
         </TableCell>
       </TableRow>
-      {uniqueArray.map((historyRow, index) => (
+      
+      
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -261,7 +315,7 @@ be accessed using HTTPS. Consider adding the 'includeSubDomains' flag if appropr
           </tr>
         </TableCell>
       </TableRow>
-      ))}
+      
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open10} timeout="auto" unmountOnExit>
@@ -314,7 +368,7 @@ restrict content that browsers will be allowed to load.</li>
           </Collapse>
         </TableCell>
       </TableRow>
-      {uniqueArray.map((historyRow, index) => (
+      
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issues3}</tr>
@@ -336,7 +390,7 @@ restrict content that browsers will be allowed to load.</li>
           </tr>
         </TableCell>
       </TableRow>
-      ))}
+      
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open11} timeout="auto" unmountOnExit>
@@ -390,16 +444,16 @@ header.
         </TableCell>
       </TableRow>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow, index) => (
+      
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issue4}</tr>
         </TableCell>
-         ))}
-        {clean.map((historyRow, index) => (
+         
+        
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+         
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -469,16 +523,16 @@ control of their computer while clicking on seemingly innocuous web pages</li>
         </TableCell>
       </TableRow>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow, index) => (
+      
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issue5}</tr>
         </TableCell>
-         ))}
-       {clean.map((historyRow, index) => (
+         
+       
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+         
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -549,16 +603,16 @@ with a value of 'nosniff'.
         </TableCell>
       </TableRow>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow, index) => (
+      
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issue6}</tr>
         </TableCell>
-         ))}
-       {clean.map((historyRow, index) => (
+        
+       
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+         
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -630,16 +684,16 @@ client still blocks unwanted requests. </li>
         </TableCell>
       </TableRow>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow, index) => (
+      
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issue7}</tr>
         </TableCell>
-         ))}
-        {clean.map((historyRow, index) => (
+         
+        
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+         
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -709,16 +763,16 @@ value
         </TableCell>
       </TableRow>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow, index) => (
+      
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issue8}</tr>
         </TableCell>
-         ))}
-       {clean.map((historyRow, index) => (
+         
+       
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+        
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -787,16 +841,16 @@ high resolution timer with better precision.</li>
         </TableCell>
       </TableRow>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow, index) => (
+      
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issue9}</tr>
         </TableCell>
-         ))}
-       {clean.map((historyRow, index) => (
+         
+       
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+        
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -867,16 +921,16 @@ high resolution timer with better precision</li>
         </TableCell>
       </TableRow>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow, index) => (
+      
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issue10}</tr>
         </TableCell>
-         ))}
-       {clean.map((historyRow, index) => (
+       
+       
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+         
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -947,16 +1001,16 @@ high resolution timer with better precision</li>
         </TableCell>
       </TableRow>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow, index) => (
+      
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issue11}</tr>
         </TableCell>
-         ))}
-        {clean.map((historyRow, index) => (
+         
+       
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+         
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -1024,16 +1078,15 @@ browsers to block a given response before it enters an attacker's process. </li>
         </TableCell>
       </TableRow>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow, index) => (
+      
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issue12}</tr>
         </TableCell>
-         ))}
-       {clean.map((historyRow, index) => (
+       
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+         
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -1104,16 +1157,16 @@ known and trusted domains to perform cross-domain requests if needed or should b
         </TableCell>
       </TableRow>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow, index) => (
+      
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issue13}</tr>
         </TableCell>
-         ))}
-        {clean.map((historyRow, index) => (
+        
+        
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+         
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -1185,16 +1238,16 @@ let servers describe which origins are permitted to read that information from a
         </TableCell>
       </TableRow>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow, index) => (
+      
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issue14}</tr>
         </TableCell>
-         ))}
-       {clean.map((historyRow, index) => (
+         
+       
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+         
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -1264,16 +1317,16 @@ since all information of a HTTP request can be faked</li>
         </TableCell>
       </TableRow>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow, index) => (
+      
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issue15}</tr>
         </TableCell>
-         ))}
-       {clean.map((historyRow, index) => (
+         
+       
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+         
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -1340,16 +1393,15 @@ seconds.</li>
       </TableRow>
 
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow, index) => (
+      
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issue16}</tr>
         </TableCell>
-         ))}
-       {clean.map((historyRow, index) => (
+         
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+         
         <TableCell align="left" component="th" scope="row">
           <Chip label="Low" color="error" />
         </TableCell>
@@ -1418,16 +1470,16 @@ web browser.</li>
         </TableCell>
       </TableRow>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow, index) => (
+      
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issue17}</tr>
         </TableCell>
-         ))}
-       {clean.map((historyRow, index) => (
+         
+       
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+         
         <TableCell align="left" component="th" scope="row">
           <Chip label="Critical" color="error" />
         </TableCell>
@@ -1480,16 +1532,16 @@ web browser.</li>
         </TableCell>
       </TableRow>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow) => (
+      
         <TableCell align="left" component="th" scope="row">
           <tr>{historyRow.Issues1}</tr>
         </TableCell>
-         ))}
-       {clean.map((historyRow, index) => (
+         
+       
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+         
         <TableCell align="left" component="th" scope="row">
           <Chip label="Critical" color="error" />
         </TableCell>
@@ -1536,17 +1588,17 @@ web browser.</li>
 
 
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      {clean.map((historyRow) => (
+      
         <TableCell align="left" component="th" scope="row">
          <tr>{historyRow.Issues1}</tr>
          
         </TableCell>
-         ))}
-       {clean.map((historyRow, index) => (
+        
+       
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
         </TableCell>
-         ))}
+         
         <TableCell align="left" component="th" scope="row">
           <Chip label="Critical" color="error" />
           
@@ -1592,6 +1644,8 @@ web browser.</li>
         </TableCell>
       </TableRow>
     </React.Fragment>
+    ))}
+    </>
   );
 }
 
