@@ -105,7 +105,7 @@ function Row(props) {
         
         <TableCell align="left" component="th" scope="row">
         
-          <Chip label="Critical" color="error" />
+          <Chip label={Row.row.Severity} color="error" />
         </TableCell>
         
         <TableCell>
