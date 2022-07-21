@@ -56,14 +56,14 @@ const Assets = () => {
               {" "}
               <TextField sx={{ mb: 2 }} fullWidth label="Name"></TextField>
             </Grid>
-            {/* <Grid item xs={12}>
+             <Grid item xs={12}>
               {" "}
               <TextField fullWidth></TextField>
             </Grid>
             <Grid item xs={12}>
               {" "}
               <TextField fullWidth></TextField>
-            </Grid> */}
+            </Grid> 
           </Grid>
           <Attacksurfacetable />
         </Container>

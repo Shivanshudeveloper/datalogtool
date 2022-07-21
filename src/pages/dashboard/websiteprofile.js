@@ -419,6 +419,7 @@ const chartSeries = data.series.map((item) => item.data);
               </Container>
             </TabPanel>
             <TabPanel value={value} index={1}>
+            {issuedata.map((a)=>(
               <Box
                 component="main"
                 sx={{
@@ -435,6 +436,7 @@ const chartSeries = data.series.map((item) => item.data);
                     </Grid>
                   </Box>{" "}
                   <Grid container>
+                  
                     <Grid item xs={12} sx={{ mb: 4 }}>
                       <Typography sx={{ textAlign: "center" }}>
                         Issue Profile
@@ -442,16 +444,17 @@ const chartSeries = data.series.map((item) => item.data);
                     </Grid>
 
                     <Grid item xs={4}>
+                      
                       <Typography sx={{ textAlign: "center" }}>Host</Typography>
-                      <Typography sx={{ textAlign: "center" }}>www.etisalat.ae</Typography>
+                      <Typography sx={{ textAlign: "center" }}>{a.domain}</Typography>
                     </Grid>
                     <Grid item xs={4}>
                       <Typography sx={{ textAlign: "center" }}>Hosting</Typography>
-                      <Typography sx={{ textAlign: "center" }}>Go Daddy</Typography>
+                      <Typography sx={{ textAlign: "center" }}>{a.email}</Typography>
                     </Grid>
                     <Grid item xs={4}>
                       <Typography sx={{ textAlign: "center" }}>IP Address</Typography>
-                      <Typography sx={{ textAlign: "center" }}>192.168.1.1</Typography>
+                      <Typography sx={{ textAlign: "center" }}>{a.ip}</Typography>
                     </Grid>
                   </Grid>
                   <Grid container sx={{ mt: 5 }}>
@@ -459,10 +462,13 @@ const chartSeries = data.series.map((item) => item.data);
                       <IssuePageTable />
                     </Grid>
                   </Grid>
+                  
                 </Container>
               </Box>
+              ))}
             </TabPanel>
             <TabPanel value={value} index={2}>
+            {issuedata.map((a)=>(
               <Box
                 component="main"
                 sx={{
@@ -488,7 +494,7 @@ const chartSeries = data.series.map((item) => item.data);
                     <Grid item xs={4}>
                       <Typography sx={{ textAlign: "center" }}>Host</Typography>
                       <Typography sx={{ textAlign: "center" }}>
-                        www.zoho.com
+                        {a.domain}
                       </Typography>
                     </Grid>
                     <Grid item xs={4}>
@@ -496,7 +502,7 @@ const chartSeries = data.series.map((item) => item.data);
                         Hosting
                       </Typography>
                       <Typography sx={{ textAlign: "center" }}>
-                        Go Daddy
+                        {a.email}
                       </Typography>
                     </Grid>
                     <Grid item xs={4}>
@@ -504,7 +510,7 @@ const chartSeries = data.series.map((item) => item.data);
                         IP Address
                       </Typography>
                       <Typography sx={{ textAlign: "center" }}>
-                        192.168.1.1
+                        {a.ip}
                       </Typography>
                     </Grid>
                   </Grid>
@@ -515,6 +521,7 @@ const chartSeries = data.series.map((item) => item.data);
                   </Grid>
                 </Container>
               </Box>
+              ))}
             </TabPanel>
           </Box>
         </Container>

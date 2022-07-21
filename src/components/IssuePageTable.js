@@ -154,16 +154,17 @@ var newArray17 = uniqueArray.filter(function (el) {
 
 console.log(uniqueArray)
   return (
-    <>
-    {uniqueArray.map((historyRow, index) => (
+    
     <React.Fragment>
-      
+    {uniqueArray.map((historyRow, index) => {
+      if(historyRow.Issues1!=null){
+      <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issues1}</tr>
-        </TableCell>
-         
+        </TableCell>  
+
        
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Category}</tr>
@@ -234,63 +235,15 @@ console.log(uniqueArray)
           </Collapse>
         </TableCell>
       </TableRow>
-      
-        <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
-              <Grid container sx={{ mt: 5 }} spacing={2}>
-                <Grid item xs={12}>
-                  {" "}
-                  <Typography>Details</Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <Card>
-                    <CardContent>
-                      <b>Info</b>  
-                      <br />
-                      <br />
-                      <li>The application should instruct web browsers to only access the application using
-                        HTTPS. To do this, enable HTTP Strict Transport Security (HSTS) by adding a response header
-with the name 'Strict-Transport-Security' and the value 'max-age=expireTime', where
-expireTime is the time in seconds that browsers should remember that the site should only
-be accessed using HTTPS. Consider adding the 'includeSubDomains' flag if appropriate.</li>
-
-                      <Divider />
-                      <br />
-                     <b>Remediation</b>  
-                      <br />
-                      <br />  
-                      <li>Configure the remote web server to use HSTS</li>                  
-                      <Divider />
-                      <br />
-                     <b> Refrences</b> 
-                      <br />
-                      <br /> 
-                    <li><a href="https://portswigger.net/kb/issues/01000300_strict-transport-security-not-enforced">https://portswigger.net/kb/issues/01000300_strict-transport-security-not-enforced</a></li>   
-                    <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html</a></li>   
-                    <li><a href="https://www.acunetix.com/vulnerabilities/web/http-strict-transport-security-hsts-not-implemented/">https://www.acunetix.com/vulnerabilities/web/http-strict-transport-security-hsts-not-implemented</a></li>                 
-                      <Divider />
-                      <br />
-                    <b>  Domain    </b>       
-                      {newArray.map((historyRow) => (
-                          <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
-                         
-                          <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
-                           
-                          </TableCell>
-                          </div>
-                           ))}
-                    </CardContent>
-                  </Card>
-                </Grid>
-              </Grid>
-            </Box>
-          </Collapse>
-        </TableCell>
-      </TableRow>
+      </>
+    }
+  })}
       
       
+       
+      {uniqueArray.map((historyRow, index) => {
+      if(historyRow.Issues2!=null){
+      <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -368,7 +321,12 @@ restrict content that browsers will be allowed to load.</li>
           </Collapse>
         </TableCell>
       </TableRow>
-      
+      </>
+                      }
+                    })}
+       {uniqueArray.map((historyRow, index) => {
+      if(historyRow.Issues3!=null){
+      <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
         <TableCell align="left" component="th" scope="row"key={index}>
           <tr>{historyRow.Issues3}</tr>
@@ -390,7 +348,6 @@ restrict content that browsers will be allowed to load.</li>
           </tr>
         </TableCell>
       </TableRow>
-      
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open11} timeout="auto" unmountOnExit>
@@ -443,6 +400,13 @@ header.
           </Collapse>
         </TableCell>
       </TableRow>
+      </>
+                      }
+                    })}
+
+{uniqueArray.map((historyRow, index) => {
+      if(historyRow.Issues4!=null){
+      <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -522,6 +486,12 @@ control of their computer while clicking on seemingly innocuous web pages</li>
           </Collapse>
         </TableCell>
       </TableRow>
+      </>
+                      }
+                    })}
+                {uniqueArray.map((historyRow, index) => {
+      if(historyRow.Issue5!=null){
+      <>    
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -602,6 +572,12 @@ with a value of 'nosniff'.
           </Collapse>
         </TableCell>
       </TableRow>
+ </>
+}
+})}
+{uniqueArray.map((historyRow, index) => {
+  if(historyRow.Issue6!=null){
+  <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -683,6 +659,12 @@ client still blocks unwanted requests. </li>
           </Collapse>
         </TableCell>
       </TableRow>
+      </>
+    }
+  })}
+      {uniqueArray.map((historyRow, index) => {
+      if(historyRow.Issue7!=null){
+      <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -762,6 +744,12 @@ value
           </Collapse>
         </TableCell>
       </TableRow>
+      </>
+    }
+  })}
+{uniqueArray.map((historyRow, index) => {
+  if(historyRow.Issue8!=null){
+  <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -840,6 +828,12 @@ high resolution timer with better precision.</li>
           </Collapse>
         </TableCell>
       </TableRow>
+      </>
+    }
+  })}
+      {uniqueArray.map((historyRow, index) => {
+      if(historyRow.Issue9!=null){
+      <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -920,6 +914,12 @@ high resolution timer with better precision</li>
           </Collapse>
         </TableCell>
       </TableRow>
+      </>
+    }
+  })}
+{uniqueArray.map((historyRow, index) => {
+  if(historyRow.Issue10!=null){
+  <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -1000,6 +1000,12 @@ high resolution timer with better precision</li>
           </Collapse>
         </TableCell>
       </TableRow>
+      </>
+    }
+  })}
+      {uniqueArray.map((historyRow, index) => {
+      if(historyRow.Issue11!=null){
+      <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -1077,6 +1083,12 @@ browsers to block a given response before it enters an attacker's process. </li>
           </Collapse>
         </TableCell>
       </TableRow>
+      </>
+    }
+  })}
+{uniqueArray.map((historyRow, index) => {
+  if(historyRow.Issue12!=null){
+  <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -1156,6 +1168,12 @@ known and trusted domains to perform cross-domain requests if needed or should b
           </Collapse>
         </TableCell>
       </TableRow>
+      </>
+    }
+  })}
+      {uniqueArray.map((historyRow, index) => {
+      if(historyRow.Issue13!=null){
+      <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -1237,6 +1255,12 @@ let servers describe which origins are permitted to read that information from a
           </Collapse>
         </TableCell>
       </TableRow>
+      </>
+    }
+  })}
+{uniqueArray.map((historyRow, index) => {
+  if(historyRow.Issue14!=null){
+  <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -1316,6 +1340,12 @@ since all information of a HTTP request can be faked</li>
           </Collapse>
         </TableCell>
       </TableRow>
+      </>
+    }
+  })}
+      {uniqueArray.map((historyRow, index) => {
+      if(historyRow.Issue15!=null){
+      <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -1391,7 +1421,12 @@ seconds.</li>
           </Collapse>
         </TableCell>
       </TableRow>
-
+      </>
+    }
+  })}
+{uniqueArray.map((historyRow, index) => {
+  if(historyRow.Issue16!=null){
+  <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -1469,6 +1504,12 @@ web browser.</li>
           </Collapse>
         </TableCell>
       </TableRow>
+      </>
+    }
+  })}
+      {uniqueArray.map((historyRow, index) => {
+      if(historyRow.Issue17!=null){
+      <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -1531,121 +1572,12 @@ web browser.</li>
           </Collapse>
         </TableCell>
       </TableRow>
-      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      
-        <TableCell align="left" component="th" scope="row">
-          <tr>{historyRow.Issues1}</tr>
-        </TableCell>
-         
-       
-        <TableCell align="left" component="th" scope="row"key={index}>
-          <tr>{historyRow.Category}</tr>
-        </TableCell>
-         
-        <TableCell align="left" component="th" scope="row">
-          <Chip label="Critical" color="error" />
-        </TableCell>
-        <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen2(!open2)}
-          >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open2} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
-              <Grid container sx={{ mt: 5 }} spacing={2}>
-                <Grid item xs={12}>
-                  <Typography>Breach</Typography>
-                  <Card>
-                    <CardContent>
-                      Info
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <Divider />
-                      Remediation
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <Divider />
-                      Email
-                    </CardContent>
-                  </Card>
-                </Grid>
-              </Grid>
-            </Box>
-          </Collapse>
-        </TableCell>
-      </TableRow>
-
-
-      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      
-        <TableCell align="left" component="th" scope="row">
-         <tr>{historyRow.Issues1}</tr>
-         
-        </TableCell>
-        
-       
-        <TableCell align="left" component="th" scope="row"key={index}>
-          <tr>{historyRow.Category}</tr>
-        </TableCell>
-         
-        <TableCell align="left" component="th" scope="row">
-          <Chip label="Critical" color="error" />
-          
-        </TableCell>
-        <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen3(!open3)}
-          >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open3} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
-              <Grid container sx={{ mt: 5 }} spacing={2}>
-                <Grid item xs={12}>
-                  <Typography>Email Leak</Typography>
-                  <Card>
-                    <CardContent>
-                      Info
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <Divider />
-                      Remediation
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <Divider />
-                      Email
-                    </CardContent>
-                  </Card>
-                </Grid>
-              </Grid>
-            </Box>
-          </Collapse>
-        </TableCell>
-      </TableRow>
+      </>
+    }
+  })}              
     </React.Fragment>
-    ))}
-    </>
+    
+    
   );
 }
 

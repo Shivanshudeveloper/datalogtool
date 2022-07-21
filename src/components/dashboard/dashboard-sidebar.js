@@ -50,14 +50,14 @@ const getSections = (t) => [
         icon: <HomeIcon fontSize="small" />,
       },
      // {
-     //   title: t("Attack Surface"),
-     //   path: "/dashboard/attacksurface",
-     //   icon: <ChartBarIcon fontSize="small" />,
-     //  },
+      //  title: t("Attack Surface"),
+      //  path: "/dashboard/attacksurface",
+      //  icon: <ChartBarIcon fontSize="small" />,
+      // },
      // {
-     //   title: t("Assets"),
-     //   path: "/dashboard/assets",
-     //   icon: <ChartPieIcon fontSize="small" />,
+      //  title: t("Assets"),
+      //  path: "/dashboard/assets",
+      //  icon: <ChartPieIcon fontSize="small" />,
      // },
       // {
       //   title: t("Issues"),

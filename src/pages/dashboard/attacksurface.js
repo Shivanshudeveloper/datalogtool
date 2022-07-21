@@ -358,7 +358,7 @@ const Analytics = () => {
   }), [dispatch]);
   
 const arr = new Array(state.user)
-if(arr[0].email===Attack.email)
+if(arr.email===Attack.email)
 {
   const a = Attack.severity_count
   const b = Attack.score
@@ -415,7 +415,7 @@ if(arr[0].email===Attack.email)
                     Sub-domains
                   </Typography>
                   <Typography variant="h5" sx={{ textAlign: "center" }}>
-                    {c[0].Subdomains}
+                    
 
                   </Typography>
                 </CardContent>
@@ -435,7 +435,7 @@ if(arr[0].email===Attack.email)
                     IPv4
                   </Typography>
                   <Typography variant="h5" sx={{ textAlign: "center" }}>
-                  {c[0].IPv4}
+                  
                   </Typography>
                 </CardContent>
               </Card>
@@ -454,7 +454,7 @@ if(arr[0].email===Attack.email)
                     Total Issues
                   </Typography>
                   <Typography variant="h5" sx={{ textAlign: "center" }}>
-                  {c[0].TotalIssues}
+
                   </Typography>
                 </CardContent>
               </Card>
@@ -473,7 +473,7 @@ if(arr[0].email===Attack.email)
                     Breaches
                   </Typography>
                   <Typography variant="h5" sx={{ textAlign: "center" }}>
-                  {c[0].Breaches}
+                  
                   </Typography>
                 </CardContent>
               </Card>
@@ -492,7 +492,7 @@ if(arr[0].email===Attack.email)
                       <Typography sx={{ textAlign: "left", cursor: 'pointer' }}>Critical</Typography>
                     
 
-                    <h7>{a[0].Critical}</h7>
+                    <h7></h7>
 
                   <br />
                   <br />
@@ -500,7 +500,7 @@ if(arr[0].email===Attack.email)
                       <Typography sx={{ textAlign: "left", cursor: 'pointer' }}>High</Typography>
                     
 
-                      <h7>{a[0].High}</h7>
+                      <h7></h7>
 
                   <br />
                   <br />
@@ -509,13 +509,13 @@ if(arr[0].email===Attack.email)
                     </Tooltip>
 
                    
-                    <h7>{a[0].Medium}</h7>
+                    <h7></h7>
                   <br />
                   <br />
                     <Tooltip title="76%">
                       <Typography sx={{ textAlign: "left", cursor: 'pointer' }}>Low</Typography>
                     </Tooltip>
-                    <h7>{a[0].Low}</h7>
+                    <h7></h7>
                 </CardContent>
               </Card>
             </Grid>
