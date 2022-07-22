@@ -158,6 +158,7 @@ console.log(uniqueArray)
     <React.Fragment>
     {uniqueArray.map((historyRow, index) => {
       if(historyRow.Issues1!=null){
+        return(
       <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
@@ -236,6 +237,7 @@ console.log(uniqueArray)
         </TableCell>
       </TableRow>
       </>
+        )
     }
   })}
       
@@ -243,6 +245,7 @@ console.log(uniqueArray)
        
       {uniqueArray.map((historyRow, index) => {
       if(historyRow.Issues2!=null){
+        return(
       <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
@@ -322,10 +325,15 @@ restrict content that browsers will be allowed to load.</li>
         </TableCell>
       </TableRow>
       </>
+        )
+      
                       }
                     })}
+
+                    
        {uniqueArray.map((historyRow, index) => {
       if(historyRow.Issues3!=null){
+        return(
       <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
         <TableCell align="left" component="th" scope="row"key={index}>
@@ -401,11 +409,13 @@ header.
         </TableCell>
       </TableRow>
       </>
+        )
                       }
                     })}
 
 {uniqueArray.map((historyRow, index) => {
       if(historyRow.Issues4!=null){
+        return(
       <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
@@ -487,10 +497,12 @@ control of their computer while clicking on seemingly innocuous web pages</li>
         </TableCell>
       </TableRow>
       </>
+        )
                       }
                     })}
                 {uniqueArray.map((historyRow, index) => {
       if(historyRow.Issue5!=null){
+        return(
       <>    
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
@@ -573,10 +585,12 @@ with a value of 'nosniff'.
         </TableCell>
       </TableRow>
  </>
+        )
 }
 })}
 {uniqueArray.map((historyRow, index) => {
   if(historyRow.Issue6!=null){
+    return(
   <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
@@ -660,10 +674,12 @@ client still blocks unwanted requests. </li>
         </TableCell>
       </TableRow>
       </>
+    )
     }
   })}
       {uniqueArray.map((historyRow, index) => {
       if(historyRow.Issue7!=null){
+        return(
       <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
@@ -745,10 +761,12 @@ value
         </TableCell>
       </TableRow>
       </>
+        )
     }
   })}
 {uniqueArray.map((historyRow, index) => {
   if(historyRow.Issue8!=null){
+    return(
   <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
@@ -829,10 +847,12 @@ high resolution timer with better precision.</li>
         </TableCell>
       </TableRow>
       </>
+    )
     }
   })}
       {uniqueArray.map((historyRow, index) => {
       if(historyRow.Issue9!=null){
+        return(
       <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
@@ -915,10 +935,12 @@ high resolution timer with better precision</li>
         </TableCell>
       </TableRow>
       </>
+        )
     }
   })}
 {uniqueArray.map((historyRow, index) => {
   if(historyRow.Issue10!=null){
+    return(
   <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
@@ -1001,10 +1023,12 @@ high resolution timer with better precision</li>
         </TableCell>
       </TableRow>
       </>
+    )
     }
   })}
       {uniqueArray.map((historyRow, index) => {
       if(historyRow.Issue11!=null){
+        return(
       <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
@@ -1084,10 +1108,12 @@ browsers to block a given response before it enters an attacker's process. </li>
         </TableCell>
       </TableRow>
       </>
+        )
     }
   })}
 {uniqueArray.map((historyRow, index) => {
   if(historyRow.Issue12!=null){
+    return(
   <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
@@ -1169,10 +1195,12 @@ known and trusted domains to perform cross-domain requests if needed or should b
         </TableCell>
       </TableRow>
       </>
+    )
     }
   })}
       {uniqueArray.map((historyRow, index) => {
       if(historyRow.Issue13!=null){
+        return(
       <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
@@ -1256,10 +1284,12 @@ let servers describe which origins are permitted to read that information from a
         </TableCell>
       </TableRow>
       </>
+        )
     }
   })}
 {uniqueArray.map((historyRow, index) => {
   if(historyRow.Issue14!=null){
+    return(
   <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
@@ -1341,10 +1371,12 @@ since all information of a HTTP request can be faked</li>
         </TableCell>
       </TableRow>
       </>
+    )
     }
   })}
       {uniqueArray.map((historyRow, index) => {
       if(historyRow.Issue15!=null){
+        return(
       <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
@@ -1422,10 +1454,12 @@ seconds.</li>
         </TableCell>
       </TableRow>
       </>
+        )
     }
   })}
 {uniqueArray.map((historyRow, index) => {
   if(historyRow.Issue16!=null){
+    return(
   <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
@@ -1505,10 +1539,12 @@ web browser.</li>
         </TableCell>
       </TableRow>
       </>
+    )
     }
   })}
       {uniqueArray.map((historyRow, index) => {
       if(historyRow.Issue17!=null){
+        return(
       <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       
@@ -1573,8 +1609,11 @@ web browser.</li>
         </TableCell>
       </TableRow>
       </>
+        )
     }
-  })}              
+  })}       
+  
+
     </React.Fragment>
     
     
