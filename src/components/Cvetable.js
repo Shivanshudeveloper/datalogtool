@@ -66,7 +66,7 @@ function Row(props) {
 
   const getthemembersipdata = async () => {
     try {
-      const res = await fetch(`http://localhost:8080/api/v1/main/tests`, {
+      const res = await fetch(`${API_SERVICE}/tests`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -198,7 +198,7 @@ export default function Cvetable() {
 
   const getthemembersipdata = async () => {
     try {
-      const res = await fetch(`http://localhost:8080/api/v1/main/tests`, {
+      const res = await fetch(`${API_SERVICE}/tests`, {
         method: "GET",
         headers: {
           Accept: "application/json",
