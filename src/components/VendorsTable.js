@@ -142,7 +142,7 @@ export default function VendorsTable() {
                     <Button
                       color='primary'
                     >
-                     <Link  href={{ pathname: "/dashboard/websiteprofile/", query: { id: Test.domain } }}>
+                     <Link  href={{ pathname: "/dashboard/websiteprofile/", query: { id: "test.com" } }}>
           View
         </Link>
                     </Button>

@@ -95,7 +95,7 @@ const Analytics = () => {
   const theme = useTheme();
 
     const router = useRouter()
-  const { id } = router.query
+  const  {id}  = router.query
   const [files, setFiles] = useState([]);
 
   const [membershipdata, setmembershipdata] = useState({});
@@ -187,9 +187,9 @@ const Analytics = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              name: "etisalat",
+              name: "test",
               user: state.id,
-              target: "etisalat.ae",
+              target: "test.com",
               score: "7",
             }),
           });
@@ -285,8 +285,8 @@ const chartOptions2 = {
   },
 };
 
-
 const chartSeries = data.series.map((item) => item.data);
+
 
   return (
     <>
@@ -318,9 +318,11 @@ const chartSeries = data.series.map((item) => item.data);
               <Container sx={{ mt: 2 }} maxWidth="xl">
                 <Grid container>
                   <Grid item xs={3}>
-                    {testdata.map((b)=>(
+                    {testdata.map((b)=>{
+                      if(b.domain=={id}.id)
+                      return(
                     <Typography sx={{ textAlign: "center" }}> <Link href="https://www.etisalat.ae/en/index.jsp" passHref><a target="_blank"><img style={{maxWidth:80}}src={b.logo}></img></a></Link></Typography>
-                    ))}
+                     )})}
                     </Grid>
                   <Grid item xs={3}>
                     <Typography sx={{ textAlign: "center" }}>
@@ -420,6 +422,7 @@ const chartSeries = data.series.map((item) => item.data);
             </TabPanel>
             <TabPanel value={value} index={1}>
             {issuedata.map((a)=>(
+              
               <Box
                 component="main"
                 sx={{

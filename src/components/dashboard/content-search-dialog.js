@@ -65,12 +65,12 @@ export const ContentSearchDialog = (props) => {
     await wait(1500);
     setIsLoading(false);
     setShowResults(true);
-    router.push("/dashboard/websiteprofile/")
+    router.push({ pathname: "/dashboard/websiteprofile/", query: { id: "test.com" } })
     onClose()
   };
 
   const top100Films = [
-    { title: Test.domain},
+    { title: "test.com"}
   ]
 
   return (
@@ -100,7 +100,7 @@ export const ContentSearchDialog = (props) => {
         >
           <XIcon fontSize="small" />
         </IconButton>
-      </Box>
+      </Box> 
       <DialogContent>
         
         <form onSubmit={handleSubmit}>

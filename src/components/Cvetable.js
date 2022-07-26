@@ -211,9 +211,14 @@ export default function Cvetable() {
       console.log(err);
     }
   };
+
+  
+const  ide  = router.query
   return (
     <TableContainer component={Paper}>
-      {membershipdata.map((a)=>(
+      {membershipdata.map((a)=>{
+        if(a.domain==ide.id)
+        return(
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
@@ -224,14 +229,16 @@ export default function Cvetable() {
           </TableRow>
         </TableHead>
         {a.patching.map((index)=> (
+        
         <TableBody>
           {index.cve.map((i,a)=>
            <Row row={i} key={a} myKey={a}/>
  )}
         </TableBody>
-         ))}
+))}
       </Table>
-      ))}
+        )
+})}
     </TableContainer>
   );
 }
