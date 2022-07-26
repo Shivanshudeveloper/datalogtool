@@ -66,7 +66,7 @@ function Row(props) {
 
   const getthemembersipdata = async () => {
     try {
-      const res = await fetch(`${API_SERVICE}/tests`, {
+      const res = await fetch(`http://localhost:8080/api/v1/main/tests`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -198,25 +198,19 @@ export default function Cvetable() {
 
   const getthemembersipdata = async () => {
     try {
-      const res = await fetch(`${API_SERVICE}/tests`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(`https://devdatalog.herokuapp.com/api/v1/main/tests`
+      );
       const content = await res.json();
-      setmembershipdata(content);
+      setmembershipdata(content)
     } catch (err) {
       console.log(err);
     }
   };
 
-  
-const  ide  = router.query
+  const ide = router.query
   return (
     <TableContainer component={Paper}>
-      {membershipdata.map((a)=>{
+       {membershipdata.map((a)=>{
         if(a.domain==ide.id)
         return(
       <Table aria-label="collapsible table">
@@ -229,16 +223,15 @@ const  ide  = router.query
           </TableRow>
         </TableHead>
         {a.patching.map((index)=> (
-        
         <TableBody>
           {index.cve.map((i,a)=>
            <Row row={i} key={a} myKey={a}/>
  )}
         </TableBody>
-))}
+         ))}
       </Table>
-        )
-})}
+       )
+      })}
     </TableContainer>
   );
 }
