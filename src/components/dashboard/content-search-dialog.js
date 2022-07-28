@@ -58,6 +58,7 @@ export const ContentSearchDialog = (props) => {
   const router = useRouter()
 
   const handleSubmit = async (event) => {
+    if(event){
     event.preventDefault();
     setShowResults(false);
     setIsLoading(true);
@@ -67,6 +68,8 @@ export const ContentSearchDialog = (props) => {
     setShowResults(true);
     router.push({ pathname: "/dashboard/websiteprofile/", query: { id: "test.com" } })
     onClose()
+    }
+    
   };
 
   const top100Films = [

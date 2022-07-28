@@ -164,6 +164,7 @@ if(row.domain==id.id)
     
     <React.Fragment>
     {uniqueArray.map((historyRow, index) => {
+      console.log(historyRow)
       if(historyRow.Issues1!=null && a==1){
         return(
       <>
@@ -229,14 +230,14 @@ if(row.domain==id.id)
                       <Divider />
                       <br />
                     <b>  Domain    </b>       
-                      {newArray.map((historyRow) => (
-                          <div style={{overflow:Hidden}}>              <TableCell align="left" component="th" scope="row">
+                      
+                          <div style={{overflow:Hidden}}>              
                          
-                          <tr style={{overflow:Hidden}}>{historyRow.Host}</tr>     
+                          <a>{historyRow.Host}</a>     
                            
-                          </TableCell>
+                          
                           </div>
-                           ))}
+                           
                     </CardContent>
                   </Card>
                 </Grid>

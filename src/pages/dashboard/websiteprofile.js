@@ -452,8 +452,8 @@ const chartSeries = data.series.map((item) => item.data);
                       <Typography sx={{ textAlign: "center" }}>{a.domain}</Typography>
                     </Grid>
                     <Grid item xs={4}>
-                      <Typography sx={{ textAlign: "center" }}>Hosting</Typography>
-                      <Typography sx={{ textAlign: "center" }}>{a.email}</Typography>
+                      <Typography sx={{ textAlign: "center" }}></Typography>
+                      <Typography sx={{ textAlign: "center" }}></Typography>
                     </Grid>
                     <Grid item xs={4}>
                       <Typography sx={{ textAlign: "center" }}>IP Address</Typography>
