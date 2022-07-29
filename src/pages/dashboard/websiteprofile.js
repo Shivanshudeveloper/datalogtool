@@ -246,14 +246,43 @@ const Analytics = () => {
   a.misconfiguration.filter((arr, index, self) =>
   index === self.findIndex((t) => (t.save === a.misconfiguration.save && t.State === a.misconfiguration.State)))
  ) 
+ 
  const c = b.length;
+const arr=0;
+const brr=0;
+const crr=0;
 
+issuedata.map((ab)=>
+ab.misconfiguration.map((cd)=>{
+  if(cd.Serverity=="Low")
+  {
+    arr=arr+1;
+  }
+  else if(cd.Serverity=="Medium")
+  {
+    brr=brr+1
+  }
+  else{
+       crr=crr+1;
+  }
+})
+)
  const data = {
   series: [
     {
       color: "#FFB547",
-      data: c*14,
-      label: "Strategy",
+      data: arr,
+      label: "Low",
+    },
+    {
+      color: "#FF0000",
+      data: brr,
+      label: "Medium",
+    },
+    {
+      color: "#FFB549",
+      data: crr,
+      label: "High",
     },
   ],
 };

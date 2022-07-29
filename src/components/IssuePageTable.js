@@ -180,7 +180,7 @@ if(row.domain==id.id)
         </TableCell>
         
         <TableCell align="left" component="th" scope="row">
-          <Chip label="Low" color="error" />
+          <Chip label={historyRow.Serverity} color="error" />
         </TableCell>
         <TableCell>
           <tr><IconButton
