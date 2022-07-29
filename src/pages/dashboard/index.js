@@ -267,6 +267,24 @@ const index = (props) => {
   const a = membershipdata.filter((c)=>{
     return c.user===state.id
   })
+const arr=0;
+const brr=0;
+const crr=0;
+issuedata.map((ab)=>
+ab.misconfiguration.map((cd)=>{
+  if(cd.Serverity=="Low")
+  {
+    arr=arr+1;
+  }
+  else if(cd.Serverity=="Medium")
+  {
+    brr=brr+1
+  }
+  else{
+       crr=crr+1;
+  }
+})
+)
   const cr=a.length
    const b = issuedata.map((a)=>
     a.misconfiguration.filter((arr, index, self) =>
@@ -282,8 +300,18 @@ const index = (props) => {
       },
       {
         color: "#00ab57",
-        data: c*14,
-        label: c*14,
+        data: arr*cr,
+        label: "Low",
+      },
+      {
+        color: "#FFB547",
+        data: brr*cr,
+        label: "Medium",
+      },
+      {
+        color: "#FF0000",
+        data: crr*cr,
+        label: "High",
       },
     ],
   };
